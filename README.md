@@ -33,7 +33,7 @@ from django.urls import include, path, re_path
 ```
 and then the following path:
 ```python
-re_path(r"^", include("dashboard.urls")),
+re_path(r"^", include("archesdataviewer.urls")),
 ```
 4. From your project run migrate to add the model included in the app(This step is currently unecessary as the django app does not provide any new models, but may become needed in the future):
 ``` python manage.py migrate ```
