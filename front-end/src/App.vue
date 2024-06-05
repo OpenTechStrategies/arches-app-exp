@@ -1,21 +1,9 @@
-<template>
-  <div id="app">
-    <Home />
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Home from './views/Home.vue'
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    Home
-  }
-})
+<script setup lang="ts">
+import Home from '@/pages/Home.vue'
 </script>
 
-<style>
-/* Add your styles here */
-</style>
+<template>
+  <main>
+    <Home/>
+  </main>
+</template>
