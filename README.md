@@ -24,7 +24,6 @@ ARCHES_APPLICATIONS = ("archesdataviewer",)  # be sure to add the trailing comma
 
 INSTALLED_APPS = [
     ...
-    "demo",
     "archesdataviewer",
 ]
 ```
