@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
-import type { ResourceArray } from '../../types';
-import ResourceListItem from './ResourceListItem.vue';
-import ResourceListButton from './ResourceListButton.vue';
+import type { SearchResultArray } from '../types';
+import SearchListItem from './SearchListItem.vue';
+import SearchListButton from './SearchListButton.vue';
 
 const props = defineProps<{
   pageValues: {
     has_next: Ref<boolean>;
     has_previous: Ref<boolean>;
   };
-  resources: ResourceArray;
+  searchResults: SearchResultArray;
 }>();
 
 const emit = defineEmits(['next-page', 'previous-page']);
@@ -23,23 +23,21 @@ const getPreviousPage = () => {
 </script>
 
 <template>
-  <div class="resource-list">
-    <ResourceListItem
-      v-for="resource in props.resources.items"
-      :resource="resource"
-      :key="resource._id"
+  <div class="search-list">
+    <SearchListItem
+      v-for="result in props.searchResults.items"
+      :result="result"
+      :key="result._id"
     />
     <div>
-      <ResourceListButton
+      <SearchListButton
         type="previous"
         @previous="getPreviousPage"
         :flag="props.pageValues.has_previous"
       />
-      <ResourceListButton type="next" @next="getNextPage" :flag="props.pageValues.has_next" />
+      <SearchListButton type="next" @next="getNextPage" :flag="props.pageValues.has_next" />
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
