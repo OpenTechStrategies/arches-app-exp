@@ -37,7 +37,7 @@ interface Point {
   provisional: boolean;
 }
 
-export interface SearchResult {
+interface SearchResult {
   _id: string;
   _index: string;
   _score: number;
@@ -47,7 +47,7 @@ export interface SearchResult {
     displayname_language: string;
     geometries: Geometry[];
     graph_id: string;
-    map_popup: MapPopup[];
+    map_popup: MapPopup[] | string;
     permissions: Permissions;
     points: Point[];
     provisional_resource: string;
@@ -57,6 +57,7 @@ export interface SearchResult {
   };
 }
 
-export interface SearchResultArray {
+interface SearchResultArray {
   items: SearchResult[];
 }
+export type { MapPopup, SearchResult, SearchResultArray };
