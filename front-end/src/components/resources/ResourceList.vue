@@ -29,15 +29,17 @@ const getPreviousPage = () => {
       :resource="resource"
       :key="resource._id"
     />
-  </div>
-  <div>
-    <ResourceListButton
-      type="previous"
-      @previous="getPreviousPage"
-      :flag="props.pageValues.has_previous"
-    />
-    <ResourceListButton type="next" @next="getNextPage" :flag="props.pageValues.has_next" />
+    <div>
+      <ResourceListButton
+        type="previous"
+        @previous="getPreviousPage"
+        :flag="props.pageValues.has_previous"
+      />
+      <ResourceListButton type="next" @next="getNextPage" :flag="props.pageValues.has_next" />
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
