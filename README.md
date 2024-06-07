@@ -56,4 +56,4 @@ Example front-end dev workflow:
 3. Run npm run build
 4. Uninstall the current version of this application on your arches instance with 
 ```pip uninstall archesdataviewer```
-1. Reinstall the application with ```pip install git+https://github.com/{yourgithubforkurl```
+1. Reinstall the application with ```pip install git+https://github.com/{YourGithubForkURL}```
