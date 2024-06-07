@@ -1,1 +1,3 @@
-export * from './Resource';
+export * from './SearchResult';
+export * from './Artist';
+export * from './Artwork';

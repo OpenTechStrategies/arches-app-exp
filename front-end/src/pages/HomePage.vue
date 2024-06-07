@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import ResourceListProvider from '../components/resources/ResourceListProvider.vue';
-import ResourceList from '../components/resources/ResourceList.vue';
+import SearchListProvider from '../components/SearchListProvider.vue';
+import SearchList from '../components/SearchList.vue';
 </script>
 
 <template>
   <div>
-    <ResourceListProvider v-slot="{ resources, fetchNextPage, fetchPreviousPage, pageValues }">
-      <ResourceList
-        :resources="resources"
+    <SearchListProvider v-slot="{ searchResults, fetchNextPage, fetchPreviousPage, pageValues }">
+      <SearchList
+        :searchResults="searchResults"
         :pageValues="pageValues"
         @next-page="fetchNextPage"
         @previous-page="fetchPreviousPage"
-        v-if="resources"
+        v-if="searchResults"
       />
-    </ResourceListProvider>
+    </SearchListProvider>
   </div>
 </template>
