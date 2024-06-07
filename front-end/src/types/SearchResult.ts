@@ -37,6 +37,13 @@ interface Point {
   provisional: boolean;
 }
 
+interface ResourcePermissions {
+  users_with_no_access: string[];
+  users_without_delete_perm: string[];
+  users_without_edit_perm: string[];
+  users_without_read_perm: string[];
+}
+
 interface SearchResult {
   _id: string;
   _index: string;
@@ -48,7 +55,7 @@ interface SearchResult {
     geometries: Geometry[];
     graph_id: string;
     map_popup: MapPopup[] | string;
-    permissions: Permissions;
+    permissions: ResourcePermissions;
     points: Point[];
     provisional_resource: string;
     resourceinstanceid: string;
@@ -60,4 +67,4 @@ interface SearchResult {
 interface SearchResultArray {
   items: SearchResult[];
 }
-export type { MapPopup, SearchResult, SearchResultArray };
+export type { ResourcePermissions, Point, Geometry, MapPopup, SearchResult, SearchResultArray };
