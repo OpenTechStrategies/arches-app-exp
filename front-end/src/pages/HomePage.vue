@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SearchListProvider from '../components/SearchListProvider.vue';
 import SearchList from '../components/SearchList.vue';
+import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
 </script>
 
@@ -18,7 +19,9 @@ import LeafletMap from '../components/LeafletMap.vue';
       </SearchListProvider>
     </div>
     <div id="map-container">
-      <LeafletMap />
+      <LeafletMapProvider v-slot="{ searchResults }">
+        <LeafletMap :search-results="searchResults" v-if="searchResults" />
+      </LeafletMapProvider>
     </div>
   </div>
 </template>
@@ -28,7 +31,7 @@ import LeafletMap from '../components/LeafletMap.vue';
   display: flex;
 }
 #map-container {
-  width: 800px;
-  height: 600px;
+  margin: 100px;
+  width: 50%;
 }
 </style>
