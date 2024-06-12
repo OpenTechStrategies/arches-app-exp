@@ -3,11 +3,12 @@ import SearchListProvider from '../components/SearchListProvider.vue';
 import SearchList from '../components/SearchList.vue';
 import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
+import ResourcePanel from '../components/ResourcePanel.vue';
 </script>
 
 <template>
   <div class="home">
-    <div>
+    <div class="column" id="search-list-container">
       <SearchListProvider v-slot="{ searchResults, fetchNextPage, fetchPreviousPage, pageValues }">
         <SearchList
           :searchResults="searchResults"
@@ -18,10 +19,13 @@ import LeafletMap from '../components/LeafletMap.vue';
         />
       </SearchListProvider>
     </div>
-    <div id="map-container">
+    <div class="column" id="map-container">
       <LeafletMapProvider v-slot="{ searchResults }">
         <LeafletMap :search-results="searchResults" v-if="searchResults" />
       </LeafletMapProvider>
+    </div>
+    <div class="column" id="resource-panel-container">
+      <ResourcePanel />
     </div>
   </div>
 </template>
@@ -29,9 +33,20 @@ import LeafletMap from '../components/LeafletMap.vue';
 <style scoped>
 .home {
   display: flex;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
 }
-#map-container {
-  margin: 100px;
-  width: 50%;
+
+.column {
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+#search-list-container,
+#map-container,
+#resource-panel-container {
+  padding: 10px;
 }
 </style>

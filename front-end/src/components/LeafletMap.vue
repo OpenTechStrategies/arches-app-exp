@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import 'leaflet/dist/leaflet.css';
-import type { SearchResultArray } from '@/types';
 import { onMounted, ref } from 'vue';
+import 'leaflet/dist/leaflet.css';
+import { useResourceStore } from '@/stores/resourceStore';
+import type { SearchResultArray } from '@/types';
 import L, { Map } from 'leaflet';
 
+const store = useResourceStore();
 const props = defineProps<{
   searchResults: SearchResultArray;
 }>();
@@ -26,6 +28,11 @@ const initMap = (element: HTMLElement) => {
       ]);
       marker.bindPopup(`<b>Artwork Title: ${value._source.displayname}</b><br>
       By: ${value._source.displaydescription}`);
+      marker.on('click', () => {
+        store.$patch({
+          resourceId: value._id
+        });
+      });
       marker.addTo(map);
     }
   });
@@ -45,6 +52,6 @@ onMounted(() => {
 </template>
 <style scoped>
 #map {
-  height: 100%;
+  height: 80%;
 }
 </style>

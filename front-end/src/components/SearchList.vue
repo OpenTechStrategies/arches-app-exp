@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
+import { useResourceStore } from '@/stores/resourceStore';
 import type { SearchResultArray } from '../types';
 import SearchListItem from './SearchListItem.vue';
 import SearchListButton from './SearchListButton.vue';
-
+const store = useResourceStore();
 const props = defineProps<{
   pageValues: {
     has_next: Ref<boolean>;
@@ -20,16 +21,25 @@ const getNextPage = () => {
 const getPreviousPage = () => {
   emit('previous-page');
 };
+
+const setResource = (resourceId: string) => {
+  store.$patch({
+    resourceId: resourceId
+  });
+};
 </script>
 
 <template>
-  <div class="search-list">
-    <SearchListItem
-      v-for="result in props.searchResults.items"
-      :result="result"
-      :key="result._id"
-    />
-    <div>
+  <div class="search-list-container">
+    <div class="search-list">
+      <SearchListItem
+        v-for="result in props.searchResults.items"
+        :result="result"
+        :key="result._id"
+        @set-resource="setResource"
+      />
+    </div>
+    <div class="button-container">
       <SearchListButton
         type="previous"
         @previous="getPreviousPage"
@@ -40,4 +50,24 @@ const getPreviousPage = () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.search-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+}
+
+.search-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f0f0f0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+</style>
