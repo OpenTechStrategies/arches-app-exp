@@ -1,3 +1,4 @@
+import type { JSONSchemaType } from 'ajv';
 /*
  * Modeled off the results of a GET request to the
  * /search/resources endpoint!
@@ -67,4 +68,16 @@ interface SearchResult {
 interface SearchResultArray {
   items: SearchResult[];
 }
+
+const MapPopupSchema: JSONSchemaType<MapPopup> = {
+  type: 'object',
+  properties: {
+    language: { type: 'string' },
+    value: { type: 'string' }
+  },
+  required: ['language', 'value']
+};
+
 export type { ResourcePermissions, Point, Geometry, MapPopup, SearchResult, SearchResultArray };
+
+export { MapPopupSchema };
