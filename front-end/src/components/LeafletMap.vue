@@ -45,6 +45,6 @@ onMounted(() => {
 </template>
 <style scoped>
 #map {
-  height: 100%;
+  height: 80%;
 }
 </style>
