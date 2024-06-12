@@ -12,6 +12,7 @@
       </li>
       <li>Is Provisional Resource?: {{ props.result._source.provisional_resource }}</li>
     </ul>
+    <button @click="setResource" class="details-button">details</button>
   </div>
 </template>
 
@@ -21,6 +22,11 @@ import type { SearchResult } from '../types';
 const props = defineProps<{
   result: SearchResult;
 }>();
+const emit = defineEmits(['set-resource']);
+
+const setResource = () => {
+  emit('set-resource', props.result._id);
+};
 </script>
 
 <style scoped>

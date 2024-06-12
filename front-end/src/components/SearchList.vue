@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
+import { useResourceStore } from '@/stores/resourceStore';
 import type { SearchResultArray } from '../types';
 import SearchListItem from './SearchListItem.vue';
 import SearchListButton from './SearchListButton.vue';
-
+const store = useResourceStore();
 const props = defineProps<{
   pageValues: {
     has_next: Ref<boolean>;
@@ -20,6 +21,12 @@ const getNextPage = () => {
 const getPreviousPage = () => {
   emit('previous-page');
 };
+
+const setResource = (resourceId: string) => {
+  store.$patch({
+    resourceId: resourceId
+  });
+};
 </script>
 
 <template>
@@ -29,6 +36,7 @@ const getPreviousPage = () => {
         v-for="result in props.searchResults.items"
         :result="result"
         :key="result._id"
+        @set-resource="setResource"
       />
     </div>
     <div class="button-container">
