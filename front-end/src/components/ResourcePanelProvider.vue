@@ -5,8 +5,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useResourceStore } from '../stores/resourceStore';
+import type { Resource } from '@/types';
 const store = useResourceStore();
-const resource = ref(null);
+const resource = ref<Resource>();
 
 async function fetchResource() {
   if (!store.resourceId) return;

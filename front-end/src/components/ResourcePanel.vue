@@ -1,16 +1,30 @@
 <script setup lang="ts">
 import { validateArtistSchema, validateArtworkSchema } from '@/types';
-import ResourceDetailProvider from './ResourceDetailProvider.vue';
+import ResourceDetailProvider from './ResourcePanelProvider.vue';
 import ArtworkDetail from './ArtworkDetail.vue';
 import ArtistDetail from './ArtistDetail.vue';
+import type { Resource } from '@/types';
+
+const props = defineProps<{
+  resource: Resource | undefined;
+}>();
 </script>
 
 <template>
   <div id="resource-panel">
-    <ResourceDetailProvider v-slot="{ resource }">
-      <ArtworkDetail :artwork="resource" v-if="validateArtworkSchema(resource)" />
-      <ArtistDetail :artist="resource" v-else-if="validateArtistSchema(resource)" />
-    </ResourceDetailProvider>
+    <div v-if="props.resource">
+      <ArtworkDetail
+        :artwork="props.resource.resource"
+        v-if="validateArtworkSchema(props.resource?.resource)"
+      />
+      <ArtistDetail
+        :artist="props.resource.resource"
+        v-else-if="validateArtistSchema(props.resource?.resource)"
+      />
+    </div>
+    <div v-else>
+      <p>Click on a resource on the map or search list to display details</p>
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 import type { JSONSchemaType } from 'ajv';
 import { ajv } from '@/ajv';
 
-interface ArtworkResource {
+export interface Artwork {
   Artist: string;
   Identifiers: {
     ID: string;
@@ -17,22 +17,15 @@ interface ArtworkResource {
     'Location Description': string;
     Structure: string;
   };
+  Description?: string;
   Title: string;
 }
 
-export interface Artwork {
-  displaydescription: string;
-  displayname: string;
-  graph_id: string;
-  map_popup: string;
-  resource: ArtworkResource;
-  resourceinstanceid: string;
-}
-
-const ArtworkResourceSchema: JSONSchemaType<ArtworkResource> = {
+const ArtworkSchema: JSONSchemaType<Artwork> = {
   type: 'object',
   properties: {
     Artist: { type: 'string' },
+    Description: { type: 'string', nullable: true },
     Identifiers: {
       type: 'object',
       properties: {
@@ -61,28 +54,7 @@ const ArtworkResourceSchema: JSONSchemaType<ArtworkResource> = {
     },
     Title: { type: 'string' }
   },
-  required: ['Artist', 'Identifiers', 'Image', 'Location', 'Title'],
-  additionalProperties: true
-};
-
-const ArtworkSchema: JSONSchemaType<Artwork> = {
-  type: 'object',
-  properties: {
-    displaydescription: { type: 'string' },
-    displayname: { type: 'string' },
-    graph_id: { type: 'string' },
-    map_popup: { type: 'string' },
-    resource: ArtworkResourceSchema,
-    resourceinstanceid: { type: 'string' }
-  },
-  required: [
-    'displaydescription',
-    'displayname',
-    'graph_id',
-    'map_popup',
-    'resource',
-    'resourceinstanceid'
-  ],
+  required: ['Artist', 'Identifiers', 'Location', 'Title'],
   additionalProperties: true
 };
 

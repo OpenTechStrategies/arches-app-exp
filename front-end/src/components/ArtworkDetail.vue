@@ -1,9 +1,9 @@
 <template>
   <div class="artwork-detail">
-    <h1>{{ props.artwork.displayname }}</h1>
-    <h2>{{ props.artwork.displaydescription }}</h2>
+    <h1>Artist: {{ props.artwork.Artist }}</h1>
+    <h2>Description: {{ props.artwork?.Description }}</h2>
     <img :src="imagesrc" alt="artwork image" />
-    <h3>Photographer: {{ props.artwork.resource?.Image?.Photographer }}</h3>
+    <h3>Photographer: {{ props.artwork.Image?.Photographer }}</h3>
   </div>
 </template>
 
@@ -16,8 +16,8 @@ const props = defineProps<{
 }>();
 
 const imagesrc = computed(() => {
-  if (props.artwork.resource.Image) {
-    return `${import.meta.env.VITE_ARCHES_API_URL}${props.artwork.resource.Image['@value']}`;
+  if (props.artwork.Image) {
+    return `${import.meta.env.VITE_ARCHES_API_URL}${props.artwork.Image['@value']}`;
   } else {
     return '';
   }
