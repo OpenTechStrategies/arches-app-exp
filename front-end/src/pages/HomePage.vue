@@ -26,10 +26,9 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
       </LeafletMapProvider>
     </div>
     <div class="column" id="resource-panel-container">
-      <ResourcePanelProvider v-slot="{resource }">
+      <ResourcePanelProvider v-slot="{ resource }">
         <ResourcePanel :resource="resource" />
       </ResourcePanelProvider>
-      </div
     </div>
   </div>
 </template>
