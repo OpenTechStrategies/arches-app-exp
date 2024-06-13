@@ -4,6 +4,7 @@ import SearchList from '../components/SearchList.vue';
 import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
 import ResourcePanel from '../components/ResourcePanel.vue';
+import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
 </script>
 
 <template>
@@ -25,7 +26,9 @@ import ResourcePanel from '../components/ResourcePanel.vue';
       </LeafletMapProvider>
     </div>
     <div class="column" id="resource-panel-container">
-      <ResourcePanel />
+      <ResourcePanelProvider v-slot="{ resource }">
+        <ResourcePanel :resource="resource" />
+      </ResourcePanelProvider>
     </div>
   </div>
 </template>

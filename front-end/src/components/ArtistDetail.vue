@@ -1,7 +1,6 @@
 <template>
   <div class="artist-detail">
-    <h1>{{ props.artist.displayname }}</h1>
-    <h2>{{ props.artist.displaydescription }}</h2>
+    <h1>Artist Name: {{ props.artist.Name }}</h1>
   </div>
 </template>
 

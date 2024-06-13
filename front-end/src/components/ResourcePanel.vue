@@ -1,16 +1,39 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { validateArtistSchema, validateArtworkSchema } from '@/types';
-import ResourceDetailProvider from './ResourceDetailProvider.vue';
 import ArtworkDetail from './ArtworkDetail.vue';
 import ArtistDetail from './ArtistDetail.vue';
+import type { Resource } from '@/types';
+
+const props = defineProps<{
+  resource: Resource | undefined;
+}>();
+
+const showMetaData = ref<boolean>(false);
 </script>
 
 <template>
   <div id="resource-panel">
-    <ResourceDetailProvider v-slot="{ resource }">
-      <ArtworkDetail :artwork="resource" v-if="validateArtworkSchema(resource)" />
-      <ArtistDetail :artist="resource" v-else-if="validateArtistSchema(resource)" />
-    </ResourceDetailProvider>
+    <div v-if="props.resource !== undefined">
+      <ArtworkDetail
+        :artwork="props.resource.resource"
+        v-if="validateArtworkSchema(props.resource?.resource)"
+      />
+      <ArtistDetail
+        :artist="props.resource.resource"
+        v-else-if="validateArtistSchema(props.resource?.resource)"
+      />
+      <button @click="showMetaData = !showMetaData">Show Arches Metadata</button>
+      <div v-if="showMetaData">
+        <ul>
+          <li>Graph Id: {{ props.resource.graph_id }}</li>
+          <li>Resource Instance Id: {{ props.resource.resourceinstanceid }}</li>
+        </ul>
+      </div>
+    </div>
+    <div v-else>
+      <p>Click on a resource on the map or search list to display details</p>
+    </div>
   </div>
 </template>
 
@@ -22,6 +45,5 @@ import ArtistDetail from './ArtistDetail.vue';
     0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 80%;
-  height: 50%;
 }
 </style>

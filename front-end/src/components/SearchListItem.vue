@@ -2,16 +2,6 @@
   <div class="search-list-item">
     <h1>{{ `${props.result._source.displayname}` }}</h1>
     <h2>Description: {{ props.result._source.displaydescription }}</h2>
-    <ul>
-      <li>Language: {{ props.result._source.displaydescription }}</li>
-      <li>
-        Root Ontology Class:
-        <a :href="props.result._source.root_ontology_class">{{
-          props.result._source.root_ontology_class
-        }}</a>
-      </li>
-      <li>Is Provisional Resource?: {{ props.result._source.provisional_resource }}</li>
-    </ul>
     <button @click="setResource" class="details-button">details</button>
   </div>
 </template>
