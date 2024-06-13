@@ -16,7 +16,7 @@ The ```front-end``` folder contains a Vue Application, built with Vite and Types
 In order to install the Arches Data Viewer Application into arches, follow these steps
 
 1. Install if from this repo (or clone this repo and pip install it locally).
-   ```pip install git+https://github.com/hminsky2002/archesdataviewer.git```
+   ```pip install git+https://github.com/OpenTechStrategies/arches-app-exp.git```
 
 2. Add 'archesdataviewer' to the ARCHES_APPLICATIONS and INSTALLED_APPS settings in the demo project's settings.py file
 ```python
