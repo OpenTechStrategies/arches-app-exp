@@ -1,7 +1,10 @@
-from django.urls import re_path
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    re_path(r"^archesdataviewer/", views.index, name="archesdataviewer"),
+    path('archesdataviewer/', views.index, name='archesdataviewer'),
+    path('archesdataviewer/artworks', views.artworksmap, name='artworksmap'),
+    path('archesdataviewer/graphs', views.graphs, name='graphs'),
 ]
+
