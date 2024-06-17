@@ -13,7 +13,7 @@ export interface Artwork {
   };
   Location: {
     Address: string;
-    Coordinates: string;
+    Coordinates?: string;
     'Location Description': string;
     Structure: string;
   };
@@ -46,15 +46,15 @@ const ArtworkSchema: JSONSchemaType<Artwork> = {
       type: 'object',
       properties: {
         Address: { type: 'string' },
-        Coordinates: { type: 'string' },
+        Coordinates: { type: 'string', nullable: true },
         'Location Description': { type: 'string' },
         Structure: { type: 'string' }
       },
-      required: ['Address', 'Coordinates', 'Location Description', 'Structure']
+      required: ['Address', 'Location Description', 'Structure']
     },
     Title: { type: 'string' }
   },
-  required: ['Artist', 'Identifiers', 'Location', 'Title'],
+  required: ['Artist', 'Identifiers', 'Title'],
   additionalProperties: true
 };
 
