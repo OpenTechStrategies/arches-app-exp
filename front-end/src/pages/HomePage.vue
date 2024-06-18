@@ -21,8 +21,8 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
       </SearchListProvider>
     </div>
     <div class="column" id="map-container">
-      <LeafletMapProvider v-slot="{ searchResults }">
-        <LeafletMap :search-results="searchResults" v-if="searchResults" />
+      <LeafletMapProvider v-slot="{ artworks }">
+        <LeafletMap :artworks="artworks" v-if="artworks" />
       </LeafletMapProvider>
     </div>
     <div class="column" id="resource-panel-container">

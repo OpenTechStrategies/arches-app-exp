@@ -2,12 +2,12 @@
 import { onMounted, ref } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import { useResourceStore } from '@/stores/resourceStore';
-import type { SearchResultArray } from '@/types';
+import type { MapArtwork } from '@/types';
 import L, { Map } from 'leaflet';
-
+import { coordinatesStringToObject } from '@/utils';
 const store = useResourceStore();
 const props = defineProps<{
-  searchResults: SearchResultArray;
+  artworks: Array<MapArtwork>;
 }>();
 
 const mapElement = ref<HTMLElement | null>(null);
@@ -20,20 +20,29 @@ const initMap = (element: HTMLElement) => {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
-  props.searchResults.items.map((value) => {
-    if (value._source?.points[0]?.point) {
-      const marker = L.marker([
-        value._source.points[0].point.lat,
-        value._source.points[0].point.lon
-      ]);
-      marker.bindPopup(`<b>Artwork Title: ${value._source.displayname}</b><br>
-      By: ${value._source.displaydescription}`);
-      marker.on('click', () => {
-        store.$patch({
-          resourceId: value._id
-        });
-      });
-      marker.addTo(map);
+  props.artworks.forEach((value) => {
+    if (value.Location?.Coordinates) {
+      try {
+        const coordinate = coordinatesStringToObject(value.Location.Coordinates);
+        if (coordinate) {
+          const marker = L.marker([
+            coordinate.features[0].geometry.coordinates[1], // Latitude
+            coordinate.features[0].geometry.coordinates[0] // Longitude
+          ]);
+          marker.bindPopup(`<b>Artwork Title: ${value.Title}</b><br>
+        By: ${value.Artist}<br> ${value.Location.Address}`);
+          marker.on('click', () => {
+            store.$patch({
+              resourceId: value['@resource_id']
+            });
+          });
+          marker.addTo(map);
+        }
+      } catch (err) {
+        console.error(`Error processing coordinates for artwork ${value.Title}:`, err);
+      }
+    } else {
+      console.warn(`Coordinates not found for artwork ${value.Title}`);
     }
   });
 
@@ -48,7 +57,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="map" ref="mapElement" />
+  <div id="map" ref="mapElement" v-if="props.artworks" />
 </template>
 <style scoped>
 #map {

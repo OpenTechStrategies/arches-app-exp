@@ -11,7 +11,6 @@ interface Feature {
   type: string;
   geometry: Geometry;
   properties: Properties;
-  feature_info_content: string;
 }
 
 interface Geometry {
@@ -50,10 +49,9 @@ const CoordinatesSchema: JSONSchemaType<Coordinates> = {
               nodeId: { type: 'string' }
             },
             required: ['nodeId']
-          },
-          feature_info_content: { type: 'string' }
+          }
         },
-        required: ['id', 'type', 'geometry', 'properties', 'feature_info_content']
+        required: ['id', 'type', 'properties']
       }
     }
   },
