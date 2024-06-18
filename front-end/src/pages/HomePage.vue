@@ -27,8 +27,8 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
       </LeafletMapProvider>
     </div>
     <div class="column" id="resource-panel-container">
-      <ResourcePanelProvider v-slot="{ resource }">
-        <ResourcePanel :resource="resource" />
+      <ResourcePanelProvider v-slot="{ resource, resourceRelations }">
+        <ResourcePanel :resource="resource" :resource-relations="resourceRelations" />
       </ResourcePanelProvider>
     </div>
   </div>
@@ -48,8 +48,8 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
   overflow-y: auto;
 }
 
-.map-placeholder{
-  margin-top:30vh;
+.map-placeholder {
+  margin-top: 30vh;
   text-align: center;
   font-size: larger;
 }

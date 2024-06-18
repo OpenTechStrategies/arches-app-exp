@@ -1,6 +1,7 @@
 <template>
   <div class="artwork-detail">
-    <h1>Artist: {{ props.artwork.Artist }}</h1>
+    <h1>Title: {{ props.artwork.Title }}</h1>
+    <h2>Artist: {{ props.artwork.Artist }}</h2>
     <h4>Description: {{ props.artwork?.Description }}</h4>
     <img :src="imagesrc" alt="artwork image" />
     <h4>Photographer: {{ props.artwork.Image?.Photographer }}</h4>
