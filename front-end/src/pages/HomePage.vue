@@ -23,6 +23,7 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
     <div class="column" id="map-container">
       <LeafletMapProvider v-slot="{ artworks }">
         <LeafletMap :artworks="artworks" v-if="artworks" />
+        <div class="map-placeholder" v-else>Loading Map...</div>
       </LeafletMapProvider>
     </div>
     <div class="column" id="resource-panel-container">
@@ -45,6 +46,12 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
   flex: 1;
   flex-direction: column;
   overflow-y: auto;
+}
+
+.map-placeholder{
+  margin-top:30vh;
+  text-align: center;
+  font-size: larger;
 }
 
 #search-list-container,

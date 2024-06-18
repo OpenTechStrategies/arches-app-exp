@@ -1,9 +1,12 @@
 <template>
   <div class="artwork-detail">
     <h1>Artist: {{ props.artwork.Artist }}</h1>
-    <h2>Description: {{ props.artwork?.Description }}</h2>
+    <h4>Description: {{ props.artwork?.Description }}</h4>
     <img :src="imagesrc" alt="artwork image" />
-    <h3>Photographer: {{ props.artwork.Image?.Photographer }}</h3>
+    <h4>Photographer: {{ props.artwork.Image?.Photographer }}</h4>
+    <div v-if="props.artwork.Location">
+      <h4>Address: {{ props.artwork.Location.Address }}</h4>
+    </div>
   </div>
 </template>
 
