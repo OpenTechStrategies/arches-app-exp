@@ -1,13 +1,14 @@
 <template>
-  <slot :resource="resource" />
+  <slot :resource="resource" :resourceRelations="resourceRelations" />
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useResourceStore } from '../stores/resourceStore';
-import type { Resource } from '@/types';
+import type { Resource, ResourceRelation } from '@/types';
 const store = useResourceStore();
 const resource = ref<Resource>();
+const resourceRelations = ref<Array<ResourceRelation>>();
 
 async function fetchResource() {
   if (!store.resourceId) return;
@@ -21,11 +22,21 @@ async function fetchResource() {
   resource.value = data;
 }
 
+async function fetchResourceRelations() {
+  if (!store.resourceId) return;
+  const url = new URL(
+    `${import.meta.env.VITE_ARCHES_API_URL}/resource/related/${store.resourceId}`
+  );
+  const response = await fetch(url.toString()).then((res) => res.json());
+  resourceRelations.value = response.related_resources.related_resources;
+}
+
 watch(
   () => store.resourceId,
   async (newResourceId) => {
     if (newResourceId) {
-      await fetchResource();
+      fetchResource();
+      fetchResourceRelations();
     }
   },
   { immediate: true }
