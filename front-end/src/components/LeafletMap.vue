@@ -57,7 +57,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="map" ref="mapElement" v-if="props.artworks" />
+  <div v-if="props.artworks" id="map" ref="mapElement" />
 </template>
 <style scoped>
 #map {

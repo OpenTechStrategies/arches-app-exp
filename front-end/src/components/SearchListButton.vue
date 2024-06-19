@@ -1,5 +1,5 @@
 <template>
-  <button @click="getPage" class="list-button" :class="{ disabled: !hasNext }" :disabled="!hasNext">
+  <button class="list-button" :class="{ disabled: !hasNext }" :disabled="!hasNext" @click="getPage">
     {{ props.type }}
   </button>
 </template>

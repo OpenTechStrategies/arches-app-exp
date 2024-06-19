@@ -2,7 +2,7 @@
   <div class="search-list-item">
     <h1>{{ `${props.result._source.displayname}` }}</h1>
     <h2>Description: {{ props.result._source.displaydescription }}</h2>
-    <button @click="setResource" class="details-button">details</button>
+    <button class="details-button" @click="setResource">details</button>
     <h3>{{ props.graphTable.get(props.result._source.graph_id) }}</h3>
   </div>
 </template>

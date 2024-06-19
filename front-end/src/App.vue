@@ -22,6 +22,6 @@ fetchGraphTable();
 
 <template>
   <main>
-    <Home :graphTable="graphTable"/>
+    <Home :graph-table="graphTable" />
   </main>
 </template>
