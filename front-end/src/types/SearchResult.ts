@@ -61,7 +61,6 @@ interface SearchResult {
     provisional_resource: string;
     resourceinstanceid: string;
     root_ontology_class: string;
-    tiles?: any;
   };
 }
 

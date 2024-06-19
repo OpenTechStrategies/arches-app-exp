@@ -47,10 +47,10 @@ const pageValues = {
 
 <template>
   <slot
-    :searchResults="searchResults"
-    :fetchNextPage="fetchNextPage"
-    :fetchPreviousPage="fetchPreviousPage"
-    :pageValues="pageValues"
+    :search-results="searchResults"
+    :fetch-next-page="fetchNextPage"
+    :fetch-previous-page="fetchPreviousPage"
+    :page-values="pageValues"
   />
 </template>
 

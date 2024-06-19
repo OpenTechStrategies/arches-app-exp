@@ -20,12 +20,12 @@ const setResource = (resourceId: string) => {
 <template>
   <div class="resource-relation-list-container">
     <h4>Related Resources:</h4>
-    <div class="resource-relation-list" v-if="props.resourceRelations">
+    <div v-if="props.resourceRelations" class="resource-relation-list">
       <ResourceRelationItem
         v-for="resourceRelation in props.resourceRelations"
-        :resource-relation="resourceRelation"
-        :graphTable="props.graphTable"
         :key="resourceRelation.resourceinstanceid"
+        :resource-relation="resourceRelation"
+        :graph-table="props.graphTable"
         @set-resource="setResource"
       />
     </div>

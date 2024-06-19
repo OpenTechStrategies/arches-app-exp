@@ -3,7 +3,6 @@
     <p>Name: {{ props.resourceRelation.displayname }}</p>
     <p>Description: {{ props.resourceRelation.displaydescription }}</p>
     <h3>{{ props.graphTable.get(props.resourceRelation.graph_id) }}</h3>
-
   </div>
 </template>
 

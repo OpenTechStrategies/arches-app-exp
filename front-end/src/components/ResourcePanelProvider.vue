@@ -1,5 +1,5 @@
 <template>
-  <slot :resource="resource" :resourceRelations="resourceRelations" />
+  <slot :resource="resource" :resource-relations="resourceRelations" />
 </template>
 
 <script setup lang="ts">

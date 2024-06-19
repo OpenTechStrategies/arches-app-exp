@@ -19,17 +19,17 @@ const showMetaData = ref<boolean>(false);
   <div id="resource-panel">
     <div v-if="props.resource !== undefined">
       <ArtworkDetail
-        :artwork="props.resource.resource"
         v-if="validateArtworkSchema(props.resource?.resource)"
+        :artwork="props.resource.resource"
       />
       <ArtistDetail
-        :artist="props.resource.resource"
         v-else-if="validateArtistSchema(props.resource?.resource)"
+        :artist="props.resource.resource"
       />
       <ResourceRelationList
-        :resourceRelations="resourceRelations"
-        :graphTable="props.graphTable"
         v-if="resourceRelations"
+        :resource-relations="resourceRelations"
+        :graph-table="props.graphTable"
       />
       <button @click="showMetaData = !showMetaData">Show Arches Metadata</button>
       <div v-if="showMetaData">

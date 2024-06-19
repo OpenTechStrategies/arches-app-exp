@@ -13,28 +13,28 @@ const props = defineProps<{
 
 <template>
   <div class="home">
-    <div class="column" id="search-list-container">
+    <div id="search-list-container" class="column">
       <SearchListProvider v-slot="{ searchResults, fetchNextPage, fetchPreviousPage, pageValues }">
         <SearchList
-          :searchResults="searchResults"
-          :pageValues="pageValues"
-          :graphTable="props.graphTable"
+          v-if="searchResults"
+          :search-results="searchResults"
+          :page-values="pageValues"
+          :graph-table="props.graphTable"
           @next-page="fetchNextPage"
           @previous-page="fetchPreviousPage"
-          v-if="searchResults"
         />
       </SearchListProvider>
     </div>
-    <div class="column" id="map-container">
+    <div id="map-container" class="column">
       <LeafletMapProvider v-slot="{ artworks }">
-        <LeafletMap :artworks="artworks" v-if="artworks" />
-        <div class="map-placeholder" v-else>Loading Map...</div>
+        <LeafletMap v-if="artworks" :artworks="artworks" />
+        <div v-else class="map-placeholder">Loading Map...</div>
       </LeafletMapProvider>
     </div>
-    <div class="column" id="resource-panel-container">
+    <div id="resource-panel-container" class="column">
       <ResourcePanelProvider v-slot="{ resource, resourceRelations }">
         <ResourcePanel
-          :graphTable="props.graphTable"
+          :graph-table="props.graphTable"
           :resource="resource"
           :resource-relations="resourceRelations"
         />

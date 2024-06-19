@@ -35,19 +35,19 @@ const setResource = (resourceId: string) => {
     <div class="search-list">
       <SearchListItem
         v-for="result in props.searchResults.items"
-        :result="result"
-        :graphTable="props.graphTable"
         :key="result._id"
+        :result="result"
+        :graph-table="props.graphTable"
         @set-resource="setResource"
       />
     </div>
     <div class="button-container">
       <SearchListButton
         type="previous"
-        @previous="getPreviousPage"
         :flag="props.pageValues.has_previous"
+        @previous="getPreviousPage"
       />
-      <SearchListButton type="next" @next="getNextPage" :flag="props.pageValues.has_next" />
+      <SearchListButton type="next" :flag="props.pageValues.has_next" @next="getNextPage" />
     </div>
   </div>
 </template>
