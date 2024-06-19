@@ -5,6 +5,10 @@ import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
 import ResourcePanel from '../components/ResourcePanel.vue';
 import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
+
+const props = defineProps<{
+  graphTable: Map<string, string>;
+}>();
 </script>
 
 <template>
@@ -14,6 +18,7 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
         <SearchList
           :searchResults="searchResults"
           :pageValues="pageValues"
+          :graphTable="props.graphTable"
           @next-page="fetchNextPage"
           @previous-page="fetchPreviousPage"
           v-if="searchResults"
@@ -28,7 +33,11 @@ import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
     </div>
     <div class="column" id="resource-panel-container">
       <ResourcePanelProvider v-slot="{ resource, resourceRelations }">
-        <ResourcePanel :resource="resource" :resource-relations="resourceRelations" />
+        <ResourcePanel
+          :graphTable="props.graphTable"
+          :resource="resource"
+          :resource-relations="resourceRelations"
+        />
       </ResourcePanelProvider>
     </div>
   </div>

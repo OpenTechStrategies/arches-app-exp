@@ -9,6 +9,7 @@ import type { Resource, ResourceRelation } from '@/types';
 const props = defineProps<{
   resource: Resource | undefined;
   resourceRelations: Array<ResourceRelation> | undefined;
+  graphTable: Map<string, string>;
 }>();
 
 const showMetaData = ref<boolean>(false);
@@ -25,7 +26,11 @@ const showMetaData = ref<boolean>(false);
         :artist="props.resource.resource"
         v-else-if="validateArtistSchema(props.resource?.resource)"
       />
-      <ResourceRelationList :resourceRelations="resourceRelations" v-if="resourceRelations" />
+      <ResourceRelationList
+        :resourceRelations="resourceRelations"
+        :graphTable="props.graphTable"
+        v-if="resourceRelations"
+      />
       <button @click="showMetaData = !showMetaData">Show Arches Metadata</button>
       <div v-if="showMetaData">
         <ul>
