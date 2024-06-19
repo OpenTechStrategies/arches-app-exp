@@ -11,6 +11,7 @@ const props = defineProps<{
     has_previous: Ref<boolean>;
   };
   searchResults: SearchResultArray;
+  graphTable: Map<string, string>;
 }>();
 
 const emit = defineEmits(['next-page', 'previous-page']);
@@ -35,6 +36,7 @@ const setResource = (resourceId: string) => {
       <SearchListItem
         v-for="result in props.searchResults.items"
         :result="result"
+        :graphTable="props.graphTable"
         :key="result._id"
         @set-resource="setResource"
       />

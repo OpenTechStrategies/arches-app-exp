@@ -2,6 +2,8 @@
   <div class="resource-relation-item" @click="setResource">
     <p>Name: {{ props.resourceRelation.displayname }}</p>
     <p>Description: {{ props.resourceRelation.displaydescription }}</p>
+    <h3>{{ props.graphTable.get(props.resourceRelation.graph_id) }}</h3>
+
   </div>
 </template>
 
@@ -11,6 +13,7 @@ const emit = defineEmits(['set-resource']);
 
 const props = defineProps<{
   resourceRelation: ResourceRelation;
+  graphTable: Map<string, string>;
 }>();
 
 const setResource = () => {

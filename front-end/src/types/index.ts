@@ -4,3 +4,4 @@ export * from './Artwork';
 export * from './ResourceRelation';
 export * from './Resource';
 export * from './Coordinates';
+export * from './Graph'

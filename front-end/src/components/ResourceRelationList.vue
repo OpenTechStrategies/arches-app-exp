@@ -7,6 +7,7 @@ const store = useResourceStore();
 
 const props = defineProps<{
   resourceRelations: Array<ResourceRelation>;
+  graphTable: Map<string, string>;
 }>();
 
 const setResource = (resourceId: string) => {
@@ -23,6 +24,7 @@ const setResource = (resourceId: string) => {
       <ResourceRelationItem
         v-for="resourceRelation in props.resourceRelations"
         :resource-relation="resourceRelation"
+        :graphTable="props.graphTable"
         :key="resourceRelation.resourceinstanceid"
         @set-resource="setResource"
       />
