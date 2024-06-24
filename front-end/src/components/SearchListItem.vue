@@ -1,9 +1,8 @@
 <template>
   <div class="search-list-item">
     <h1>{{ `${props.result._source.displayname}` }}</h1>
-    <h2>Description: {{ props.result._source.displaydescription }}</h2>
     <button class="details-button" @click="setResource">details</button>
-    <h3>{{ props.graphTable.get(props.result._source.graph_id) }}</h3>
+    <h3 class="resource-type">{{ resourceType }}</h3>
   </div>
 </template>
 
@@ -19,43 +18,53 @@ const emit = defineEmits(['set-resource']);
 const setResource = () => {
   emit('set-resource', props.result._id);
 };
+
+const resourceType = props.graphTable.get(props.result._source.graph_id);
 </script>
 
 <style scoped>
 .search-list-item {
-  padding: 10px;
+  position: relative;
+  padding: 15px;
   margin: 10px;
-  background-color: #e0e0e0;
-  box-shadow:
-    0 2px 4px 0 rgba(0, 0, 0, 0.2),
-    0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  width: 80%;
-  height: auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
 
-  h1 {
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
+.search-list-item:hover {
+  background-color: #f0f0f0;
+}
+
+.details-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+.resource-type {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media (max-width: 768px) {
+  .search-list-item {
+    padding: 10px;
+    margin: 5px;
   }
 
-  h2 {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  ul {
-    padding-left: 20px;
-    list-style-type: none;
-
-    li {
-      font-size: 0.9em;
-      margin-bottom: 0.3em;
-    }
-  }
-
-  a {
-    font-size: 0.9em;
-    color: #007bff;
-    text-decoration: none;
+  .details-button {
+    padding: 4px 8px;
   }
 }
 </style>

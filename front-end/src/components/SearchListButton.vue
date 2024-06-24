@@ -1,10 +1,19 @@
 <template>
   <button class="list-button" :class="{ disabled: !hasNext }" :disabled="!hasNext" @click="getPage">
-    {{ props.type }}
+    <div v-if="props.type === 'next'">
+      <ArrowUpIcon class="icon" />
+      <p>next page</p>
+    </div>
+    <div v-else>
+      <ArrowDownIcon class="icon" />
+      <p>previous page</p>
+    </div>
   </button>
 </template>
 
 <script setup lang="ts">
+import { ArrowUpIcon } from '@heroicons/vue/24/solid';
+import { ArrowDownIcon } from '@heroicons/vue/24/solid';
 import type { Ref } from 'vue';
 import { ref } from 'vue';
 const props = defineProps<{
@@ -23,8 +32,7 @@ const getPage = () => {
 </script>
 
 <style scoped>
-.list-button {
-  padding: 20px;
-  margin: 20px;
+.icon {
+  width: 24px;
 }
 </style>

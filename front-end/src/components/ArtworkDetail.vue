@@ -3,7 +3,7 @@
     <h1>Title: {{ props.artwork.Title }}</h1>
     <h2>Artist: {{ props.artwork.Artist }}</h2>
     <h4>Description: {{ props.artwork?.Description }}</h4>
-    <img :src="imagesrc" alt="artwork image" />
+    <a :href="imagesrc"><img :src="imagesrc" alt="artwork image" /></a>
     <h4>Photographer: {{ props.artwork.Image?.Photographer }}</h4>
     <div v-if="props.artwork.Location">
       <h4>Address: {{ props.artwork.Location.Address }}</h4>
@@ -27,12 +27,27 @@ const imagesrc = computed(() => {
   }
 });
 </script>
+
 <style scoped>
 .artwork-detail {
   padding: 20px;
   margin: 20px;
-  img {
-    width: 100%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .artwork-detail {
+    padding: 15px;
+    margin: 10px;
   }
 }
 </style>
