@@ -45,14 +45,16 @@ const props = defineProps<{
 
 <style scoped>
 .home {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   width: 100%;
   height: 100vh;
-  max-height: 100vh;
+  max-height: 80vh;
 }
 
 .column {
-  flex: 1;
+  display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
@@ -67,5 +69,24 @@ const props = defineProps<{
 #map-container,
 #resource-panel-container {
   padding: 10px;
+}
+
+@media (max-width: 1200px) {
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  #map-container {
+    order: 1;
+  }
+
+  #search-list-container {
+    order: 2;
+  }
+
+  #resource-panel-container {
+    order: 3;
+  }
 }
 </style>

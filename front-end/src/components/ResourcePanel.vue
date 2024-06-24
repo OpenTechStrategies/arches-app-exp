@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import { validateArtistSchema, validateArtworkSchema } from '@/types';
-import ArtworkDetail from './ArtworkDetail.vue';
-import ArtistDetail from './ArtistDetail.vue';
-import ResourceRelationList from './ResourceRelationList.vue';
-import type { Resource, ResourceRelation } from '@/types';
-
-const props = defineProps<{
-  resource: Resource | undefined;
-  resourceRelations: Array<ResourceRelation> | undefined;
-  graphTable: Map<string, string>;
-}>();
-
-const showMetaData = ref<boolean>(false);
-</script>
-
 <template>
   <div id="resource-panel">
     <div v-if="props.resource !== undefined">
@@ -45,13 +28,39 @@ const showMetaData = ref<boolean>(false);
   </div>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import { validateArtistSchema, validateArtworkSchema } from '@/types';
+import ArtworkDetail from './ArtworkDetail.vue';
+import ArtistDetail from './ArtistDetail.vue';
+import ResourceRelationList from './ResourceRelationList.vue';
+import type { Resource, ResourceRelation } from '@/types';
+
+const props = defineProps<{
+  resource: Resource | undefined;
+  resourceRelations: Array<ResourceRelation> | undefined;
+  graphTable: Map<string, string>;
+}>();
+
+const showMetaData = ref<boolean>(false);
+</script>
+
 <style scoped>
 #resource-panel {
-  margin: 100px;
-  background-color: #c8c8c8cd;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 80%;
+  padding: 20px;
+  margin: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  #resource-panel {
+    padding: 15px;
+    margin: 10px;
+  }
 }
 </style>

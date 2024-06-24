@@ -22,10 +22,23 @@ const setResource = () => {
 
 <style scoped>
 .resource-relation-item {
-  border: 2px solid black;
+  padding: 15px;
   margin: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
 .resource-relation-item:hover {
-  opacity: 50%;
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .resource-relation-item {
+    padding: 10px;
+    margin: 5px;
+  }
 }
 </style>

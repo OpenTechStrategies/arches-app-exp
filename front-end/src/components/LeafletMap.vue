@@ -1,3 +1,7 @@
+<template>
+  <div v-if="props.artworks" id="map" ref="mapElement" />
+</template>
+
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import 'leaflet/dist/leaflet.css';
@@ -56,11 +60,16 @@ onMounted(() => {
 });
 </script>
 
-<template>
-  <div v-if="props.artworks" id="map" ref="mapElement" />
-</template>
 <style scoped>
 #map {
-  height: 80%;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 300px;
+  }
 }
 </style>

@@ -1,3 +1,25 @@
+<template>
+  <div class="search-list-container">
+    <div class="search-list">
+      <SearchListItem
+        v-for="result in props.searchResults.items"
+        :key="result._id"
+        :result="result"
+        :graph-table="props.graphTable"
+        @set-resource="setResource"
+      />
+    </div>
+    <div class="button-container">
+      <SearchListButton
+        type="previous"
+        :flag="props.pageValues.has_previous"
+        @previous="getPreviousPage"
+      />
+      <SearchListButton type="next" :flag="props.pageValues.has_next" @next="getNextPage" />
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import type { Ref } from 'vue';
 import { useResourceStore } from '@/stores/resourceStore';
@@ -30,46 +52,26 @@ const setResource = (resourceId: string) => {
 };
 </script>
 
-<template>
-  <div class="search-list-container">
-    <div class="search-list">
-      <SearchListItem
-        v-for="result in props.searchResults.items"
-        :key="result._id"
-        :result="result"
-        :graph-table="props.graphTable"
-        @set-resource="setResource"
-      />
-    </div>
-    <div class="button-container">
-      <SearchListButton
-        type="previous"
-        :flag="props.pageValues.has_previous"
-        @previous="getPreviousPage"
-      />
-      <SearchListButton type="next" :flag="props.pageValues.has_next" @next="getNextPage" />
-    </div>
-  </div>
-</template>
-
 <style scoped>
 .search-list-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 80%;
+  gap: 10px;
+  position: relative;
 }
 
 .search-list {
-  flex: 1;
   overflow-y: auto;
+  max-height: 70vh;
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  background-color: #f0f0f0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding: 10px 0;
 }
 </style>
