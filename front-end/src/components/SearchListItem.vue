@@ -1,12 +1,16 @@
 <template>
   <div class="search-list-item">
-    <h1>{{ `${props.result._source.displayname}` }}</h1>
+    <div class="header">
+      <h1>{{ `${props.result._source.displayname}` }}</h1>
+      <img v-if="imageUrl" class="thumbnail" :src="imageUrl" alt="thumbnail" />
+    </div>
     <button class="details-button" @click="setResource">details</button>
     <h3 class="resource-type">{{ resourceType }}</h3>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import type { SearchResult } from '../types';
 
 const props = defineProps<{
@@ -20,6 +24,20 @@ const setResource = () => {
 };
 
 const resourceType = props.graphTable.get(props.result._source.graph_id);
+const imageUrl = ref<string | undefined>(undefined);
+
+async function fetchImage() {
+  const url = new URL(
+    `${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/getimage/${props.result._id}`
+  );
+  const response = await fetch(url.toString()).then((res) => res.json());
+  const imagePath = response[0]?.data[response[0]?.nodegroup_id][0].url;
+  if (imagePath) {
+    imageUrl.value = import.meta.env.VITE_ARCHES_API_URL + imagePath;
+  }
+}
+
+fetchImage();
 </script>
 
 <style scoped>
@@ -31,14 +49,21 @@ const resourceType = props.graphTable.get(props.result._source.graph_id);
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.search-list-item:hover {
-  background-color: #f0f0f0;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .details-button {
-  margin-top: 10px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
   padding: 5px 10px;
   background-color: #007bff;
   color: white;
@@ -57,6 +82,13 @@ const resourceType = props.graphTable.get(props.result._source.graph_id);
   right: 10px;
 }
 
+.thumbnail {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 100px;
+}
+
 @media (max-width: 768px) {
   .search-list-item {
     padding: 10px;
@@ -65,6 +97,17 @@ const resourceType = props.graphTable.get(props.result._source.graph_id);
 
   .details-button {
     padding: 4px 8px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
   }
 }
 </style>
