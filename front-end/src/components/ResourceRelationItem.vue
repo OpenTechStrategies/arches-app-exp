@@ -1,7 +1,6 @@
 <template>
   <div class="resource-relation-item" @click="setResource">
-    <p>Name: {{ props.resourceRelation.displayname }}</p>
-    <p>Description: {{ props.resourceRelation.displaydescription }}</p>
+    <p>{{ props.resourceRelation.displayname }}</p>
     <h3>{{ props.graphTable.get(props.resourceRelation.graph_id) }}</h3>
   </div>
 </template>
