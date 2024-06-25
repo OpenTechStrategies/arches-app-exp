@@ -32,8 +32,9 @@ const imagesrc = computed(() => {
 .artwork-detail {
   padding: 20px;
   margin: 20px;
-  background-color: #f9f9f9;
+  background-color: var(--color-white);
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 img {
@@ -42,6 +43,7 @@ img {
   height: auto;
   border-radius: 8px;
   margin-top: 10px;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {

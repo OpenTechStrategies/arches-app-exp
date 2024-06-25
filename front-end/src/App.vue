@@ -1,3 +1,9 @@
+<template>
+  <main>
+    <Home :graph-table="graphTable" />
+  </main>
+</template>
+
 <script setup lang="ts">
 import Home from '@/pages/HomePage.vue';
 import { ref } from 'vue';
@@ -20,8 +26,11 @@ async function fetchGraphTable() {
 fetchGraphTable();
 </script>
 
-<template>
-  <main>
-    <Home :graph-table="graphTable" />
-  </main>
-</template>
+<style scoped>
+main {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+}
+</style>

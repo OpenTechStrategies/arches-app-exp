@@ -1,11 +1,11 @@
 <template>
   <button class="list-button" :class="{ disabled: !hasNext }" :disabled="!hasNext" @click="getPage">
     <div v-if="props.type === 'next'">
-      <ArrowUpIcon class="icon" />
+      <ArrowDownIcon class="icon" />
       <p>next page</p>
     </div>
     <div v-else>
-      <ArrowDownIcon class="icon" />
+      <ArrowUpIcon class="icon" />
       <p>previous page</p>
     </div>
   </button>

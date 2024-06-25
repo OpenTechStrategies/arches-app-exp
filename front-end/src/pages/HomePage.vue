@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import SearchListProvider from '../components/SearchListProvider.vue';
-import SearchList from '../components/SearchList.vue';
-import LeafletMapProvider from '../components/LeafletMapProvider.vue';
-import LeafletMap from '../components/LeafletMap.vue';
-import ResourcePanel from '../components/ResourcePanel.vue';
-import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
-
-const props = defineProps<{
-  graphTable: Map<string, string>;
-}>();
-</script>
-
 <template>
   <div class="home">
     <div id="search-list-container" class="column">
@@ -43,6 +30,19 @@ const props = defineProps<{
   </div>
 </template>
 
+<script setup lang="ts">
+import SearchListProvider from '../components/SearchListProvider.vue';
+import SearchList from '../components/SearchList.vue';
+import LeafletMapProvider from '../components/LeafletMapProvider.vue';
+import LeafletMap from '../components/LeafletMap.vue';
+import ResourcePanel from '../components/ResourcePanel.vue';
+import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
+
+const props = defineProps<{
+  graphTable: Map<string, string>;
+}>();
+</script>
+
 <style scoped>
 .home {
   display: grid;
@@ -50,25 +50,21 @@ const props = defineProps<{
   gap: 10px;
   width: 100%;
   height: 100vh;
-  max-height: 80vh;
 }
 
 .column {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .map-placeholder {
   margin-top: 30vh;
   text-align: center;
   font-size: larger;
-}
-
-#search-list-container,
-#map-container,
-#resource-panel-container {
-  padding: 10px;
 }
 
 @media (max-width: 1200px) {
