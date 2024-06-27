@@ -1,12 +1,12 @@
 <template>
   <div class="artwork-detail">
-    <h1>Title: {{ props.artwork.Title }}</h1>
-    <h2>Artist: {{ props.artwork.Artist }}</h2>
-    <h4>Description: {{ props.artwork?.Description }}</h4>
-    <a :href="imagesrc"><img :src="imagesrc" alt="artwork image" /></a>
-    <h4>Photographer: {{ props.artwork.Image?.Photographer }}</h4>
+    <h1>Title: {{ props.artwork.Title || 'N/A' }}</h1>
+    <h2>Artist: {{ props.artwork.Artist || 'N/A' }}</h2>
+    <h4>Description: {{ props.artwork?.Description  || 'N/A'}}</h4>
+    <a :href="imagesrc" v-if="imagesrc"><img :src="imagesrc" alt="artwork image" /></a>
+    <h4>Photographer: {{ props.artwork.Image?.Photographer || 'N/A' }}</h4>
     <div v-if="props.artwork.Location">
-      <h4>Address: {{ props.artwork.Location.Address }}</h4>
+      <h4>Address: {{ props.artwork.Location.Address || 'N/A' }}</h4>
     </div>
   </div>
 </template>
