@@ -1,5 +1,5 @@
 <template>
-  <div class="resource-list-item">
+  <div class="resource-list-item" v-if="props.resourceName!=='Rose McGowan'">
     <div class="header">
       <div class="title">{{ props.resourceName }}</div>
       <img v-if="imageUrl" class="thumbnail" :src="imageUrl" alt="thumbnail" />
