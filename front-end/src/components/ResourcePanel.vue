@@ -14,7 +14,9 @@
         :resource-relations="resourceRelations"
         :graph-table="props.graphTable"
       />
-      <button @click="showMetaData = !showMetaData">Show Arches Metadata</button>
+      <button @click="showMetaData = !showMetaData">
+        {{ showMetaData ? 'Hide Arches Metadata' : 'Show Arches Metadata' }}
+      </button>
       <div v-if="showMetaData">
         <ul>
           <li>Graph Id: {{ props.resource.graph_id }}</li>

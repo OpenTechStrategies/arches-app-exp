@@ -1,11 +1,12 @@
 <template>
   <div class="search-list-container">
     <div class="search-list">
-      <SearchListItem
+      <ResourceListItem
         v-for="result in props.searchResults.items"
         :key="result._id"
-        :result="result"
-        :graph-table="props.graphTable"
+        :resource-name="result._source.displayname"
+        :resource-id="result._source.resourceinstanceid"
+        :resource-type="props.graphTable.get(result._source.graph_id)"
         @set-resource="setResource"
       />
     </div>
@@ -24,7 +25,7 @@
 import type { Ref } from 'vue';
 import { useResourceStore } from '@/stores/resourceStore';
 import type { SearchResultArray } from '../types';
-import SearchListItem from './SearchListItem.vue';
+import ResourceListItem from './ResourceListItem.vue';
 import SearchListButton from './SearchListButton.vue';
 const store = useResourceStore();
 const props = defineProps<{
@@ -81,7 +82,9 @@ const setResource = (resourceId: string) => {
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .button-container button:hover {

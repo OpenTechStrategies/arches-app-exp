@@ -2,11 +2,12 @@
   <div class="resource-relation-list-container">
     <h4>Related Resources:</h4>
     <div v-if="props.resourceRelations" class="resource-relation-list">
-      <ResourceRelationItem
+      <ResourceListItem
         v-for="resourceRelation in props.resourceRelations"
         :key="resourceRelation.resourceinstanceid"
-        :resource-relation="resourceRelation"
-        :graph-table="props.graphTable"
+        :resource-name="resourceRelation.displayname"
+        :resource-id="resourceRelation.resourceinstanceid"
+        :resource-type="graphTable.get(resourceRelation.graph_id)"
         @set-resource="setResource"
       />
     </div>
@@ -14,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import ResourceRelationItem from './ResourceRelationItem.vue';
+import ResourceListItem from './ResourceListItem.vue';
 import type { ResourceRelation } from '../types';
 import { useResourceStore } from '@/stores/resourceStore';
 
