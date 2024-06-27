@@ -49,7 +49,7 @@ const props = defineProps<{
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
 }
 
 .column {
