@@ -56,22 +56,41 @@ const setResource = (resourceId: string) => {
 .search-list-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
+  height: 100%;
 }
 
 .search-list {
+  flex-grow: 1;
   overflow-y: auto;
-  max-height: 70vh;
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  background-color: var(--color-white);
+  padding: 10px 0;
   position: sticky;
   bottom: 0;
-  background-color: white;
-  padding: 10px 0;
+  z-index: 10;
+}
+
+.button-container button {
+  background-color: var(--color-dark-green);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: var(--color-light-green);
+  transform: translateY(-2px);
+}
+
+.button-container button:disabled {
+  background-color: var(--color-grey);
+  cursor: not-allowed;
 }
 </style>

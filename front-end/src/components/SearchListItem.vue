@@ -3,6 +3,7 @@
     <div class="header">
       <h1>{{ `${props.result._source.displayname}` }}</h1>
       <img v-if="imageUrl" class="thumbnail" :src="imageUrl" alt="thumbnail" />
+      <img v-else class="thumbnail" src="/noimage.png" alt="no image available">
     </div>
     <button class="details-button" @click="setResource">details</button>
     <h3 class="resource-type">{{ resourceType }}</h3>
@@ -45,8 +46,8 @@ fetchImage();
   position: relative;
   padding: 15px;
   margin: 10px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey);
   border-radius: 8px;
   transition: background-color 0.3s ease;
   display: flex;
@@ -65,15 +66,17 @@ fetchImage();
   bottom: 15px;
   left: 15px;
   padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-dark-green);
+  color: var(--color-white);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .details-button:hover {
-  background-color: #0056b3;
+  background-color: var(--color-light-green);
+  transform: translateY(-2px);
 }
 
 .resource-type {
