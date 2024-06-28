@@ -25,7 +25,7 @@
       </div>
     </div>
     <div v-else>
-      <p>Click on a resource on the map or search list to display details</p>
+      <p>Click on an item on the map or in the search list to see details</p>
     </div>
   </div>
 </template>
