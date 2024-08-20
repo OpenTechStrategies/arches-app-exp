@@ -39,7 +39,7 @@ const initMap = (element: HTMLElement) => {
             coordinate.features[0].geometry.coordinates[0]
           ]);
           marker.bindPopup(`<b>Artwork Title: ${value.Title}</b><br>
-          By: ${value.Artist}<br> ${value.Location.Address}`);
+          By: ${value.Artist}<br> ${value.Location.Coordinates}`);
           marker.on('click', () => {
             store.$patch({
               resourceId: value['@resource_id']

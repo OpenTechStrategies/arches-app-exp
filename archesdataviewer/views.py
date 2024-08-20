@@ -13,8 +13,13 @@ from arches.app.utils.betterJSONSerializer import JSONSerializer
 graphs_prefetch = models.GraphModel.objects.all()
 name_to_graph_table = {str(gr_obj.name): gr_obj for gr_obj in graphs_prefetch}
 
-# This is a hardcoded id for the image node
-image_node_id = UUID('51502cdc-505b-11ee-be94-869ad5966fc6')
+# This is a hardcoded id for the photographer node group id
+photographer_node_group_id = UUID('5f85f884-34a5-11ef-9840-525400ef2e2d')
+
+# This is a hardcoded id for the image node id
+image_node_id = '73924468-34a5-11ef-bb6e-525400ef2e2d'
+
+
 
 
 def index(request):
@@ -58,12 +63,13 @@ def getImage(request,resource_id):
     if resource.graph_id == name_to_graph_table["Artist"].graphid:
         # Fetch a list of ids of all resources that are related to the artist
         relations = models.ResourceXResource.objects.filter(resourceinstanceidto_id=UUID(resource_id), resourceinstancefrom_graphid_id=name_to_graph_table["Artwork"].graphid).values_list('resourceinstanceidfrom_id',flat=True)
-        # Extract all tiles in the 'Image' NodeGroup that have a resourceId in the related artworks
-        tiles = models.TileModel.objects.filter(nodegroup_id=image_node_id,resourceinstance_id__in=relations)
+        # Extract all tiles in the 'Photographer' NodeGroup that have a resourceId in the related artworks
+        tiles = models.TileModel.objects.filter(nodegroup_id=photographer_node_group_id,resourceinstance_id__in=relations)
+        
     elif resource.graph_id == name_to_graph_table["Artwork"].graphid:
         # An artwork should implicitly only have one image directly related to it 
-        tiles = models.TileModel.objects.filter(nodegroup_id=image_node_id,resourceinstance_id=UUID(resource_id))
-    return JSONResponse(tiles)
+        tiles = models.TileModel.objects.filter(nodegroup_id=photographer_node_group_id,resourceinstance_id=UUID(resource_id))
+    return JSONResponse(tiles[0].data[image_node_id][0])
 
 
 
