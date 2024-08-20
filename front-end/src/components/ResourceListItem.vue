@@ -32,7 +32,7 @@ async function fetchImage() {
     `${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/getimage/${props.resourceId}`
   );
   const response = await fetch(url.toString()).then((res) => res.json());
-  const imagePath = response[0]?.data[response[0]?.nodegroup_id][0].url;
+  const imagePath = response?.url;
   if (imagePath) {
     imageUrl.value = import.meta.env.VITE_ARCHES_API_URL + imagePath;
   }

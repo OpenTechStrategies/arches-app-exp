@@ -3,20 +3,15 @@ import { ajv } from '@/ajv';
 
 export interface Artwork {
   Artist: string;
-  Identifiers: {
-    ID: string;
-    'ID Type': string;
-  };
-  Image: {
-    '@value': string;
+  Photograph: {
+    Image: string;
     Photographer: string;
   };
   Location: {
-    Address: string;
     Coordinates?: string;
-    'Location Description': string;
-    Structure: string;
+    'Located On': string;
   };
+  Medium: string;
   Description?: string;
   Title: string;
 }
@@ -30,35 +25,28 @@ const ArtworkSchema: JSONSchemaType<Artwork> = {
   properties: {
     Artist: { type: 'string' },
     Description: { type: 'string', nullable: true },
-    Identifiers: {
+    Photograph: {
       type: 'object',
       properties: {
-        ID: { type: 'string' },
-        'ID Type': { type: 'string' }
-      },
-      required: ['ID', 'ID Type']
-    },
-    Image: {
-      type: 'object',
-      properties: {
-        '@value': { type: 'string' },
+        Image: { type: 'string' },
         Photographer: { type: 'string' }
       },
-      required: ['@value', 'Photographer']
+      required: ['Image', 'Photographer']
     },
     Location: {
       type: 'object',
       properties: {
-        Address: { type: 'string' },
         Coordinates: { type: 'string', nullable: true },
-        'Location Description': { type: 'string' },
-        Structure: { type: 'string' }
+        'Located On': { type: 'string' }
       },
-      required: ['Address', 'Location Description', 'Structure']
+      required: ['Located On']
+    },
+    Medium: {
+      type: 'string'
     },
     Title: { type: 'string' }
   },
-  required: ['Artist', 'Identifiers', 'Title'],
+  required: ['Artist', 'Title', 'Location'],
   additionalProperties: true
 };
 
