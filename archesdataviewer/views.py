@@ -19,7 +19,7 @@ image_node_id = UUID('51502cdc-505b-11ee-be94-869ad5966fc6')
 
 def index(request):
     with open(
-        "/usr/local/lib/python3.10/site-packages/archesdataviewer/static/.vite/manifest.json",
+        "/opt/arches/.venv/lib/python3.11/site-packages/archesdataviewer/static/.vite/manifest.json",
         "r",
     ) as manifest:
         json_data = json.load(manifest)

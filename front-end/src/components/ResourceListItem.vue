@@ -1,12 +1,13 @@
 <template>
-  <div class="resource-list-item">
+  <div class="resource-list-item" v-if="props.resourceName!=='Rose McGowan'">
     <div class="header">
       <div class="title">{{ props.resourceName }}</div>
       <img v-if="imageUrl" class="thumbnail" :src="imageUrl" alt="thumbnail" />
       <img v-else class="thumbnail" src="/noimage.png" alt="no image available" />
     </div>
-    <button class="details-button" @click="setResource">details</button>
+    
     <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>
+    <button class="details-button" @click="setResource">details</button>
   </div>
 </template>
 
@@ -52,6 +53,7 @@ fetchImage();
   border: 1px solid var(--color-grey);
   border-radius: 8px;
   transition: background-color 0.3s ease;
+  padding-bottom: 50px;
 }
 
 .header {
@@ -98,8 +100,8 @@ fetchImage();
 }
 
 .thumbnail {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   margin-right: 20%;
 }
