@@ -1,16 +1,11 @@
-import { validateCoordinatesSchema } from './types';
 import type { Coordinates } from './types';
 
 export function coordinatesStringToObject(coordinates: string): Coordinates | undefined {
   const validJsonString = coordinates.replace(/'/g, '"');
   try {
-    const parsedCoordinates = JSON.parse(validJsonString);
+    const parsedCoordinates = JSON.parse(validJsonString) as unknown as Coordinates;
 
-    if (validateCoordinatesSchema(parsedCoordinates)) {
-      return parsedCoordinates;
-    } else {
-      return undefined;
-    }
+    return parsedCoordinates;
   } catch (error) {
     throw new Error(`Failed to parse Coordinates JSON string:`);
   }

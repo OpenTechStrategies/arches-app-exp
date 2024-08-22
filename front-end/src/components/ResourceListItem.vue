@@ -1,11 +1,16 @@
 <template>
-  <div class="resource-list-item" v-if="props.resourceName!=='Rose McGowan'">
+  <div v-if="props.resourceName !== 'Rose McGowan'" class="resource-list-item">
     <div class="header">
       <div class="title">{{ props.resourceName }}</div>
       <img v-if="imageUrl" class="thumbnail" :src="imageUrl" alt="thumbnail" />
-      <img v-else class="thumbnail" src="/noimage.png" alt="no image available" />
+      <img
+        v-else
+        class="thumbnail"
+        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
+        alt="no image available"
+      />
     </div>
-    
+
     <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>
     <button class="details-button" @click="setResource">details</button>
   </div>
@@ -24,6 +29,8 @@ const emit = defineEmits(['set-resource']);
 const setResource = () => {
   emit('set-resource', props.resourceId);
 };
+
+const isProd = import.meta.env.PROD;
 
 const imageUrl = ref<string | undefined>(undefined);
 

@@ -12,7 +12,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../archesdataviewer/static',
+    outDir: '../archesdataviewer/static/vite_build',
     emptyOutDir: true,
     manifest: true,
   }

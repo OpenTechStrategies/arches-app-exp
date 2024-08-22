@@ -8,7 +8,6 @@ async function fetchSearchResults() {
 
   const response = await fetch(url.toString()).then((res) => res.json());
   artworks.value = response;
-  console.log(artworks.value);
 }
 fetchSearchResults();
 </script>
