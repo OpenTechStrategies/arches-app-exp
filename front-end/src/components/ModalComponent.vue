@@ -1,6 +1,5 @@
-<!-- Modal.vue -->
 <template>
-  <div v-if="visible" class="modal-overlay" @click="close">
+  <div v-if="props.visible" class="modal-overlay" @click="close">
     <div class="modal-content" @click.stop>
       <slot></slot>
     </div>
@@ -8,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const props = defineProps<{
   visible: boolean;
 }>();

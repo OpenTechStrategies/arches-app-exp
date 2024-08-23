@@ -9,14 +9,19 @@
       <h4>Address: {{ props.artwork.Location['Located On'] }}</h4>
     </div>
     <Modal :visible="showModal" @update:visible="showModal = $event">
-      <img :src="imagesrc" alt="Expanded artwork image" class="expanded-image" @click="showModal = false" />
+      <img
+        :src="imagesrc"
+        alt="Expanded artwork image"
+        class="expanded-image"
+        @click="showModal = false"
+      />
     </Modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import Modal from './Modal.vue';
+import Modal from './ModalComponent.vue';
 import type { Artwork } from '../types';
 
 const props = defineProps<{
