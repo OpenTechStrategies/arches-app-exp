@@ -50,8 +50,8 @@ const props = defineProps<{
   searchResults: SearchResultArray;
   graphTable: Map<string, string>;
   searchQuery: {
-    resourceName: Ref<string>;
-    resourceGraphId: Ref<string>;
+    resourceName: string;
+    resourceGraphId: string;
   };
 }>();
 
