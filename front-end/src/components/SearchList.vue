@@ -1,5 +1,18 @@
 <template>
   <div class="search-list-container">
+    <div class="search-bar">
+      <input
+        v-model="props.searchQuery.resourceName"
+        class="search-input"
+        placeholder="Search by name..."
+      />
+      <select v-model="props.searchQuery.resourceGraphId" class="search-select">
+        <option disabled value="">Please select one</option>
+        <option v-for="(value, id) in props.graphTable" :key="id" :value="value[0]">
+          {{ value[1] }}
+        </option>
+      </select>
+    </div>
     <div class="search-list">
       <ResourceListItem
         v-for="result in props.searchResults.items"
@@ -27,6 +40,7 @@ import { useResourceStore } from '@/stores/resourceStore';
 import type { SearchResultArray } from '../types';
 import ResourceListItem from './ResourceListItem.vue';
 import SearchListButton from './SearchListButton.vue';
+
 const store = useResourceStore();
 const props = defineProps<{
   pageValues: {
@@ -35,6 +49,10 @@ const props = defineProps<{
   };
   searchResults: SearchResultArray;
   graphTable: Map<string, string>;
+  searchQuery: {
+    resourceName: Ref<string>;
+    resourceGraphId: Ref<string>;
+  };
 }>();
 
 const emit = defineEmits(['next-page', 'previous-page']);
@@ -58,6 +76,33 @@ const setResource = (resourceId: string) => {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: var(--color-light-grey);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--color-grey);
+  border-radius: 4px;
+  width: 300px;
+}
+
+.search-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--color-grey);
+  border-radius: 4px;
+  width: 200px;
 }
 
 .search-list {
