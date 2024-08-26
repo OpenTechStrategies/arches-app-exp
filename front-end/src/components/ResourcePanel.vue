@@ -9,6 +9,10 @@
         v-else-if="validateArtistSchema(props.resource?.resource)"
         :artist="props.resource.resource"
       />
+      <StructureDetail
+        v-else-if="validateStructureSchema(props.resource?.resource)"
+        :structure="props.resource.resource"
+      />
       <ResourceRelationList
         v-if="resourceRelations"
         :resource-relations="resourceRelations"
@@ -32,11 +36,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { validateArtistSchema, validateArtworkSchema } from '@/types';
+import { validateArtistSchema, validateArtworkSchema, validateStructureSchema } from '@/types';
 import ArtworkDetail from './ArtworkDetail.vue';
 import ArtistDetail from './ArtistDetail.vue';
 import ResourceRelationList from './ResourceRelationList.vue';
 import type { Resource, ResourceRelation } from '@/types';
+import StructureDetail from './StructureDetail.vue';
 
 const props = defineProps<{
   resource: Resource | undefined;
