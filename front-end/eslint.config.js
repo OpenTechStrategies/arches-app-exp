@@ -10,15 +10,23 @@ export default tseslint.config(
   ...pluginVue.configs['flat/recommended'],
   {
     plugins: {
-      'typescript-eslint': tseslint.plugin,
+      'typescript-eslint': tseslint.plugin
     },
     languageOptions: {
       parserOptions: {
         parser: tseslint.parser,
         extraFileExtensions: ['.vue'],
-        sourceType: 'module',
-      },
+        sourceType: 'module'
+      }
     },
+    rules: {
+      'vue/no-mutating-props': [
+        'error',
+        {
+          shallowOnly: true
+        }
+      ]
+    }
   },
-  eslintConfigPrettier,
+  eslintConfigPrettier
 );
