@@ -1,5 +1,5 @@
 <template>
-  <div class="artist-detail">
+  <div>
     <h1>Artist Name: {{ props.artist.Name }}</h1>
   </div>
 </template>
@@ -13,17 +13,4 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.artist-detail {
-  padding: 20px;
-  margin: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .artist-detail {
-    padding: 15px;
-    margin: 10px;
-  }
-}
 </style>

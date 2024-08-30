@@ -1,7 +1,7 @@
 <template>
-  <div class="resource-relation-list-container">
+  <div>
     <h4>Related Resources:</h4>
-    <div v-if="props.resourceRelations" class="resource-relation-list">
+    <div v-if="props.resourceRelations">
       <ResourceListItem
         v-for="resourceRelation in props.resourceRelations"
         :key="resourceRelation.resourceinstanceid"
@@ -34,17 +34,4 @@ const setResource = (resourceId: string) => {
 </script>
 
 <style scoped>
-.resource-relation-list-container {
-  padding: 20px;
-  margin: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .resource-relation-list-container {
-    padding: 15px;
-    margin: 10px;
-  }
-}
 </style>

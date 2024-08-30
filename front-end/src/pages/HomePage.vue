@@ -2,7 +2,7 @@
   <div class="home">
     <div id="search-list-container" class="column">
       <SearchListProvider
-        v-slot="{ searchResults, fetchNextPage, fetchPreviousPage, pageValues, searchQuery }"
+        v-slot="{ searchResults, pageValues, searchQuery }"
         :graph-table="props.graphTable"
       >
         <SearchList
@@ -11,8 +11,6 @@
           :page-values="pageValues"
           :graph-table="props.graphTable"
           :search-query="searchQuery"
-          @next-page="fetchNextPage"
-          @previous-page="fetchPreviousPage"
         />
       </SearchListProvider>
     </div>

@@ -13,17 +13,4 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.structure-detail {
-  padding: 20px;
-  margin: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-}
-
-@media (max-width: 768px) {
-  .structure-detail {
-    padding: 15px;
-    margin: 10px;
-  }
-}
 </style>

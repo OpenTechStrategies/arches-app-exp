@@ -1,5 +1,5 @@
 <template>
-  <div class="artwork-detail">
+  <div>
     <h1>Title: {{ props.artwork.Title }}</h1>
     <h2>Artist: {{ props.artwork.Artist }}</h2>
     <h4>Description: {{ props.artwork?.Description }}</h4>
@@ -8,20 +8,12 @@
     <div v-if="props.artwork.Location">
       <h4>Address: {{ props.artwork.Location['Located On'] }}</h4>
     </div>
-    <Modal :visible="showModal" @update:visible="showModal = $event">
-      <img
-        :src="imagesrc"
-        alt="Expanded artwork image"
-        class="expanded-image"
-        @click="showModal = false"
-      />
-    </Modal>
+    <img :src="imagesrc" alt="Expanded artwork image" @click="showModal = false" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import Modal from './ModalComponent.vue';
 import type { Artwork } from '../types';
 
 const props = defineProps<{
@@ -39,28 +31,4 @@ const imagesrc = computed(() => {
 });
 </script>
 
-<style scoped>
-.artwork-detail {
-  padding: 20px;
-  margin: 20px;
-  background-color: var(--color-white);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 10px;
-  object-fit: contain;
-  cursor: pointer;
-}
-
-.expanded-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  cursor: pointer;
-}
-</style>
+<style scoped></style>

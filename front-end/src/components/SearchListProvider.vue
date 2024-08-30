@@ -48,24 +48,6 @@ async function fetchSearchResults({ resourceName, resourceGraphId }: fetchSearch
 
 fetchSearchResults(searchQuery);
 
-const fetchNextPage = () => {
-  if (has_next.value) {
-    page.value++;
-    fetchSearchResults(searchQuery);
-  } else {
-    has_next.value = false;
-  }
-};
-
-const fetchPreviousPage = () => {
-  if (has_previous.value) {
-    page.value--;
-    fetchSearchResults(searchQuery);
-  } else {
-    has_previous.value = false;
-  }
-};
-
 watch(
   () => ({ resourceGraphId: searchQuery.resourceGraphId, resourceName: searchQuery.resourceName }),
   async (newQuery) => {
@@ -87,8 +69,6 @@ const pageValues = {
 <template>
   <slot
     :search-results="searchResults"
-    :fetch-next-page="fetchNextPage"
-    :fetch-previous-page="fetchPreviousPage"
     :page-values="pageValues"
     :search-query="searchQuery"
   />

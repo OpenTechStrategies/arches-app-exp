@@ -53,22 +53,4 @@ const showMetaData = ref<boolean>(false);
 </script>
 
 <style scoped>
-#resource-panel {
-  padding: 20px;
-  margin: 20px;
-  background-color: var(--color-white);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-button {
-  margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-  #resource-panel {
-    padding: 15px;
-    margin: 10px;
-  }
-}
 </style>
