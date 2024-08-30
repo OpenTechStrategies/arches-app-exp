@@ -1,3 +1,8 @@
+<template>
+  <Transition>
+    <slot :search-results="searchResults" :page-values="pageValues" :search-query="searchQuery" />
+  </Transition>
+</template>
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue';
 import type { SearchResultArray } from '../types';
@@ -65,9 +70,5 @@ const pageValues = {
   has_previous: has_previous
 };
 </script>
-
-<template>
-  <slot :search-results="searchResults" :page-values="pageValues" :search-query="searchQuery" />
-</template>
 
 <style scoped></style>

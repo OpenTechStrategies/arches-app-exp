@@ -20,6 +20,7 @@
     </div>
     <div id="search-list-container">
       <SearchListProvider
+        v-if="resourceStore.resourceId === undefined"
         v-slot="{ searchResults, pageValues, searchQuery }"
         :graph-table="props.graphTable"
       >
@@ -31,6 +32,13 @@
           :search-query="searchQuery"
         />
       </SearchListProvider>
+      <ResourcePanelProvider v-else v-slot="{ resource, resourceRelations }">
+        <ResourceDetailPanel
+          :resource="resource"
+          :resource-relations="resourceRelations"
+          :graph-table="graphTable"
+        />
+      </ResourcePanelProvider>
     </div>
     <div class="footer">
       <div class="footer-blurb">
@@ -50,6 +58,10 @@ import SearchListProvider from '../components/SearchListProvider.vue';
 import SearchList from '../components/SearchList.vue';
 import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
+import { useResourceStore } from '@/stores/resourceStore';
+import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
+import ResourceDetailPanel from '@/components/ResourceDetailPanel.vue';
+const resourceStore = useResourceStore();
 
 const props = defineProps<{
   graphTable: Map<string, string>;
@@ -73,15 +85,15 @@ const props = defineProps<{
   align-items: flex-start;
   padding: 0px;
   gap: 32px;
-  .footer-blurb {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 8px;
-  }
 }
 
+.footer-blurb {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
 #map-container {
   width: 100%;
 }

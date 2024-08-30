@@ -1,5 +1,5 @@
 <template>
-  <div class="search-result">
+  <div class="search-result" @click="setActiveResource(props.resourceId)">
     <img v-if="imageUrl" class="search-result-image" :src="imageUrl" alt="thumbnail image" />
     <img
       v-else
@@ -18,8 +18,10 @@
 </template>
 
 <script setup lang="ts">
+import { useResourceStore } from '@/stores/resourceStore';
 import { ref } from 'vue';
 
+const resourceStore = useResourceStore();
 const props = defineProps<{
   resourceName: string;
   resourceId: string;
@@ -42,6 +44,12 @@ async function fetchImage() {
   }
 }
 
+const setActiveResource = (resourceId: string) => {
+  resourceStore.$patch({
+    resourceId: resourceId
+  });
+};
+
 fetchImage();
 </script>
 
@@ -59,37 +67,38 @@ fetchImage();
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
-  .search-result-title {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 16px;
-    line-height: 120%;
-    display: flex;
-    align-items: center;
-    text-decoration-line: underline;
-  }
-  .search-result-resource-type {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 100%;
-
-    display: flex;
-    align-items: center;
-  }
-  .search-result-description {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 110%;
-  }
 }
+.search-result-title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+  text-decoration-line: underline;
+}
+.search-result-resource-type {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
 
+  display: flex;
+  align-items: center;
+}
+.search-result-description {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 110%;
+}
 .search-result-image {
   width: 150px;
   height: 150px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 </style>

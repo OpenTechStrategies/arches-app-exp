@@ -1,27 +1,29 @@
 <template>
-  <div class="search-header">
-    <div>Explore the artwork as a list</div>
-    <div class="resource-selection-menu">
-      <div>Everything</div>
-      <div>Artists</div>
-      <div>Artworks</div>
-      <div>Photographs</div>
-      <div>Structures</div>
+  <div class="search-list-container">
+    <div class="search-header">
+      <div>Explore the artwork as a list</div>
+      <div class="resource-selection-menu">
+        <div>Everything</div>
+        <div>Artists</div>
+        <div>Artworks</div>
+        <div>Photographs</div>
+        <div>Structures</div>
+      </div>
+      <div>
+        <input v-model="props.searchQuery.resourceName" placeholder="Search names..." />
+      </div>
     </div>
-    <div>
-      <input v-model="props.searchQuery.resourceName" placeholder="Search names..." />
+    <div class="search-results">
+      <SearchListItem
+        v-for="result in props.searchResults.items"
+        :key="result._id"
+        :resource-name="result._source.displayname"
+        :resource-description="result._source.displaydescription"
+        :resource-id="result._source.resourceinstanceid"
+        :resource-type="props.graphTable.get(result._source.graph_id)"
+        @set-resource="setResource"
+      />
     </div>
-  </div>
-  <div class="search-results">
-    <SearchListItem
-      v-for="result in props.searchResults.items"
-      :key="result._id"
-      :resource-name="result._source.displayname"
-      :resource-description="result._source.displaydescription"
-      :resource-id="result._source.resourceinstanceid"
-      :resource-type="props.graphTable.get(result._source.graph_id)"
-      @set-resource="setResource"
-    />
   </div>
 </template>
 
@@ -31,7 +33,7 @@ import { useResourceStore } from '@/stores/resourceStore';
 import type { SearchResultArray } from '../types';
 import SearchListItem from './SearchListItem.vue';
 
-const store = useResourceStore();
+const resourceStore = useResourceStore();
 const props = defineProps<{
   pageValues: {
     has_next: Ref<boolean>;
@@ -46,7 +48,7 @@ const props = defineProps<{
 }>();
 
 const setResource = (resourceId: string) => {
-  store.$patch({
+  resourceStore.$patch({
     resourceId: resourceId
   });
 };

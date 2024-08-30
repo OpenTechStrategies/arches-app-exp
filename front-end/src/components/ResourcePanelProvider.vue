@@ -1,5 +1,7 @@
 <template>
-  <slot :resource="resource" :resource-relations="resourceRelations" />
+  <Transition>
+    <slot :resource="resource" :resource-relations="resourceRelations" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
