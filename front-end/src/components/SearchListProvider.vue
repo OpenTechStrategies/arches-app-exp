@@ -67,11 +67,7 @@ const pageValues = {
 </script>
 
 <template>
-  <slot
-    :search-results="searchResults"
-    :page-values="pageValues"
-    :search-query="searchQuery"
-  />
+  <slot :search-results="searchResults" :page-values="pageValues" :search-query="searchQuery" />
 </template>
 
 <style scoped></style>

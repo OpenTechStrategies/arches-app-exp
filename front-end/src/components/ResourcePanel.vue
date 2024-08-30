@@ -52,5 +52,4 @@ const props = defineProps<{
 const showMetaData = ref<boolean>(false);
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

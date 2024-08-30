@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('@/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
+:root {
+  --color-black: #363636;
+  --color-white: #ffffff;
+}
+
+body {
+  background-color: var(--color-background);
+  font-family: 'Inter', sans-serif;
+}

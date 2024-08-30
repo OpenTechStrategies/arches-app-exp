@@ -1,5 +1,17 @@
 <template>
-  <div v-if="props.artworks" id="map" ref="mapElement" />
+  <div
+    class="expand-map-button"
+    @click="
+      {
+        expandMap = !expandMap;
+      }
+    "
+  >
+    Explore the artwork geographically
+  </div>
+  <div :class="expandMap ? 'map-container-expanded' : 'map-container-collapsed'">
+    <div id="map" ref="mapElement" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -10,6 +22,8 @@ import { useResourceStore } from '@/stores/resourceStore';
 import type { MapArtwork } from '@/types';
 import L from 'leaflet';
 import { coordinatesStringToObject } from '@/utils';
+
+const expandMap = ref<boolean>(false);
 
 const store = useResourceStore();
 const props = defineProps<{
@@ -81,16 +95,26 @@ watch(
 </script>
 
 <style scoped>
-#map {
-  height: 100%;
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.expand-map-button {
+  cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  #map {
-    height: 300px;
-  }
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-container-collapsed {
+  height: 100px;
+  transition: height 0.5s ease;
+}
+
+.map-container-collapsed * {
+  pointer-events: none;
+}
+
+.map-container-expanded {
+  height: 400px;
+  transition: height 0.5s ease;
 }
 </style>
