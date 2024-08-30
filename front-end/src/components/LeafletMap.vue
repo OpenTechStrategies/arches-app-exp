@@ -70,8 +70,6 @@ const initMap = (element: HTMLElement) => {
         markerTable.set(value.resource.resourceinstanceid, marker);
         marker.addTo(map);
       }
-    } else {
-      console.warn(`Coordinates not found for artwork ${value.resource.displayname}`);
     }
   });
 

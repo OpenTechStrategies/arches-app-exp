@@ -17,7 +17,10 @@
     <div class="search-result-metadata">
       <div class="search-result-resource-type">{{ props.resourceType ?? 'Resource' }}</div>
       <div class="search-result-title">{{ props.resourceName }}</div>
-      <div v-if="props.resourceDescription" class="search-result-resource-description">
+      <div
+        v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
+        class="search-result-resource-description"
+      >
         {{ props.resourceDescription }}
       </div>
     </div>
@@ -85,12 +88,19 @@ const setActiveResource = (resourceId: string) => {
   display: flex;
   align-items: center;
 }
-.search-result-description {
+
+.search-result-resource-description {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 110%;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-result-image {
   width: 150px;

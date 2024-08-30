@@ -3,19 +3,39 @@
     <div class="search-header">
       <div>Explore the artwork as a list</div>
       <div class="resource-selection-menu">
-        <div>Everything</div>
-        <div>Artists</div>
-        <div>Artworks</div>
-        <div>Photographs</div>
-        <div>Structures</div>
+        <button :class="{ active: selectedResourceType === null }" @click="clearFilter">
+          Everything
+        </button>
+        <button
+          :class="{ active: selectedResourceType === 'Artist' }"
+          @click="filterByType('Artist')"
+        >
+          Artists
+        </button>
+        <button
+          :class="{ active: selectedResourceType === 'Artwork' }"
+          @click="filterByType('Artwork')"
+        >
+          Artworks
+        </button>
+        <button
+          :class="{ active: selectedResourceType === 'Photographer' }"
+          @click="filterByType('Photographer')"
+        >
+          Photographers
+        </button>
+        <button
+          :class="{ active: selectedResourceType === 'Structure' }"
+          @click="filterByType('Structure')"
+        >
+          Structures
+        </button>
       </div>
-      <div>
-        <input v-model="query" placeholder="Search names..." />
-      </div>
+      <input v-model="query" class="search-bar" placeholder="Search names..." />
     </div>
     <div class="search-results">
       <SearchListItem
-        v-for="result in props.resourcesPrefetch"
+        v-for="result in filteredResources"
         :key="result.resourceinstanceid"
         :resource-name="result.descriptors.en.name"
         :resource-description="result.descriptors.en.description"
@@ -36,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useResourceStore } from '@/stores/resourceStore';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceRelation } from '@/types';
 
@@ -45,6 +65,7 @@ import { getImageTileDataForResource } from '@/utils';
 
 const resourceStore = useResourceStore();
 const query = ref<string>('');
+const selectedResourceType = ref<string | null>(null);
 
 const props = defineProps<{
   resourcesPrefetch: Array<Resource>;
@@ -52,6 +73,28 @@ const props = defineProps<{
   resourceRelationsPrefetch: Array<ResourceRelation>;
   idReferences: Prefetch['idReferences'];
 }>();
+
+const filteredResources = computed(() => {
+  return props.resourcesPrefetch.filter((resource) => {
+    const matchesQuery = resource.descriptors.en.name
+      .toLowerCase()
+      .includes(query.value.toLowerCase());
+
+    const matchesType = selectedResourceType.value
+      ? props.idReferences.graphIdToNameTable[resource.graph_id] === selectedResourceType.value
+      : true;
+
+    return matchesQuery && matchesType;
+  });
+});
+
+const clearFilter = () => {
+  selectedResourceType.value = null;
+};
+
+const filterByType = (type: string) => {
+  selectedResourceType.value = type;
+};
 
 const setResource = (resourceId: string) => {
   resourceStore.$patch({
@@ -61,6 +104,15 @@ const setResource = (resourceId: string) => {
 </script>
 
 <style scoped>
+.search-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 32px;
+  isolation: isolate;
+}
+
 .search-header {
   display: flex;
   flex-direction: column;
@@ -87,5 +139,45 @@ const setResource = (resourceId: string) => {
   align-content: space-between;
   padding: 0px;
   gap: 8px;
+}
+
+button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  border: none;
+  background: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  transition: background-color 300ms ease;
+}
+
+button.active {
+  background: #ffe16a;
+  transition: background-color 300ms ease;
+}
+
+.search-bar {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 5px;
 }
 </style>
