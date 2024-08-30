@@ -1,7 +1,7 @@
 import type { JSONSchemaType } from 'ajv';
 import { ajv } from '@/ajv';
 
-interface Coordinates {
+interface CoordinatesTileData {
   type: string;
   features: Feature[];
 }
@@ -21,7 +21,8 @@ interface Geometry {
 interface Properties {
   nodeId: string;
 }
-const CoordinatesSchema: JSONSchemaType<Coordinates> = {
+
+const CoordinatesTileDataSchema: JSONSchemaType<CoordinatesTileData> = {
   type: 'object',
   properties: {
     type: { type: 'string' },
@@ -58,5 +59,5 @@ const CoordinatesSchema: JSONSchemaType<Coordinates> = {
   nullable: true,
   required: ['type', 'features']
 };
-export type { Coordinates };
-export const validateCoordinatesSchema = ajv.compile(CoordinatesSchema);
+export type { CoordinatesTileData };
+export const validateCoordinatesTileData = ajv.compile(CoordinatesTileDataSchema);

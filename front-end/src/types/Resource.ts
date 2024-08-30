@@ -1,11 +1,15 @@
-import type { Artist } from './Artist';
-import type { Artwork } from './Artwork';
-
 export interface Resource {
-  displaydescription: string;
+  descriptors: {
+    en: {
+      description: string;
+      map_popup: string;
+      name: string;
+    };
+  };
   displayname: string;
   graph_id: string;
-  map_popup: string;
-  resource: Artist | Artwork;
+  graph_publication_id: string;
+  legacyid: string;
+  name: string;
   resourceinstanceid: string;
 }

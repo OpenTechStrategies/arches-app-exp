@@ -2,6 +2,13 @@ import type { JSONSchemaType } from 'ajv';
 /*
  * Modeled off the results of a GET request to the
  * /search/resources endpoint!
+ *
+ * 08/30/2024
+ * Now an unused interface as we are no longer relying on the
+ * search endpoint, and instead prefetching all our data for the
+ * searchable list. However, since we will likely need to use
+ * the search route and elasticsearch in the future, this is being
+ * kept in the repository
  */
 
 interface Feature {

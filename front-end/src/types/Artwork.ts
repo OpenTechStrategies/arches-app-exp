@@ -16,10 +16,6 @@ export interface Artwork {
   Title: string;
 }
 
-export interface MapArtwork extends Artwork {
-  '@resource_id': string;
-}
-
 const ArtworkSchema: JSONSchemaType<Artwork> = {
   type: 'object',
   properties: {

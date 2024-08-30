@@ -1,29 +1,54 @@
 <template>
   <main>
-    <Home :graph-table="graphTable" />
+    <Home
+      :id-references="idReferences"
+      :images-prefetch="imagesPrefetch"
+      :locations-prefetch="locationsPrefetch"
+      :resource-relations-prefetch="resourceRelationsPrefetch"
+      :resources-prefetch="resourcesPrefetch"
+      :loading="loading"
+    />
   </main>
 </template>
 
 <script setup lang="ts">
 import Home from '@/pages/HomePage.vue';
 import { ref } from 'vue';
-import type { Graph } from './types';
+import type {
+  ImageTileData,
+  Tile,
+  CoordinatesTileData,
+  Resource,
+  ResourceRelation,
+  Prefetch
+} from './types';
 
-const graphTable = ref<Map<string, string>>(new Map());
+const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
+const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
+const locationsPrefetch = ref<Array<Tile<CoordinatesTileData>> | undefined>(undefined);
+const resourceRelationsPrefetch = ref<Array<ResourceRelation> | undefined>(undefined);
+const resourcesPrefetch = ref<Array<Resource> | undefined>(undefined);
 
-async function fetchGraphTable() {
-  const url = new URL(`${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/graphs`);
-  const response: Graph[] = await fetch(url.toString()).then((res) => res.json());
-  const map = new Map<string, string>();
-  response.forEach((item) => {
-    if (item.name !== 'Arches System Settings') {
-      map.set(item.graphid, item.name);
-    }
-  });
-  graphTable.value = map;
+const loading = ref(true);
+
+async function prefetchResources() {
+  try {
+    const url = new URL(`${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/prefetch`);
+    const response = await fetch(url.toString());
+    const data: Prefetch = await response.json();
+    idReferences.value = data.idReferences;
+    imagesPrefetch.value = data.images;
+    locationsPrefetch.value = data.locations;
+    resourceRelationsPrefetch.value = data.resourceRelations;
+    resourcesPrefetch.value = data.resources;
+  } catch (error) {
+    console.error('Failed to fetch prefetch data:', error);
+  } finally {
+    loading.value = false;
+  }
 }
 
-fetchGraphTable();
+prefetchResources();
 </script>
 
 <style scoped>

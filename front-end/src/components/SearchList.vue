@@ -10,17 +10,25 @@
         <div>Structures</div>
       </div>
       <div>
-        <input v-model="props.searchQuery.resourceName" placeholder="Search names..." />
+        <input v-model="query" placeholder="Search names..." />
       </div>
     </div>
     <div class="search-results">
       <SearchListItem
-        v-for="result in props.searchResults.items"
-        :key="result._id"
-        :resource-name="result._source.displayname"
-        :resource-description="result._source.displaydescription"
-        :resource-id="result._source.resourceinstanceid"
-        :resource-type="props.graphTable.get(result._source.graph_id)"
+        v-for="result in props.resourcesPrefetch"
+        :key="result.resourceinstanceid"
+        :resource-name="result.descriptors.en.name"
+        :resource-description="result.descriptors.en.description"
+        :resource-id="result.resourceinstanceid"
+        :resource-type="props.idReferences.graphIdToNameTable[result.graph_id]"
+        :image-tile-data="
+          getImageTileDataForResource(
+            result,
+            props.imagesPrefetch,
+            props.resourceRelationsPrefetch,
+            props.idReferences
+          )
+        "
         @set-resource="setResource"
       />
     </div>
@@ -28,23 +36,21 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from 'vue';
+import { ref } from 'vue';
 import { useResourceStore } from '@/stores/resourceStore';
-import type { SearchResultArray } from '../types';
+import type { Tile, ImageTileData, Resource, Prefetch, ResourceRelation } from '@/types';
+
 import SearchListItem from './SearchListItem.vue';
+import { getImageTileDataForResource } from '@/utils';
 
 const resourceStore = useResourceStore();
+const query = ref<string>('');
+
 const props = defineProps<{
-  pageValues: {
-    has_next: Ref<boolean>;
-    has_previous: Ref<boolean>;
-  };
-  searchResults: SearchResultArray;
-  graphTable: Map<string, string>;
-  searchQuery: {
-    resourceName: string;
-    resourceGraphId: string;
-  };
+  resourcesPrefetch: Array<Resource>;
+  imagesPrefetch: Array<Tile<ImageTileData[]>>;
+  resourceRelationsPrefetch: Array<ResourceRelation>;
+  idReferences: Prefetch['idReferences'];
 }>();
 
 const setResource = (resourceId: string) => {

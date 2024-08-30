@@ -1,11 +1,18 @@
 <template>
   <div class="search-result" @click="setActiveResource(props.resourceId)">
-    <img v-if="imageUrl" class="search-result-image" :src="imageUrl" alt="thumbnail image" />
+    <img
+      v-if="imageUrl"
+      class="search-result-image"
+      loading="lazy"
+      :src="imageUrl"
+      alt="thumbnail image"
+    />
     <img
       v-else
       class="search-result-image"
       :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
       alt="no image available"
+      loading="lazy"
     />
     <div class="search-result-metadata">
       <div class="search-result-resource-type">{{ props.resourceType ?? 'Resource' }}</div>
@@ -19,7 +26,7 @@
 
 <script setup lang="ts">
 import { useResourceStore } from '@/stores/resourceStore';
-import { ref } from 'vue';
+import type { ImageTileData } from '@/types';
 
 const resourceStore = useResourceStore();
 const props = defineProps<{
@@ -27,30 +34,20 @@ const props = defineProps<{
   resourceId: string;
   resourceDescription: string;
   resourceType: string | undefined;
+  imageTileData: ImageTileData[] | undefined;
 }>();
 
 const isProd = import.meta.env.PROD;
 
-const imageUrl = ref<string | undefined>(undefined);
-
-async function fetchImage() {
-  const url = new URL(
-    `${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/getimage/${props.resourceId}`
-  );
-  const response = await fetch(url.toString()).then((res) => res.json());
-  const imagePath = response?.url;
-  if (imagePath) {
-    imageUrl.value = import.meta.env.VITE_ARCHES_API_URL + imagePath;
-  }
-}
+const imageUrl = props.imageTileData
+  ? import.meta.env.VITE_ARCHES_API_URL + props.imageTileData[0].url
+  : undefined;
 
 const setActiveResource = (resourceId: string) => {
   resourceStore.$patch({
     resourceId: resourceId
   });
 };
-
-fetchImage();
 </script>
 
 <style scoped>

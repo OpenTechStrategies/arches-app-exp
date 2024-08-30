@@ -13,30 +13,37 @@
       </p>
     </div>
     <div id="map-container">
-      <LeafletMapProvider v-slot="{ artworks }">
-        <LeafletMap v-if="artworks" :artworks="artworks" />
-        <div v-else class="map-placeholder">Loading Map...</div>
-      </LeafletMapProvider>
+      <LeafletMap
+        v-if="props.resourcesPrefetch && props.idReferences && props.locationsPrefetch"
+        :resources-prefetch="props.resourcesPrefetch"
+        :id-references="props.idReferences"
+        :locations-prefetch="props.locationsPrefetch"
+      />
+      <div v-else class="map-placeholder">Loading Map...</div>
     </div>
     <div id="search-list-container">
-      <SearchListProvider
-        v-if="resourceStore.resourceId === undefined"
-        v-slot="{ searchResults, pageValues, searchQuery }"
-        :graph-table="props.graphTable"
+      <Transition
+        v-if="
+          resourceStore.resourceId === undefined &&
+          props.resourcesPrefetch &&
+          props.resourceRelationsPrefetch &&
+          props.idReferences &&
+          props.imagesPrefetch
+        "
       >
         <SearchList
-          v-if="searchResults"
-          :search-results="searchResults"
-          :page-values="pageValues"
-          :graph-table="props.graphTable"
-          :search-query="searchQuery"
+          :resources-prefetch="props.resourcesPrefetch"
+          :resource-relations-prefetch="props.resourceRelationsPrefetch"
+          :id-references="props.idReferences"
+          :images-prefetch="props.imagesPrefetch"
         />
-      </SearchListProvider>
-      <ResourcePanelProvider v-else v-slot="{ resource, resourceRelations }">
+      </Transition>
+      <ResourcePanelProvider v-else v-slot="{ resource }">
         <ResourceDetailPanel
+          v-if="props.resourceRelationsPrefetch && props.idReferences"
           :resource="resource"
-          :resource-relations="resourceRelations"
-          :graph-table="graphTable"
+          :id-references="props.idReferences"
+          :resource-relations-prefetch="props.resourceRelationsPrefetch"
         />
       </ResourcePanelProvider>
     </div>
@@ -54,17 +61,28 @@
 </template>
 
 <script setup lang="ts">
-import SearchListProvider from '../components/SearchListProvider.vue';
 import SearchList from '../components/SearchList.vue';
-import LeafletMapProvider from '../components/LeafletMapProvider.vue';
 import LeafletMap from '../components/LeafletMap.vue';
 import { useResourceStore } from '@/stores/resourceStore';
 import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
 import ResourceDetailPanel from '@/components/ResourceDetailPanel.vue';
+import type {
+  ImageTileData,
+  Tile,
+  CoordinatesTileData,
+  Resource,
+  ResourceRelation,
+  Prefetch
+} from '@/types';
 const resourceStore = useResourceStore();
 
 const props = defineProps<{
-  graphTable: Map<string, string>;
+  idReferences: Prefetch['idReferences'] | undefined;
+  imagesPrefetch: Array<Tile<ImageTileData[]>> | undefined;
+  locationsPrefetch: Array<Tile<CoordinatesTileData>> | undefined;
+  resourceRelationsPrefetch: Array<ResourceRelation> | undefined;
+  resourcesPrefetch: Array<Resource> | undefined;
+  loading: boolean;
 }>();
 </script>
 

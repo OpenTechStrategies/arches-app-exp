@@ -3,7 +3,11 @@
     <div class="resource-detail-back-button" @click="clearActiveResource">Back to search</div>
     <div class="resource-detail-header">
       <div class="resource-detail-header-label">
-        {{ props.resource?.graph_id ? graphTable.get(props.resource?.graph_id) : '' }}
+        {{
+          props.resource?.graph_id
+            ? props.idReferences.graphIdToNameTable[props.resource?.graph_id]
+            : ''
+        }}
       </div>
       <div class="resource-detail-header-title">{{ props.resource?.displayname ?? '' }}</div>
     </div>
@@ -11,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Resource, ResourceRelation } from '@/types';
+import type { Prefetch, Resource, ResourceRelation } from '@/types';
 import { useResourceStore } from '@/stores/resourceStore';
 const resourceStore = useResourceStore();
 const props = defineProps<{
   resource: Resource | undefined;
-  resourceRelations: Array<ResourceRelation> | undefined;
-  graphTable: Map<string, string>;
+  resourceRelationsPrefetch: Array<ResourceRelation>;
+  idReferences: Prefetch['idReferences'];
 }>();
 
 const clearActiveResource = () => {

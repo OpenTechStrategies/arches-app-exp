@@ -19,16 +19,29 @@ import { onMounted, ref, watch } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import type { Marker } from 'leaflet';
 import { useResourceStore } from '@/stores/resourceStore';
-import type { MapArtwork } from '@/types';
+import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
-import { coordinatesStringToObject } from '@/utils';
 
 const expandMap = ref<boolean>(false);
 
 const store = useResourceStore();
 const props = defineProps<{
-  artworks: Array<MapArtwork>;
+  resourcesPrefetch: Array<Resource>;
+  locationsPrefetch: Array<Tile<CoordinatesTileData>>;
+  idReferences: Prefetch['idReferences'];
 }>();
+
+const mapResources = ref<Array<MapResource>>([]);
+
+mapResources.value = props.resourcesPrefetch.map((resource) => {
+  return {
+    resource,
+    coordinates:
+      props.locationsPrefetch.find(
+        (location) => location.resourceinstance_id === resource.resourceinstanceid
+      )?.data[props.idReferences.coordinatesNodeId] ?? undefined
+  };
+});
 
 const mapElement = ref<HTMLElement | null>(null);
 
@@ -43,30 +56,22 @@ const initMap = (element: HTMLElement) => {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
-  props.artworks.forEach((value) => {
-    if (value.Location?.Coordinates) {
-      try {
-        const coordinate = coordinatesStringToObject(value.Location.Coordinates);
-        if (coordinate) {
-          const marker = L.marker([
-            coordinate.features[0].geometry.coordinates[1],
-            coordinate.features[0].geometry.coordinates[0]
-          ]);
-          marker.bindPopup(`<b>Artwork Title: ${value.Title}</b><br>
-          By: ${value.Artist}<br>`);
-          marker.on('click', () => {
-            store.$patch({
-              resourceId: value['@resource_id']
-            });
+  mapResources.value.forEach((value) => {
+    if (value.coordinates) {
+      const coordinate = value.coordinates?.features[0].geometry.coordinates ?? undefined;
+      if (coordinate) {
+        const marker = L.marker([coordinate[1], coordinate[0]]);
+        marker.bindPopup(`<b>${value.resource.descriptors.en.name}</b>`);
+        marker.on('click', () => {
+          store.$patch({
+            resourceId: value.resource.resourceinstanceid
           });
-          markerTable.set(value['@resource_id'], marker);
-          marker.addTo(map);
-        }
-      } catch (err) {
-        console.error(`Error processing coordinates for artwork ${value.Title}:`, err);
+        });
+        markerTable.set(value.resource.resourceinstanceid, marker);
+        marker.addTo(map);
       }
     } else {
-      console.warn(`Coordinates not found for artwork ${value.Title}`);
+      console.warn(`Coordinates not found for artwork ${value.resource.displayname}`);
     }
   });
 
