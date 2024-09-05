@@ -10,17 +10,19 @@
     :artwork-id="resource.resourceinstanceid"
     :resource-relations="resourceRelations"
     :id-references="props.idReferences"
+    :panel-resource-type="props.panelResourceType"
   />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
-import type { ApiResource, Prefetch, ApiResourceRelation } from '@/types';
+import type { ApiResource, Prefetch, ApiResourceRelation, PANEL_RESOURCE_TYPE } from '@/types';
 import { validateArtworkSchema } from '@/types';
 const props = defineProps<{
   relatedArtwork: ApiResourceRelation;
   idReferences: Prefetch['idReferences'];
+  panelResourceType: PANEL_RESOURCE_TYPE;
 }>();
 
 const { graphIdToNameTable } = props.idReferences;

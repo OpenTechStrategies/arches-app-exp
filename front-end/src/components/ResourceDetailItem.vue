@@ -37,7 +37,7 @@ const props = defineProps<{
 const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.imageUrl : undefined;
 </script>
 
-<style>
+<style scoped>
 .resource-detail-item {
   display: flex;
   flex-direction: column;
@@ -96,10 +96,5 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-image img {
   width: 100%;
   height: 100%;
-}
-
-.resource-link {
-  text-decoration: underline;
-  cursor: pointer;
 }
 </style>

@@ -9,6 +9,9 @@
   </div>
 
   <slot name="items"></slot>
+  <div v-if="$slots['more-by-artist']" class="resource-detail-more-by-artist">
+    <slot name="more-by-artist"></slot>
+  </div>
 
   <div class="resource-detail-metadata">
     <div class="resource-detail-metadata-title">Arches metadata</div>
@@ -30,6 +33,14 @@
 }
 
 .resource-detail-metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+}
+
+.resource-detail-more-by-artist {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

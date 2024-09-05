@@ -12,3 +12,8 @@
 .v-leave-to {
   opacity: 0;
 }
+
+.resource-link {
+  text-decoration: underline;
+  cursor: pointer;
+}

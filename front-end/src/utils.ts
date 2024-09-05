@@ -3,15 +3,16 @@ import {
   type Tile,
   type ImageTileData,
   type Resource,
-  type ResourceRelation,
   type ApiResource,
-  PANEL_RESOURCE_TYPE
+  PANEL_RESOURCE_TYPE,
+  type ApiResourceRelation,
+  type ResourceXResource
 } from './types';
 
 const getImageTileDataForResource = (
   resource: Resource | ApiResource,
   imagesPrefetch: Array<Tile<ImageTileData[]>>,
-  resourceRelationsPrefetch: Array<ResourceRelation>,
+  resourceRelationsPrefetch: Array<ResourceXResource>,
   idReferences: Prefetch['idReferences']
 ) => {
   let imageTile = undefined;
@@ -51,4 +52,29 @@ const castToPanelResourceType = (panelResourceType: string | undefined) => {
   }
 };
 
-export { getImageTileDataForResource, castToPanelResourceType };
+const getMoreArtworksByArtist = (
+  artist: ApiResourceRelation,
+  resourcePrefetch: Array<Resource>,
+  resourceRelationsPrefetch: Array<ResourceXResource>,
+  idReferences: Prefetch['idReferences']
+) => {
+  if (idReferences.graphIdToNameTable[artist.graph_id] !== 'Artist') {
+    return undefined;
+  }
+  const artworkRelations = resourceRelationsPrefetch.filter(
+    (relation) =>
+      relation.resourceinstanceidto_id === artist.resourceinstanceid &&
+      relation.resourceinstancefrom_graphid_id === idReferences.nameToGraphIdTable['Artwork']
+  );
+  if (!artworkRelations) {
+    return undefined;
+  }
+  const relatedArtworkIds = artworkRelations.map((relation) => relation.resourceinstanceidfrom_id);
+
+  const relatedArtworks = resourcePrefetch.filter((res) =>
+    relatedArtworkIds.includes(res.resourceinstanceid)
+  );
+  return relatedArtworks ?? undefined;
+};
+
+export { getImageTileDataForResource, castToPanelResourceType, getMoreArtworksByArtist };
