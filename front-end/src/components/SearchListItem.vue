@@ -70,7 +70,6 @@ const setActiveResource = (newResourceId: string) => {
   gap: 8px;
 }
 .search-result-title {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 16px;
@@ -80,7 +79,6 @@ const setActiveResource = (newResourceId: string) => {
   text-decoration-line: underline;
 }
 .search-result-resource-type {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -91,7 +89,6 @@ const setActiveResource = (newResourceId: string) => {
 }
 
 .search-result-resource-description {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;

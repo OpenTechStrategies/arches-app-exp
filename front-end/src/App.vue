@@ -55,7 +55,6 @@ prefetchResources();
 main {
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: 'Inter';
   padding: 20px;
 }
 </style>

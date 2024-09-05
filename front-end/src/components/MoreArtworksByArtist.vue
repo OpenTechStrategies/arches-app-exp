@@ -67,7 +67,6 @@ const setActiveResource = (newResourceId: string) => {
 </script>
 <style scoped>
 .more-artworks-by-artist-title {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;

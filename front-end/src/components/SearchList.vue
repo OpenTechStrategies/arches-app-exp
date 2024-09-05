@@ -140,7 +140,6 @@ button {
   gap: 8px;
   border: none;
   background: none;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;

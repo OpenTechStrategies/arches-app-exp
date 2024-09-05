@@ -55,7 +55,6 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 }
 
 .resource-detail-item-header-byline {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -65,7 +64,6 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 }
 
 .resource-detail-item-header-title {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -76,7 +74,6 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 }
 
 .resource-detail-item-credit {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

@@ -49,7 +49,6 @@
 }
 
 .resource-detail-metadata-title {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -59,7 +58,6 @@
 }
 
 .resource-detail-metadata-content {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -76,7 +74,6 @@
 }
 
 .resource-detail-header-title {
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 900;
   font-size: 32px;

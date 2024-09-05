@@ -1,11 +1,18 @@
 {
   "index.html": {
-    "file": "assets/index-CfkN74xE.js",
+    "file": "assets/index-B8yxRQuL.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-DyhztGso.css"
+      "assets/index-Ccl12rPz.css"
+    ],
+    "assets": [
+      "assets/Inter-VariableFont_opsz_wght-c8O0ljhh.ttf"
     ]
+  },
+  "src/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf": {
+    "file": "assets/Inter-VariableFont_opsz_wght-c8O0ljhh.ttf",
+    "src": "src/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf"
   }
 }
