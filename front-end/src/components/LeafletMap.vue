@@ -18,7 +18,7 @@
 import { onMounted, ref, watch } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import type { Marker } from 'leaflet';
-import { useResourceStore } from '@/stores/resourceStore';
+import useResourceStore from '@/stores/resourceStore';
 import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
 
@@ -33,15 +33,13 @@ const props = defineProps<{
 
 const mapResources = ref<Array<MapResource>>([]);
 
-mapResources.value = props.resourcesPrefetch.map((resource) => {
-  return {
-    resource,
-    coordinates:
-      props.locationsPrefetch.find(
-        (location) => location.resourceinstance_id === resource.resourceinstanceid
-      )?.data[props.idReferences.coordinatesNodeId] ?? undefined
-  };
-});
+mapResources.value = props.resourcesPrefetch.map((resource) => ({
+  resource,
+  coordinates:
+    props.locationsPrefetch.find(
+      (location) => location.resourceinstance_id === resource.resourceinstanceid
+    )?.data[props.idReferences.coordinatesNodeId] ?? undefined
+}));
 
 const mapElement = ref<HTMLElement | null>(null);
 

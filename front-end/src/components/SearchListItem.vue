@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { useResourceStore } from '@/stores/resourceStore';
+import useResourceStore from '@/stores/resourceStore';
 import type { ImageTileData } from '@/types';
 
 const resourceStore = useResourceStore();

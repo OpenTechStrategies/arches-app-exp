@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useResourceStore } from '@/stores/resourceStore';
+import useResourceStore from '@/stores/resourceStore';
 import type { ImageTileData, Resource } from '@/types';
 
 const resourceStore = useResourceStore();
@@ -27,7 +27,6 @@ const props = defineProps<{
   imageTileData: ImageTileData[] | undefined;
 }>();
 
-console.log(props.artwork);
 const isProd = import.meta.env.PROD;
 
 const imageUrl = props.imageTileData

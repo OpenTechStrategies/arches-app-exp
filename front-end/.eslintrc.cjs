@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     '@vue/eslint-config-airbnb-with-typescript',
-    'plugin:vue/recommended',
+    'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue-scoped-css/recommended',
     'prettier'
@@ -23,6 +23,8 @@ module.exports = {
       {
         shallowOnly: true
       }
-    ]
+    ],
+    'vue/no-multiple-template-root': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off'
   }
 };

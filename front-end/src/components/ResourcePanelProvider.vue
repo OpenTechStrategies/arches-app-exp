@@ -6,8 +6,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useResourceStore } from '../stores/resourceStore';
 import type { ApiResource, ApiResourceRelation } from '@/types';
+import useResourceStore from '../stores/resourceStore';
+
 const store = useResourceStore();
 const resource = ref<ApiResource>();
 const resourceRelations = ref<Array<ApiResourceRelation>>();

@@ -5,7 +5,6 @@ export * from './CoordinatesTileData';
 export * from './Graph';
 export * from './ImageTileData';
 export * from './MapResource';
-export * from './PanelResourceType';
 export * from './Prefetch';
 export * from './Photographer';
 export * from './Resource';

@@ -32,9 +32,10 @@ import type {
   Tile,
   ImageTileData
 } from '@/types';
-import { useResourceStore } from '@/stores/resourceStore';
-import MoreArtworksByArtistItem from './MoreArtworksByArtistItem.vue';
+import useResourceStore from '@/stores/resourceStore';
 import { getImageTileDataForResource, getMoreArtworksByArtist } from '@/utils';
+import MoreArtworksByArtistItem from './MoreArtworksByArtistItem.vue';
+
 const props = defineProps<{
   resource: ApiResource;
   resourcesPrefetch: Array<Resource>;

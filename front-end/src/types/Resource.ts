@@ -13,3 +13,10 @@ export interface Resource {
   name: string;
   resourceinstanceid: string;
 }
+
+export enum PanelResourceEnum {
+  ARTWORK = 'Artwork',
+  ARTIST = 'Artist',
+  STRUCTURE = 'Structure',
+  PHOTOGRAPHER = 'Photographer'
+}

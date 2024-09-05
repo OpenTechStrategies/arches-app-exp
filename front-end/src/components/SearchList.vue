@@ -3,28 +3,36 @@
     <div class="search-header">
       <div>Explore the artwork as a list</div>
       <div class="resource-selection-menu">
-        <button :class="{ active: selectedResourceType === null }" @click="clearFilter">
+        <button
+          type="button"
+          :class="{ active: selectedResourceType === null }"
+          @click="clearFilter"
+        >
           Everything
         </button>
         <button
+          type="button"
           :class="{ active: selectedResourceType === 'Artist' }"
           @click="filterByType('Artist')"
         >
           Artists
         </button>
         <button
+          type="button"
           :class="{ active: selectedResourceType === 'Artwork' }"
           @click="filterByType('Artwork')"
         >
           Artworks
         </button>
         <button
+          type="button"
           :class="{ active: selectedResourceType === 'Photographer' }"
           @click="filterByType('Photographer')"
         >
           Photographers
         </button>
         <button
+          type="button"
           :class="{ active: selectedResourceType === 'Structure' }"
           @click="filterByType('Structure')"
         >
@@ -57,9 +65,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
-
-import SearchListItem from './SearchListItem.vue';
 import { getImageTileDataForResource } from '@/utils';
+import SearchListItem from './SearchListItem.vue';
 
 const query = ref<string>('');
 const selectedResourceType = ref<string | null>(null);
@@ -71,8 +78,8 @@ const props = defineProps<{
   idReferences: Prefetch['idReferences'];
 }>();
 
-const filteredResources = computed(() => {
-  return props.resourcesPrefetch.filter((resource) => {
+const filteredResources = computed(() =>
+  props.resourcesPrefetch.filter((resource) => {
     const matchesQuery = resource.descriptors.en.name
       .toLowerCase()
       .includes(query.value.toLowerCase());
@@ -82,8 +89,8 @@ const filteredResources = computed(() => {
       : true;
 
     return matchesQuery && matchesType;
-  });
-});
+  })
+);
 
 const clearFilter = () => {
   selectedResourceType.value = null;
