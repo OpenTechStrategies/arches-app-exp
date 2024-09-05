@@ -1,8 +1,8 @@
 import type { CoordinatesTileData } from './CoordinatesTileData';
 import type { ImageTileData } from './ImageTileData';
-import type { ResourceRelation } from './ResourceRelation';
 import type { Tile } from './Tile';
 import type { Resource } from './Resource';
+import type { ResourceXResource } from './ResourceXResource';
 
 export interface Prefetch {
   idReferences: {
@@ -13,6 +13,6 @@ export interface Prefetch {
   };
   images: Array<Tile<ImageTileData[]>>;
   locations: Array<Tile<CoordinatesTileData>>;
-  resourceRelations: Array<ResourceRelation>;
+  resourceRelations: Array<ResourceXResource>;
   resources: Array<Resource>;
 }

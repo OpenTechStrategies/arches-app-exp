@@ -3,7 +3,7 @@ import { ajv } from '@/ajv';
 
 export interface Artwork {
   Artist: string;
-  Photograph: {
+  Photograph?: {
     Image: string;
     Photographer: string;
   };
@@ -27,7 +27,8 @@ const ArtworkSchema: JSONSchemaType<Artwork> = {
         Image: { type: 'string' },
         Photographer: { type: 'string' }
       },
-      required: ['Image', 'Photographer']
+      required: ['Image', 'Photographer'],
+      nullable: true
     },
     Location: {
       type: 'object',

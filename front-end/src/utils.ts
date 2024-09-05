@@ -1,7 +1,15 @@
-import type { Prefetch, Tile, ImageTileData, Resource, ResourceRelation } from './types';
+import {
+  type Prefetch,
+  type Tile,
+  type ImageTileData,
+  type Resource,
+  type ResourceRelation,
+  type ApiResource,
+  PANEL_RESOURCE_TYPE
+} from './types';
 
 const getImageTileDataForResource = (
-  resource: Resource,
+  resource: Resource | ApiResource,
   imagesPrefetch: Array<Tile<ImageTileData[]>>,
   resourceRelationsPrefetch: Array<ResourceRelation>,
   idReferences: Prefetch['idReferences']
@@ -28,4 +36,19 @@ const getImageTileDataForResource = (
   return imageTile?.data[idReferences.imageNodeId] ?? undefined;
 };
 
-export { getImageTileDataForResource };
+const castToPanelResourceType = (panelResourceType: string | undefined) => {
+  switch (panelResourceType) {
+    case PANEL_RESOURCE_TYPE.ARTIST:
+      return PANEL_RESOURCE_TYPE.ARTIST;
+    case PANEL_RESOURCE_TYPE.ARTWORK:
+      return PANEL_RESOURCE_TYPE.ARTWORK;
+    case PANEL_RESOURCE_TYPE.PHOTOGRAPHER:
+      return PANEL_RESOURCE_TYPE.PHOTOGRAPHER;
+    case PANEL_RESOURCE_TYPE.STRUCTURE:
+      return PANEL_RESOURCE_TYPE.STRUCTURE;
+    default:
+      return undefined;
+  }
+};
+
+export { getImageTileDataForResource, castToPanelResourceType };

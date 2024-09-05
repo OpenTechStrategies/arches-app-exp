@@ -1,8 +1,8 @@
-interface ResourceRelation {
+export interface ResourceXResource {
   created: string;
+  modified: string;
   nodeid_id: string;
-  notes: '';
-  relationshiptype?: null;
+  notes: string;
   resourceinstancefrom_graphid_id: string;
   resourceinstanceidfrom_id: string;
   resourceinstanceidto_id: string;
@@ -10,5 +10,3 @@ interface ResourceRelation {
   resourcexid: string;
   tileid_id: string;
 }
-
-export type { ResourceRelation };

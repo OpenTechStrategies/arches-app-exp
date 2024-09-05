@@ -38,12 +38,22 @@
           :images-prefetch="props.imagesPrefetch"
         />
       </Transition>
-      <ResourcePanelProvider v-else v-slot="{ resource }">
-        <ResourceDetailPanel
-          v-if="props.resourceRelationsPrefetch && props.idReferences"
+      <ResourcePanelProvider v-else v-slot="{ resource, resourceRelations }">
+        <ResourcePanel
+          v-if="
+            props.resourceRelationsPrefetch &&
+            props.idReferences &&
+            props.imagesPrefetch &&
+            props.resourcesPrefetch &&
+            resourceRelations &&
+            resource
+          "
           :resource="resource"
+          :resource-relations="resourceRelations"
           :id-references="props.idReferences"
           :resource-relations-prefetch="props.resourceRelationsPrefetch"
+          :images-prefetch="props.imagesPrefetch"
+          :resources-prefetch="props.resourcesPrefetch"
         />
       </ResourcePanelProvider>
     </div>
@@ -65,13 +75,13 @@ import SearchList from '../components/SearchList.vue';
 import LeafletMap from '../components/LeafletMap.vue';
 import { useResourceStore } from '@/stores/resourceStore';
 import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
-import ResourceDetailPanel from '@/components/ResourceDetailPanel.vue';
+import ResourcePanel from '@/components/ResourcePanel.vue';
 import type {
   ImageTileData,
   Tile,
   CoordinatesTileData,
   Resource,
-  ResourceRelation,
+  ResourceXResource,
   Prefetch
 } from '@/types';
 const resourceStore = useResourceStore();
@@ -80,7 +90,7 @@ const props = defineProps<{
   idReferences: Prefetch['idReferences'] | undefined;
   imagesPrefetch: Array<Tile<ImageTileData[]>> | undefined;
   locationsPrefetch: Array<Tile<CoordinatesTileData>> | undefined;
-  resourceRelationsPrefetch: Array<ResourceRelation> | undefined;
+  resourceRelationsPrefetch: Array<ResourceXResource> | undefined;
   resourcesPrefetch: Array<Resource> | undefined;
   loading: boolean;
 }>();

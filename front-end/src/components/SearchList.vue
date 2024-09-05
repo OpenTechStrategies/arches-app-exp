@@ -49,7 +49,6 @@
             props.idReferences
           )
         "
-        @set-resource="setResource"
       />
     </div>
   </div>
@@ -57,20 +56,18 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useResourceStore } from '@/stores/resourceStore';
-import type { Tile, ImageTileData, Resource, Prefetch, ResourceRelation } from '@/types';
+import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
 
 import SearchListItem from './SearchListItem.vue';
 import { getImageTileDataForResource } from '@/utils';
 
-const resourceStore = useResourceStore();
 const query = ref<string>('');
 const selectedResourceType = ref<string | null>(null);
 
 const props = defineProps<{
   resourcesPrefetch: Array<Resource>;
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
-  resourceRelationsPrefetch: Array<ResourceRelation>;
+  resourceRelationsPrefetch: Array<ResourceXResource>;
   idReferences: Prefetch['idReferences'];
 }>();
 
@@ -94,12 +91,6 @@ const clearFilter = () => {
 
 const filterByType = (type: string) => {
   selectedResourceType.value = type;
-};
-
-const setResource = (resourceId: string) => {
-  resourceStore.$patch({
-    resourceId: resourceId
-  });
 };
 </script>
 

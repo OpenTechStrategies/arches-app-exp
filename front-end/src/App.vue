@@ -19,14 +19,14 @@ import type {
   Tile,
   CoordinatesTileData,
   Resource,
-  ResourceRelation,
-  Prefetch
+  Prefetch,
+  ResourceXResource
 } from './types';
 
 const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
 const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
 const locationsPrefetch = ref<Array<Tile<CoordinatesTileData>> | undefined>(undefined);
-const resourceRelationsPrefetch = ref<Array<ResourceRelation> | undefined>(undefined);
+const resourceRelationsPrefetch = ref<Array<ResourceXResource> | undefined>(undefined);
 const resourcesPrefetch = ref<Array<Resource> | undefined>(undefined);
 
 const loading = ref(true);

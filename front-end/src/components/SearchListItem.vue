@@ -1,5 +1,8 @@
 <template>
-  <div class="search-result" @click="setActiveResource(props.resourceId)">
+  <div
+    class="search-result"
+    @click="setActiveResource(props.resourceId, castToPanelResourceType(props.resourceType))"
+  >
     <img
       v-if="imageUrl"
       class="search-result-image"
@@ -29,7 +32,8 @@
 
 <script setup lang="ts">
 import { useResourceStore } from '@/stores/resourceStore';
-import type { ImageTileData } from '@/types';
+import type { ImageTileData, PANEL_RESOURCE_TYPE } from '@/types';
+import { castToPanelResourceType } from '@/utils';
 
 const resourceStore = useResourceStore();
 const props = defineProps<{
@@ -46,9 +50,13 @@ const imageUrl = props.imageTileData
   ? import.meta.env.VITE_ARCHES_API_URL + props.imageTileData[0].url
   : undefined;
 
-const setActiveResource = (resourceId: string) => {
+const setActiveResource = (
+  newResourceId: string,
+  newResourceType: PANEL_RESOURCE_TYPE | undefined
+) => {
   resourceStore.$patch({
-    resourceId: resourceId
+    resourceId: newResourceId,
+    resourceType: newResourceType
   });
 };
 </script>
@@ -60,6 +68,7 @@ const setActiveResource = (resourceId: string) => {
   align-items: flex-start;
   padding: 0px;
   gap: 16px;
+  cursor: pointer;
 }
 .search-result-metadata {
   display: flex;
