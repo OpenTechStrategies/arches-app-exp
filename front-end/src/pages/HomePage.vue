@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <div class="welcome">
-      <h2>Wabash Arts Corridor</h2>
-      <p>
+      <p class="blurb">
+        <span class="title">Wabash Arts Corridor</span>
+        <br />
         In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
         the creative spirit by using urban spaces and reclaimable resources to revitalize and
         transform the South Loop business district into one of the city’s major cultural assets. The
@@ -12,51 +13,53 @@
         collaborative projects.
       </p>
     </div>
-    <div id="map-container">
-      <LeafletMap
-        v-if="props.resourcesPrefetch && props.idReferences && props.locationsPrefetch"
-        :resources-prefetch="props.resourcesPrefetch"
-        :id-references="props.idReferences"
-        :locations-prefetch="props.locationsPrefetch"
-      />
-      <div v-else class="map-placeholder">Loading Map...</div>
-    </div>
-    <div id="search-list-container">
-      <Transition
-        v-if="
-          resourceStore.resourceId === undefined &&
-          props.resourcesPrefetch &&
-          props.resourceRelationsPrefetch &&
-          props.idReferences &&
-          props.imagesPrefetch
-        "
-      >
-        <SearchList
+    <main>
+      <div id="map-container">
+        <LeafletMap
+          v-if="props.resourcesPrefetch && props.idReferences && props.locationsPrefetch"
           :resources-prefetch="props.resourcesPrefetch"
-          :resource-relations-prefetch="props.resourceRelationsPrefetch"
           :id-references="props.idReferences"
-          :images-prefetch="props.imagesPrefetch"
+          :locations-prefetch="props.locationsPrefetch"
         />
-      </Transition>
-      <ResourcePanelProvider v-else v-slot="{ resource, resourceRelations }">
-        <ResourcePanel
+        <div v-else class="map-placeholder">Loading Map...</div>
+      </div>
+      <div id="search-list-container">
+        <Transition
           v-if="
+            resourceStore.resourceId === undefined &&
+            props.resourcesPrefetch &&
             props.resourceRelationsPrefetch &&
             props.idReferences &&
-            props.imagesPrefetch &&
-            props.resourcesPrefetch &&
-            resourceRelations &&
-            resource
+            props.imagesPrefetch
           "
-          :resource="resource"
-          :resource-relations="resourceRelations"
-          :id-references="props.idReferences"
-          :resource-relations-prefetch="props.resourceRelationsPrefetch"
-          :images-prefetch="props.imagesPrefetch"
-          :resources-prefetch="props.resourcesPrefetch"
-        />
-      </ResourcePanelProvider>
-    </div>
+        >
+          <SearchList
+            :resources-prefetch="props.resourcesPrefetch"
+            :resource-relations-prefetch="props.resourceRelationsPrefetch"
+            :id-references="props.idReferences"
+            :images-prefetch="props.imagesPrefetch"
+          />
+        </Transition>
+        <ResourcePanelProvider v-else v-slot="{ resource, resourceRelations }">
+          <ResourcePanel
+            v-if="
+              props.resourceRelationsPrefetch &&
+              props.idReferences &&
+              props.imagesPrefetch &&
+              props.resourcesPrefetch &&
+              resourceRelations &&
+              resource
+            "
+            :resource="resource"
+            :resource-relations="resourceRelations"
+            :id-references="props.idReferences"
+            :resource-relations-prefetch="props.resourceRelationsPrefetch"
+            :images-prefetch="props.imagesPrefetch"
+            :resources-prefetch="props.resourcesPrefetch"
+          />
+        </ResourcePanelProvider>
+      </div>
+    </main>
     <div class="footer">
       <div class="footer-blurb">
         <h2>About / Credit</h2>
@@ -102,7 +105,6 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 32px 16px;
   gap: 64px;
   position: relative;
   overflow-y: scroll;
@@ -112,7 +114,6 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 32px;
 }
 
@@ -120,10 +121,67 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 8px;
 }
+
 #map-container {
   width: 100%;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--wac-font-size--med);
+}
+
+.title {
+  font-weight: 900;
+  line-height: 120%;
+  color: #000000;
+}
+
+.blurb {
+  font-weight: 400;
+  line-height: 120%;
+  color: #000000;
+}
+
+#search-list-container {
+  padding-top: 64px;
+}
+
+@media (min-width: 940px) {
+  .home {
+    padding: 64px 64px;
+
+    gap: 64px;
+    background: #ffffff;
+  }
+
+  .welcome {
+    gap: 32px;
+    font-size: var(--wac-font-size--xl);
+    max-width: 860px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    width: 80%;
+    height: 100vh;
+    gap: 64px;
+  }
+  #map-container {
+    width: 50%;
+    height: 100%;
+  }
+  #search-list-container {
+    height: 100%;
+    width: 100%;
+    padding-top: 0px;
+  }
 }
 </style>

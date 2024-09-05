@@ -98,6 +98,8 @@ watch(
 <style scoped>
 .expand-map-button {
   cursor: pointer;
+  font-weight: 700;
+  padding-bottom: 16px;
 }
 
 #map {
@@ -117,5 +119,21 @@ watch(
 .map-container-expanded {
   height: 400px;
   transition: height 0.5s ease;
+}
+
+@media (min-width: 940px) {
+  .map-container-expanded,
+  .map-container-collapsed {
+    height: 100%;
+    transition: none;
+  }
+
+  .map-container-collapsed * {
+    pointer-events: all;
+  }
+
+  .expand-map-button {
+    display: none;
+  }
 }
 </style>

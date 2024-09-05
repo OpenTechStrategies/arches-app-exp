@@ -72,7 +72,7 @@ const setActiveResource = (newResourceId: string) => {
 .search-result-title {
   font-style: normal;
   font-weight: 900;
-  font-size: 16px;
+  font-size: var(--wac-font-size--lg);
   line-height: 120%;
   display: flex;
   align-items: center;
@@ -81,7 +81,7 @@ const setActiveResource = (newResourceId: string) => {
 .search-result-resource-type {
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: var(--wac-font-size--med);
   line-height: 100%;
 
   display: flex;
@@ -91,8 +91,8 @@ const setActiveResource = (newResourceId: string) => {
 .search-result-resource-description {
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 110%;
+  font-size: var(--wac-font-size--small);
+  line-height: 120%;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   line-clamp: 5;
@@ -105,5 +105,17 @@ const setActiveResource = (newResourceId: string) => {
   height: 150px;
   object-fit: cover;
   flex-shrink: 0;
+}
+@media (min-width: 940px) {
+  .search-result-title {
+    font-size: var(--wac-font-size--xxl);
+  }
+  .search-result-resource-type {
+    font-size: var(--wac-font-size--med);
+  }
+
+  .search-result-resource-description {
+    font-size: var(--wac-font-size--small);
+  }
 }
 </style>

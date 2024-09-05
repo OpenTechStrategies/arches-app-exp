@@ -6,9 +6,24 @@
 :root {
   --color-black: #363636;
   --color-white: #ffffff;
+  --font-size-base: 16px;
+  --wac-font-size--small: calc(var(--font-size-base) * 0.75);
+  --wac-font-size--med: var(--font-size-base);
+  --wac-font-size--lg: calc(var(--font-size-base) * 1.25);
+  --wac-font-size--xl: calc(var(--font-size-base) * 1.5);
+  --wac-font-size--xxl: calc(var(--font-size-base) * 2);
+  --wac-font-size--xxxl: calc(var(--font-size-base) * 3);
+  --wac-font-size--xxxxl: calc(var(--font-size-base) * 4);
+}
+
+@media screen and (max-width: 940px) {
+  :root {
+    --font-size-base: 16px;
+  }
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-white);
   font-family: 'Inter', sans-serif;
+  font-size: var(--wac-font-size--med);
 }

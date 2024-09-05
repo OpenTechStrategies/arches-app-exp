@@ -22,10 +22,7 @@
           v-for="relatedArtwork in resourceRelations.filter(
             (resourceRelation) => graphIdToNameTable[resourceRelation.graph_id] === 'Artwork'
           )"
-          v-else-if="
-            validateArtistSchema(props.resource.resource) &&
-            graphIdToNameTable[props.resource.graph_id] === 'Artist'
-          "
+          v-else-if="graphIdToNameTable[props.resource.graph_id] === 'Artist'"
           :key="relatedArtwork.graph_id"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
@@ -35,10 +32,7 @@
           v-for="relatedArtwork in resourceRelations.filter(
             (resourceRelation) => graphIdToNameTable[resourceRelation.graph_id] === 'Artwork'
           )"
-          v-else-if="
-            validateStructureSchema(props.resource.resource) &&
-            graphIdToNameTable[props.resource.graph_id] === 'Structure'
-          "
+          v-else-if="graphIdToNameTable[props.resource.graph_id] === 'Structure'"
           :key="relatedArtwork.resourceinstanceid"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
@@ -48,23 +42,14 @@
           v-for="relatedArtwork in resourceRelations.filter(
             (resourceRelation) => graphIdToNameTable[resourceRelation.graph_id] === 'Artwork'
           )"
-          v-else-if="
-            validatePhotographerSchema(props.resource.resource) &&
-            graphIdToNameTable[props.resource.graph_id] === 'Photographer'
-          "
+          v-else-if="graphIdToNameTable[props.resource.graph_id] === 'Photographer'"
           :key="relatedArtwork.root_ontology_class"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
           :panel-resource-type="PanelResourceEnum.PHOTOGRAPHER"
         />
       </template>
-      <template
-        v-if="
-          validateArtworkSchema(props.resource.resource) &&
-          graphIdToNameTable[props.resource.graph_id] === 'Artwork'
-        "
-        #more-by-artist
-      >
+      <template v-if="graphIdToNameTable[props.resource.graph_id] === 'Artwork'" #more-by-artist>
         <MoreArtworksByArtist
           :resource="props.resource"
           :resource-relations="resourceRelations"
@@ -92,13 +77,7 @@ import type {
   ImageTileData,
   Resource
 } from '@/types';
-import {
-  validateArtistSchema,
-  validateArtworkSchema,
-  validateStructureSchema,
-  validatePhotographerSchema,
-  PanelResourceEnum
-} from '@/types';
+import { validateArtworkSchema, PanelResourceEnum } from '@/types';
 import useResourceStore from '@/stores/resourceStore';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
@@ -131,9 +110,19 @@ const clearActiveResource = () => {
   align-items: center;
   padding: 8px 0px;
   gap: 8px;
+  font-weight: 700;
 }
 
 .resource-detail-back-button {
   cursor: pointer;
+}
+
+@media (min-width: 940px) {
+  .resource-detail {
+    height: 100vh;
+  }
+  .resource-detail {
+    overflow-y: scroll;
+  }
 }
 </style>

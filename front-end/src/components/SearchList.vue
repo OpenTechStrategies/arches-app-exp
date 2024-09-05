@@ -106,7 +106,6 @@ const filterByType = (type: string) => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 32px;
   isolation: isolate;
 }
@@ -149,7 +148,7 @@ button {
   background: none;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--wac-font-size--med);
   line-height: 100%;
   display: flex;
   align-items: center;
@@ -166,7 +165,6 @@ button.active {
 .search-bar {
   box-sizing: border-box;
 
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -176,5 +174,17 @@ button.active {
   background: #ffffff;
   border: 1px solid #000000;
   border-radius: 5px;
+}
+
+@media (min-width: 940px) {
+  .search-list-container {
+    height: 100vh;
+  }
+  .search-results {
+    overflow-y: scroll;
+    padding-top: 40px;
+    mask-image: linear-gradient(to top, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
 }
 </style>

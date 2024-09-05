@@ -51,13 +51,12 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 8px;
 }
 
 .resource-detail-item-header-byline {
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--wac-font-size--med);
   line-height: 100%;
 
   color: #000000;
@@ -66,7 +65,7 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-header-title {
   font-style: normal;
   font-weight: 900;
-  font-size: 24px;
+  font-size: var(--wac-font-size--xxl);
   line-height: 120%;
   text-decoration-line: underline;
 
@@ -76,7 +75,7 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-credit {
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--wac-font-size--med);
   line-height: 140%;
 
   color: #000000;

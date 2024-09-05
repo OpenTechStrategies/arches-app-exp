@@ -70,7 +70,7 @@ const setActiveResource = (newResourceId: string) => {
 .more-artworks-by-artist-title {
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--wac-font-size--med);
   line-height: 100%;
 
   color: #000000;
