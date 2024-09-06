@@ -35,7 +35,7 @@ and then the following path:
 ```python
 re_path(r"^", include("archesdataviewer.urls")),
 ```
-4. From your project run migrate to add the model included in the app(This step is currently unecessary as the django app does not provide any new models, but may become needed in the future):
+4. From your project run migrate to add the model included in the app (this step is currently unecessary, as the Django app does not provide any new models, but may become needed in the future):
 ``` python manage.py migrate ```
 5. Navigate to ```
  http://{your_arches_instance_url}/archesdataviewer ```
