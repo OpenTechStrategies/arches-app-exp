@@ -43,6 +43,6 @@
     "typescript-eslint": "^7.13.1",
     "vite": "^5.2.8",
     "vue-eslint-parser": "^9.4.3",
-    "vue-tsc": "^2.0.11"
+    "vue-tsc": "^2.1.6"
   }
 }
