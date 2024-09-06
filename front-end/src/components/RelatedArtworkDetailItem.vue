@@ -15,14 +15,15 @@
 </template>
 
 <script setup lang="ts">
+import type { ApiResource, Prefetch, ApiResourceRelation } from '@/types';
 import { ref } from 'vue';
+import { PanelResourceEnum, validateArtworkSchema } from '@/types';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
-import type { ApiResource, Prefetch, ApiResourceRelation, PANEL_RESOURCE_TYPE } from '@/types';
-import { validateArtworkSchema } from '@/types';
+
 const props = defineProps<{
   relatedArtwork: ApiResourceRelation;
   idReferences: Prefetch['idReferences'];
-  panelResourceType: PANEL_RESOURCE_TYPE;
+  panelResourceType: PanelResourceEnum;
 }>();
 
 const { graphIdToNameTable } = props.idReferences;

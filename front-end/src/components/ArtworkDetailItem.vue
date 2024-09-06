@@ -3,7 +3,7 @@
     v-if="props.panelResourceType !== undefined"
     :image-url="props.artwork.Photograph?.Image"
   >
-    <template v-if="props.panelResourceType !== PANEL_RESOURCE_TYPE.ARTWORK" #item-header-title>
+    <template v-if="props.panelResourceType !== PanelResourceEnum.ARTWORK" #item-header-title>
       <p>
         <span class="resource-link" @click="setActiveResource(props.artworkId)">{{
           artwork.Title
@@ -12,13 +12,13 @@
     </template>
     <template v-if="artist && structure" #item-header-byline>
       <p>
-        <span v-if="props.panelResourceType !== PANEL_RESOURCE_TYPE.ARTIST"
+        <span v-if="props.panelResourceType !== PanelResourceEnum.ARTIST"
           >by
           <span class="resource-link" @click="setActiveResource(artist.resourceinstanceid)">{{
             artist.displayname
           }}</span></span
         >
-        <span v-if="props.panelResourceType !== PANEL_RESOURCE_TYPE.STRUCTURE">
+        <span v-if="props.panelResourceType !== PanelResourceEnum.STRUCTURE">
           at
           <span class="resource-link" @click="setActiveResource(structure.resourceinstanceid)">{{
             structure.displayname
@@ -27,7 +27,7 @@
       </p>
     </template>
     <template
-      v-if="photographer && props.panelResourceType !== PANEL_RESOURCE_TYPE.PHOTOGRAPHER"
+      v-if="photographer && props.panelResourceType !== PanelResourceEnum.PHOTOGRAPHER"
       #item-credit
     >
       <p>
@@ -38,7 +38,7 @@
       </p>
     </template>
     <template
-      v-if="props.artwork.Description && props.panelResourceType === PANEL_RESOURCE_TYPE.ARTWORK"
+      v-if="props.artwork.Description && props.panelResourceType === PanelResourceEnum.ARTWORK"
       #item-description
     >
       <p>{{ props.artwork.Description }}</p></template
@@ -48,14 +48,14 @@
 
 <script setup lang="ts">
 import type { Artwork, Prefetch, ApiResourceRelation } from '@/types';
-import { PANEL_RESOURCE_TYPE } from '@/types';
+import { PanelResourceEnum } from '@/types';
+import useResourceStore from '@/stores/resourceStore';
 import ResourceDetailItem from './ResourceDetailItem.vue';
-import { useResourceStore } from '@/stores/resourceStore';
 
 const props = defineProps<{
   artwork: Artwork;
   artworkId: string;
-  panelResourceType: PANEL_RESOURCE_TYPE;
+  panelResourceType: PanelResourceEnum;
   resourceRelations: Array<ApiResourceRelation>;
   idReferences: Prefetch['idReferences'];
 }>();

@@ -9,19 +9,22 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "lint": "eslint . ",
-    "lint-fix": "eslint . --fix",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint ./src ",
+    "lint:prettier": "prettier ./src --check",
+    "lint-fix": "eslint ./src --fix",
     "format": "prettier --write src/"
   },
   "dependencies": {
     "@heroicons/vue": "^2.1.4",
+    "@vue/eslint-config-airbnb-with-typescript": "^8.0.0",
     "ajv": "^8.16.0",
     "leaflet": "^1.9.4",
     "pinia": "^2.1.7",
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.8.0",
+    "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node20": "^20.1.4",
     "@types/leaflet": "^1.9.12",
     "@types/node": "^20.12.5",
@@ -32,11 +35,13 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.23.0",
+    "eslint-plugin-vue-scoped-css": "^2.8.1",
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.2.5",
     "typescript": "~5.4.0",
     "typescript-eslint": "^7.13.1",
     "vite": "^5.2.8",
+    "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.0.11"
   }
 }

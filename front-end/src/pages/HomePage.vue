@@ -71,11 +71,6 @@
 </template>
 
 <script setup lang="ts">
-import SearchList from '../components/SearchList.vue';
-import LeafletMap from '../components/LeafletMap.vue';
-import { useResourceStore } from '@/stores/resourceStore';
-import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
-import ResourcePanel from '@/components/ResourcePanel.vue';
 import type {
   ImageTileData,
   Tile,
@@ -84,6 +79,12 @@ import type {
   ResourceXResource,
   Prefetch
 } from '@/types';
+import useResourceStore from '@/stores/resourceStore';
+import ResourcePanelProvider from '@/components/ResourcePanelProvider.vue';
+import ResourcePanel from '@/components/ResourcePanel.vue';
+import LeafletMap from '../components/LeafletMap.vue';
+import SearchList from '../components/SearchList.vue';
+
 const resourceStore = useResourceStore();
 
 const props = defineProps<{

@@ -16,7 +16,7 @@
           :artwork-id="props.resource.resourceinstanceid"
           :resource-relations="props.resourceRelations"
           :id-references="props.idReferences"
-          :panel-resource-type="PANEL_RESOURCE_TYPE.ARTWORK"
+          :panel-resource-type="PanelResourceEnum.ARTWORK"
         />
         <RelatedArtworkDetailItem
           v-for="relatedArtwork in resourceRelations.filter(
@@ -29,7 +29,7 @@
           :key="relatedArtwork.graph_id"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
-          :panel-resource-type="PANEL_RESOURCE_TYPE.ARTIST"
+          :panel-resource-type="PanelResourceEnum.ARTIST"
         />
         <RelatedArtworkDetailItem
           v-for="relatedArtwork in resourceRelations.filter(
@@ -42,7 +42,7 @@
           :key="relatedArtwork.resourceinstanceid"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
-          :panel-resource-type="PANEL_RESOURCE_TYPE.STRUCTURE"
+          :panel-resource-type="PanelResourceEnum.STRUCTURE"
         />
         <RelatedArtworkDetailItem
           v-for="relatedArtwork in resourceRelations.filter(
@@ -55,7 +55,7 @@
           :key="relatedArtwork.root_ontology_class"
           :related-artwork="relatedArtwork"
           :id-references="props.idReferences"
-          :panel-resource-type="PANEL_RESOURCE_TYPE.PHOTOGRAPHER"
+          :panel-resource-type="PanelResourceEnum.PHOTOGRAPHER"
         />
       </template>
       <template
@@ -97,9 +97,9 @@ import {
   validateArtworkSchema,
   validateStructureSchema,
   validatePhotographerSchema,
-  PANEL_RESOURCE_TYPE
+  PanelResourceEnum
 } from '@/types';
-import { useResourceStore } from '@/stores/resourceStore';
+import useResourceStore from '@/stores/resourceStore';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
@@ -131,14 +131,6 @@ const clearActiveResource = () => {
   align-items: center;
   padding: 8px 0px;
   gap: 8px;
-}
-
-.resource-detail-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 64px;
 }
 
 .resource-detail-back-button {

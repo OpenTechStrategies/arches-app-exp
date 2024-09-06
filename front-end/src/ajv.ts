@@ -1,5 +1,7 @@
 import Ajv from 'ajv';
 
-export const ajv = new Ajv({
+const ajv = new Ajv({
   coerceTypes: true
 });
+
+export default ajv;

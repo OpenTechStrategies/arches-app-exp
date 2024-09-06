@@ -1,5 +1,5 @@
 import type { JSONSchemaType } from 'ajv';
-import { ajv } from '@/ajv';
+import ajv from '@/ajv';
 
 export interface Artist {
   Name: string;

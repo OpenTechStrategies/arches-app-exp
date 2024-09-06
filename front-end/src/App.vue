@@ -42,7 +42,11 @@ async function prefetchResources() {
     resourceRelationsPrefetch.value = data.resourceRelations;
     resourcesPrefetch.value = data.resources;
   } catch (error) {
-    console.error('Failed to fetch prefetch data:', error);
+    idReferences.value = undefined;
+    imagesPrefetch.value = undefined;
+    locationsPrefetch.value = undefined;
+    resourceRelationsPrefetch.value = undefined;
+    resourcesPrefetch.value = undefined;
   } finally {
     loading.value = false;
   }

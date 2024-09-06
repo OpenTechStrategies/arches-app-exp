@@ -4,7 +4,7 @@ import {
   type ImageTileData,
   type Resource,
   type ApiResource,
-  PANEL_RESOURCE_TYPE,
+  PanelResourceEnum,
   type ApiResourceRelation,
   type ResourceXResource
 } from './types';
@@ -15,38 +15,37 @@ const getImageTileDataForResource = (
   resourceRelationsPrefetch: Array<ResourceXResource>,
   idReferences: Prefetch['idReferences']
 ) => {
-  let imageTile = undefined;
   if (idReferences.graphIdToNameTable[resource.graph_id] === 'Artwork') {
-    imageTile = imagesPrefetch.find(
+    const imageTile = imagesPrefetch.find(
       (image) => image.resourceinstance_id === resource.resourceinstanceid
     );
     return imageTile?.data[idReferences.imageNodeId] ?? undefined;
   }
   const relation = resourceRelationsPrefetch.find(
-    (relation) =>
-      relation.resourceinstanceidto_id === resource.resourceinstanceid &&
-      relation.resourceinstancefrom_graphid_id === idReferences.nameToGraphIdTable['Artwork']
+    (resourceRelation) =>
+      resourceRelation.resourceinstanceidto_id === resource.resourceinstanceid &&
+      resourceRelation.resourceinstancefrom_graphid_id === idReferences.nameToGraphIdTable.Artwork
   );
 
   if (!relation) {
     return undefined;
   }
-  imageTile = imagesPrefetch.find(
-    (imageTile) => imageTile.resourceinstance_id === relation.resourceinstanceidfrom_id
+  const imageTile = imagesPrefetch.find(
+    (prefetchedTile) => prefetchedTile.resourceinstance_id === relation.resourceinstanceidfrom_id
   );
   return imageTile?.data[idReferences.imageNodeId] ?? undefined;
 };
 
 const castToPanelResourceType = (panelResourceType: string | undefined) => {
   switch (panelResourceType) {
-    case PANEL_RESOURCE_TYPE.ARTIST:
-      return PANEL_RESOURCE_TYPE.ARTIST;
-    case PANEL_RESOURCE_TYPE.ARTWORK:
-      return PANEL_RESOURCE_TYPE.ARTWORK;
-    case PANEL_RESOURCE_TYPE.PHOTOGRAPHER:
-      return PANEL_RESOURCE_TYPE.PHOTOGRAPHER;
-    case PANEL_RESOURCE_TYPE.STRUCTURE:
-      return PANEL_RESOURCE_TYPE.STRUCTURE;
+    case PanelResourceEnum.ARTIST:
+      return PanelResourceEnum.ARTIST;
+    case PanelResourceEnum.ARTWORK:
+      return PanelResourceEnum.ARTWORK;
+    case PanelResourceEnum.PHOTOGRAPHER:
+      return PanelResourceEnum.PHOTOGRAPHER;
+    case PanelResourceEnum.STRUCTURE:
+      return PanelResourceEnum.STRUCTURE;
     default:
       return undefined;
   }
@@ -64,7 +63,7 @@ const getMoreArtworksByArtist = (
   const artworkRelations = resourceRelationsPrefetch.filter(
     (relation) =>
       relation.resourceinstanceidto_id === artist.resourceinstanceid &&
-      relation.resourceinstancefrom_graphid_id === idReferences.nameToGraphIdTable['Artwork']
+      relation.resourceinstancefrom_graphid_id === idReferences.nameToGraphIdTable.Artwork
   );
   if (!artworkRelations) {
     return undefined;
