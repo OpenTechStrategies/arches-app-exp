@@ -1,37 +1,37 @@
 <template>
-  <div class="search-result" @click="setActiveResource(props.resourceId)">
-    <img
-      v-if="imageUrl"
-      class="search-result-image"
-      loading="lazy"
-      :src="imageUrl"
-      alt="thumbnail image"
-    />
-    <img
-      v-else
-      class="search-result-image"
-      :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
-      alt="no image available"
-      loading="lazy"
-    />
-    <div class="search-result-metadata">
-      <div class="search-result-resource-type">{{ props.resourceType ?? 'Resource' }}</div>
-      <div class="search-result-title">{{ props.resourceName }}</div>
-      <div
-        v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
-        class="search-result-resource-description"
-      >
-        {{ props.resourceDescription }}
+  <RouterLink :to="`/resource/${props.resourceId}`">
+    <div class="search-result">
+      <img
+        v-if="imageUrl"
+        class="search-result-image"
+        loading="lazy"
+        :src="imageUrl"
+        alt="thumbnail image"
+      />
+      <img
+        v-else
+        class="search-result-image"
+        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
+        alt="no image available"
+        loading="lazy"
+      />
+      <div class="search-result-metadata">
+        <div class="search-result-resource-type">{{ props.resourceType ?? 'Resource' }}</div>
+        <div class="search-result-title">{{ props.resourceName }}</div>
+        <div
+          v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
+          class="search-result-resource-description"
+        >
+          {{ props.resourceDescription }}
+        </div>
       </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup lang="ts">
-import useResourceStore from '@/stores/resourceStore';
 import type { ImageTileData } from '@/types';
 
-const resourceStore = useResourceStore();
 const props = defineProps<{
   resourceName: string;
   resourceId: string;
@@ -45,12 +45,6 @@ const isProd = import.meta.env.PROD;
 const imageUrl = props.imageTileData
   ? import.meta.env.VITE_ARCHES_API_URL + props.imageTileData[0].url
   : undefined;
-
-const setActiveResource = (newResourceId: string) => {
-  resourceStore.$patch({
-    resourceId: newResourceId
-  });
-};
 </script>
 
 <style scoped>
