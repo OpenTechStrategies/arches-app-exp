@@ -13,4 +13,9 @@
 .resource-link {
   text-decoration: underline;
   cursor: pointer;
+  color: black;
+}
+
+a {
+  color: black;
 }

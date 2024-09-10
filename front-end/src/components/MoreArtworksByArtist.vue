@@ -1,9 +1,9 @@
 <template>
   <div v-if="artist" class="more-artworks-by-artist-title">
     More artwork by
-    <span class="resource-link" @click="setActiveResource(artist.resourceinstanceid)">{{
-      artist.displayname
-    }}</span>
+    <RouterLink :to="`/resource/${artist.resourceinstanceid}`" class="resource-link">
+      {{ artist.displayname }}
+    </RouterLink>
   </div>
   <div v-if="relatedArtworks" class="more-artworks-by-artist-gallery">
     <MoreArtworksByArtistItem
@@ -32,7 +32,6 @@ import type {
   Tile,
   ImageTileData
 } from '@/types';
-import useResourceStore from '@/stores/resourceStore';
 import { getImageTileDataForResource, getMoreArtworksByArtist } from '@/utils';
 import MoreArtworksByArtistItem from './MoreArtworksByArtistItem.vue';
 
@@ -44,8 +43,6 @@ const props = defineProps<{
   resourceRelationsPrefetch: Array<ResourceXResource>;
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
 }>();
-
-const resourceStore = useResourceStore();
 
 const artist = props.resourceRelations.find(
   (resource) => props.idReferences.graphIdToNameTable[resource.graph_id] === 'Artist'
@@ -59,12 +56,6 @@ const relatedArtworks = artist
       props.idReferences
     )
   : undefined;
-
-const setActiveResource = (newResourceId: string) => {
-  resourceStore.$patch({
-    resourceId: newResourceId
-  });
-};
 </script>
 <style scoped>
 .more-artworks-by-artist-title {

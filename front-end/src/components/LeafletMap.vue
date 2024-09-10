@@ -18,13 +18,14 @@
 import { onMounted, ref, watch } from 'vue';
 import 'leaflet/dist/leaflet.css';
 import type { Marker } from 'leaflet';
-import useResourceStore from '@/stores/resourceStore';
 import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
+import { useRouter, useRoute } from 'vue-router';
 
+const router = useRouter();
+const route = useRoute();
 const expandMap = ref<boolean>(false);
 
-const store = useResourceStore();
 const props = defineProps<{
   resourcesPrefetch: Array<Resource>;
   locationsPrefetch: Array<Tile<CoordinatesTileData>>;
@@ -61,9 +62,7 @@ const initMap = (element: HTMLElement) => {
         const marker = L.marker([coordinate[1], coordinate[0]]);
         marker.bindPopup(`<b>${value.resource.descriptors.en.name}</b>`);
         marker.on('click', () => {
-          store.$patch({
-            resourceId: value.resource.resourceinstanceid
-          });
+          router.push(`/resource/${value.resource.resourceinstanceid}`);
         });
         markerTable.set(value.resource.resourceinstanceid, marker);
         marker.addTo(map);
@@ -81,14 +80,17 @@ onMounted(() => {
 });
 
 watch(
-  () => store.resourceId,
-  async (newResourceId) => {
-    if (newResourceId) {
-      if (markerTable.get(newResourceId)) {
-        markerTable.get(newResourceId)?.openPopup();
+  () => route.params.id,
+  (newId) => {
+    if (newId) {
+      const marker = markerTable.get(newId as string);
+      if (marker) {
+        marker.openPopup();
       } else {
         leaflet?.closePopup();
       }
+    } else {
+      leaflet?.closePopup();
     }
   },
   { immediate: true }

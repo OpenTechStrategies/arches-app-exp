@@ -5,24 +5,24 @@
   >
     <template v-if="props.panelResourceType !== PanelResourceEnum.ARTWORK" #item-header-title>
       <p>
-        <span class="resource-link" @click="setActiveResource(props.artworkId)">{{
+        <RouterLink :to="`/resource/${props.artworkId}`" class="resource-link">{{
           artwork.Title
-        }}</span>
+        }}</RouterLink>
       </p>
     </template>
     <template v-if="artist && structure" #item-header-byline>
       <p>
         <span v-if="props.panelResourceType !== PanelResourceEnum.ARTIST"
           >by
-          <span class="resource-link" @click="setActiveResource(artist.resourceinstanceid)">{{
+          <RouterLink :to="`/resource/${artist.resourceinstanceid}`" class="resource-link">{{
             artist.displayname
-          }}</span></span
+          }}</RouterLink></span
         >
         <span v-if="props.panelResourceType !== PanelResourceEnum.STRUCTURE">
           at
-          <span class="resource-link" @click="setActiveResource(structure.resourceinstanceid)">{{
-            structure.displayname
-          }}</span></span
+          <RouterLink :to="`/resource/${structure.resourceinstanceid}`" class="resource-link">
+            {{ structure.displayname }}</RouterLink
+          ></span
         >
       </p>
     </template>
@@ -32,9 +32,9 @@
     >
       <p>
         Photographer
-        <span class="resource-link" @click="setActiveResource(photographer.resourceinstanceid)">{{
-          photographer.displayname
-        }}</span>
+        <RouterLink :to="`/resource/${photographer.resourceinstanceid}`" class="resource-link">
+          {{ photographer.displayname }}
+        </RouterLink>
       </p>
     </template>
     <template
@@ -49,7 +49,6 @@
 <script setup lang="ts">
 import type { Artwork, Prefetch, ApiResourceRelation } from '@/types';
 import { PanelResourceEnum } from '@/types';
-import useResourceStore from '@/stores/resourceStore';
 import ResourceDetailItem from './ResourceDetailItem.vue';
 
 const props = defineProps<{
@@ -60,14 +59,7 @@ const props = defineProps<{
   idReferences: Prefetch['idReferences'];
 }>();
 
-const resourceStore = useResourceStore();
 const { graphIdToNameTable } = props.idReferences;
-
-const setActiveResource = (newResourceId: string) => {
-  resourceStore.$patch({
-    resourceId: newResourceId
-  });
-};
 
 const photographer = props.resourceRelations.find(
   (resource) => graphIdToNameTable[resource.graph_id] === 'Photographer'

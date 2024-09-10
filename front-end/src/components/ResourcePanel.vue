@@ -1,6 +1,8 @@
 <template>
   <div v-if="props.resource" class="resource-detail">
-    <div class="resource-detail-back-button" @click="clearActiveResource">Back to search</div>
+    <RouterLink to="/">
+      <div class="resource-detail-back-button">Back to search</div>
+    </RouterLink>
     <ResourceDetail>
       <template #header-label>
         {{ graphIdToNameTable[props.resource.graph_id] }}
@@ -78,13 +80,11 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
-import useResourceStore from '@/stores/resourceStore';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
 import MoreArtworksByArtist from './MoreArtworksByArtist.vue';
 
-const resourceStore = useResourceStore();
 const props = defineProps<{
   resource: ApiResource;
   resourceRelations: Array<ApiResourceRelation>;
@@ -95,12 +95,6 @@ const props = defineProps<{
 }>();
 
 const { graphIdToNameTable } = props.idReferences;
-
-const clearActiveResource = () => {
-  resourceStore.$patch({
-    resourceId: undefined
-  });
-};
 </script>
 
 <style scoped>
