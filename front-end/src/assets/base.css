@@ -9,6 +9,7 @@
   --wac-font-size--xxl: calc(var(--font-size-base) * 2);
   --wac-font-size--xxxl: calc(var(--font-size-base) * 3);
   --wac-font-size--xxxxl: calc(var(--font-size-base) * 4);
+
 }
 
 @media screen and (max-width: 940px) {
@@ -21,4 +22,5 @@ body {
   background-color: var(--color-white);
   font-family: 'Inter Variable', sans-serif;
   font-size: var(--wac-font-size--med);
+  padding: 20px;
 }

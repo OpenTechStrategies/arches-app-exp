@@ -1,13 +1,8 @@
 <template>
-  <div
-    class="expand-map-button"
-    @click="
-      {
-        expandMap = !expandMap;
-      }
-    "
-  >
-    Explore the artwork geographically
+  <div class="expand-map-button" @click="expandMap = !expandMap">
+    <span>Explore the artwork geographically</span>
+    <ChevronDoubleDownIcon v-if="expandMap" class="button-icon" />
+    <ChevronDoubleRightIcon v-else-if="!expandMap" class="button-icon" />
   </div>
   <div :class="expandMap ? 'map-container-expanded' : 'map-container-collapsed'">
     <div id="map" ref="mapElement" />
@@ -21,6 +16,7 @@ import type { Marker } from 'leaflet';
 import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
 import { useRouter, useRoute } from 'vue-router';
+import { ChevronDoubleRightIcon, ChevronDoubleDownIcon } from '@heroicons/vue/24/solid';
 
 const router = useRouter();
 const route = useRoute();
@@ -99,9 +95,18 @@ watch(
 
 <style scoped>
 .expand-map-button {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   font-weight: 700;
   padding-bottom: 16px;
+}
+
+.button-icon {
+  margin-left: 8px;
+  width: 1em;
+  height: 1em;
+  transform: scale(1.2);
 }
 
 #map {
