@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="`/resource/${props.resourceId}`">
+  <RouterLink :to="`/resource/${props.resourceId}`" class="search-result-container">
     <div class="search-result">
       <img
         v-if="imageUrl"
@@ -99,6 +99,10 @@ const imageUrl = props.imageTileData
   height: 150px;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.search-result-container {
+  text-decoration: none;
 }
 @media (min-width: 940px) {
   .search-result-title {
