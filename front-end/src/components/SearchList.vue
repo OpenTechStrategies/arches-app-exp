@@ -38,7 +38,11 @@
           Structures
         </button>
       </div>
-      <input v-model="query" class="search-bar" placeholder="Search names..." />
+      <input
+        v-model="query"
+        class="search-bar"
+        placeholder="Search artwork titles and artist names..."
+      />
     </div>
     <div class="search-results">
       <SearchListItem
