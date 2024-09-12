@@ -1,7 +1,6 @@
 <template>
   <div class="search-list-container">
     <div class="search-header">
-      <div>Explore the artwork as a list</div>
       <div class="resource-selection-menu">
         <button
           type="button"
