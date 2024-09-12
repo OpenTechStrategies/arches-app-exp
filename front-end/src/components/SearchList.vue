@@ -1,7 +1,6 @@
 <template>
   <div class="search-list-container">
     <div class="search-header">
-      <div>Explore the artwork as a list</div>
       <div class="resource-selection-menu">
         <button
           type="button"
@@ -39,7 +38,11 @@
           Structures
         </button>
       </div>
-      <input v-model="query" class="search-bar" placeholder="Search names..." />
+      <input
+        v-model="query"
+        class="search-bar"
+        placeholder="Search artwork titles and artist names..."
+      />
     </div>
     <div class="search-results">
       <SearchListItem
