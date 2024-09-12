@@ -110,7 +110,7 @@ watch(
 }
 
 .map-container-collapsed {
-  height: 100px;
+  height: 200px;
   transition: height 0.5s ease;
 }
 
@@ -119,7 +119,7 @@ watch(
 }
 
 .map-container-expanded {
-  height: 400px;
+  height: 600px;
   transition: height 0.5s ease;
 }
 
