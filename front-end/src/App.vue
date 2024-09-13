@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header class="welcome">
-      <h1>Wabash Arts Corridor</h1>
+      <h1>Explore Chicago’s Wabash Arts Corridor</h1>
       <p>
         In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
         the creative spirit by using urban spaces and reclaimable resources to revitalize and
