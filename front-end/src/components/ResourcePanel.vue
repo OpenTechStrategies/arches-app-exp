@@ -112,13 +112,4 @@ const isProd = import.meta.env.PROD;
 .resource-detail-back-button {
   cursor: pointer;
 }
-
-@media (min-width: 940px) {
-  .resource-detail {
-    height: 100vh;
-  }
-  .resource-detail {
-    overflow-y: scroll;
-  }
-}
 </style>
