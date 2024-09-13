@@ -1,9 +1,8 @@
 <template>
   <div class="home">
-    <div class="welcome">
-      <p class="blurb">
-        <span class="title">Wabash Arts Corridor</span>
-        <br />
+    <header class="welcome">
+      <h1>Wabash Arts Corridor</h1>
+      <p>
         In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
         the creative spirit by using urban spaces and reclaimable resources to revitalize and
         transform the South Loop business district into one of the city’s major cultural assets. The
@@ -12,7 +11,7 @@
         urban canvas” due to its ever-growing number of large-scale mural installations and
         collaborative projects.
       </p>
-    </div>
+    </header>
     <main>
       <div id="map-container">
         <LeafletMap
@@ -21,7 +20,7 @@
           :id-references="idReferences"
           :locations-prefetch="locationsPrefetch"
         />
-        <div v-else class="map-placeholder">Loading Map...</div>
+        <div v-else class="map-placeholder">Loading map…</div>
       </div>
       <div id="search-list-container">
         <RouterView v-slot="{ Component }">
@@ -39,7 +38,7 @@
         </RouterView>
       </div>
     </main>
-    <div class="footer">
+    <footer class="footer">
       <div class="footer-blurb">
         <h2>About / Credit</h2>
         <p>
@@ -48,7 +47,7 @@
           collective back.
         </p>
       </div>
-    </div>
+    </footer>
   </div>
 </template>
 
@@ -107,84 +106,50 @@ provide('prefetch', {
 .home {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 64px;
-  position: relative;
-  overflow-y: scroll;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-}
-
-.footer-blurb {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-#map-container {
-  width: 100%;
+  gap: var(--wac--semantic-spacing--primary);
 }
 
 .welcome {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: var(--wac-font-size--med);
+  gap: var(--wac--accessible-spacing--halfx);
+  font-size: var(--wac--font-size);
+  line-height: var(--wac--line-height--tight);
+  font-size: var(--wac--font-size--lg);
+  max-width: var(--wac--text--sensible-max-width);
 }
 
-.title {
-  font-weight: 900;
-  line-height: 120%;
-  color: #000000;
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wac--accessible-spacing--2x);
+  max-width: var(--wac--text--sensible-max-width);
 }
 
-.blurb {
-  font-weight: 400;
-  line-height: 120%;
-  color: #000000;
+.footer-blurb {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wac--accessible-spacing--1x);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wac--semantic-spacing--primary);
+}
+
+#map-container,
 #search-list-container {
-  padding-top: 64px;
+  flex-basis: 50%;
 }
 
-@media (min-width: 940px) {
-  .home {
-    padding: 64px 64px;
-
-    gap: 64px;
-    background: #ffffff;
-  }
-
+@media screen and (min-width: 940px) {
   .welcome {
-    gap: 32px;
-    font-size: var(--wac-font-size--xl);
-    max-width: 860px;
+    font-size: var(--wac--font-size--xxl);
   }
 
   main {
-    display: flex;
     flex-direction: row-reverse;
-    align-items: flex-start;
-    width: 80%;
-    height: 100vh;
-    gap: 64px;
-  }
-  #map-container {
-    width: 50%;
-    height: 100%;
-  }
-  #search-list-container {
-    height: 100%;
-    width: 100%;
-    padding-top: 0px;
   }
 }
 </style>
