@@ -1,30 +1,24 @@
 <template>
   <RouterLink :to="`/resource/${props.resourceId}`" class="search-result-container">
     <div class="search-result">
-      <img
-        v-if="imageUrl"
-        class="search-result-image"
-        loading="lazy"
-        :src="imageUrl"
-        alt="thumbnail image"
-      />
-      <img
-        v-else
-        class="search-result-image"
-        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
-        alt="no image available"
-        loading="lazy"
-      />
-      <div class="search-result-metadata">
-        <div class="search-result-resource-type">{{ props.resourceType ?? 'Resource' }}</div>
-        <div class="search-result-title">{{ props.resourceName }}</div>
+      <div class="metadata">
+        <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>
+        <div class="title">{{ props.resourceName }}</div>
         <div
           v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
-          class="search-result-resource-description"
+          class="description"
         >
           {{ props.resourceDescription }}
         </div>
       </div>
+      <img v-if="imageUrl" class="image" loading="lazy" :src="imageUrl" alt="thumbnail image" />
+      <img
+        v-else
+        class="image"
+        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
+        alt="no image available"
+        loading="lazy"
+      />
     </div>
   </RouterLink>
 </template>
@@ -50,53 +44,46 @@ const imageUrl = props.imageTileData
 <style scoped>
 .search-result {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  gap: var(--wac--semantic-spacing--tertiary);
   cursor: pointer;
 }
-.search-result-metadata {
+
+.metadata {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
-}
-.search-result-title {
-  font-style: normal;
-  font-weight: 900;
-  font-size: var(--wac-font-size--lg);
-  line-height: 120%;
-  display: flex;
-  align-items: center;
-  text-decoration-line: underline;
-}
-.search-result-resource-type {
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--wac-font-size--med);
-  line-height: 100%;
+  gap: var(--wac--accessible-spacing--halfx);
 
-  display: flex;
-  align-items: center;
+  line-height: var(--wac--line-height--tight);
 }
 
-.search-result-resource-description {
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--wac-font-size--small);
-  line-height: 120%;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  line-clamp: 5;
+.title {
+  font-size: var(--wac--font-size--lg);
+  font-weight: var(--wac--font-weight--xbold);
+  text-decoration: underline;
+
+  .search-result-container:hover & {
+    text-decoration: none;
+  }
+}
+
+.description {
+  font-size: var(--wac--font-size--sm);
+  margin-top: var(--wac--accessible-spacing--1x);
+
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
-.search-result-image {
-  width: 150px;
-  height: 150px;
+
+.image {
+  width: var(--wac--image--thumbnail-size);
+  height: var(--wac--image--thumbnail-size);
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -104,16 +91,14 @@ const imageUrl = props.imageTileData
 .search-result-container {
   text-decoration: none;
 }
-@media (min-width: 940px) {
-  .search-result-title {
-    font-size: var(--wac-font-size--xxl);
-  }
-  .search-result-resource-type {
-    font-size: var(--wac-font-size--med);
+
+@media screen and (min-width: 940px) {
+  .title {
+    font-size: var(--wac--font-size--xl);
   }
 
-  .search-result-resource-description {
-    font-size: var(--wac-font-size--small);
+  .description {
+    font-size: var(--wac--font-size);
   }
 }
 </style>

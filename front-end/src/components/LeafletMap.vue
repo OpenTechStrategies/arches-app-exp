@@ -1,11 +1,12 @@
 <template>
-  <div class="expand-map-button" @click="expandMap = !expandMap">
-    <span>Explore the artwork geographically</span>
-    <ChevronDoubleDownIcon v-if="expandMap" class="button-icon" />
-    <ChevronDoubleRightIcon v-else-if="!expandMap" class="button-icon" />
-  </div>
-  <div :class="expandMap ? 'map-container-expanded' : 'map-container-collapsed'">
-    <div id="map" ref="mapElement" />
+  <div :class="expandMap ? 'map-container expanded' : 'map-container collapsed'">
+    <button type="button" class="toggle-map" @click="expandMap = !expandMap">
+      <span>Explore the artwork geographically</span>
+      <ChevronRightIcon class="button-icon" />
+    </button>
+    <div class="map-wrapper">
+      <div id="map" ref="mapElement" />
+    </div>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ import type { Marker } from 'leaflet';
 import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
 import { useRouter, useRoute } from 'vue-router';
-import { ChevronDoubleRightIcon, ChevronDoubleDownIcon } from '@heroicons/vue/24/solid';
+import { ChevronRightIcon } from '@heroicons/vue/24/solid';
 
 const router = useRouter();
 const route = useRoute();
@@ -94,19 +95,26 @@ watch(
 </script>
 
 <style scoped>
-.expand-map-button {
+.map-container {
   display: flex;
+  flex-direction: column;
+}
+
+.toggle-map {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
-  font-weight: 700;
-  padding-bottom: 16px;
+  gap: 0.4ch;
 }
 
 .button-icon {
-  margin-left: 8px;
-  width: 1em;
-  height: 1em;
-  transform: scale(1.2);
+  width: calc(var(--wac--line-height) * 1em);
+  height: calc(var(--wac--line-height) * 1em);
+  transition: transform 100ms ease;
+
+  .expanded & {
+    transform: rotate(90deg);
+  }
 }
 
 #map {
@@ -114,33 +122,35 @@ watch(
   height: 100%;
 }
 
-.map-container-collapsed {
-  height: 200px;
+.map-wrapper {
+  --wac--map-collapsed-height: 90px;
+  --wac--map-expanded-height: 600px;
+
+  height: var(--wac--map-expanded-height);
   transition: height 0.5s ease;
-}
 
-.map-container-collapsed * {
-  pointer-events: none;
-}
-
-.map-container-expanded {
-  height: 600px;
-  transition: height 0.5s ease;
-}
-
-@media (min-width: 940px) {
-  .map-container-expanded,
-  .map-container-collapsed {
-    height: 100%;
-    transition: none;
+  .collapsed & {
+    height: var(--wac--map-collapsed-height);
+    pointer-events: none;
   }
+}
 
-  .map-container-collapsed * {
-    pointer-events: all;
-  }
-
-  .expand-map-button {
+@media screen and (min-width: 940px) {
+  .toggle-map {
     display: none;
+  }
+
+  .map-container {
+    position: sticky;
+    top: 0;
+
+    padding-top: var(--wac--semantic-spacing--tertiary);
+    gap: var(--wac--semantic-spacing--tertiary);
+
+    &.collapsed .map-wrapper {
+      height: var(--wac--map-expanded-height);
+      pointer-events: all;
+    }
   }
 }
 </style>

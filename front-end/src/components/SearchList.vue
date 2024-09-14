@@ -40,7 +40,7 @@
       </div>
       <input
         v-model="query"
-        class="search-bar"
+        class="search-input"
         placeholder="Search artwork titles and artist names..."
       />
     </div>
@@ -108,28 +108,27 @@ const filterByType = (type: string) => {
 .search-list-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 32px;
-  isolation: isolate;
+  gap: var(--wac--semantic-spacing--secondary);
 }
 
 .search-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
+  --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+  position: sticky;
+  top: 0;
 
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
-}
-.search-results {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
-  max-width: 640px;
+  gap: var(--wac--search-header--internal-spacing);
+  padding-block: var(--wac--search-header--internal-spacing);
+
+  background: linear-gradient(
+    180deg,
+    white calc(100% - var(--wac--search-header--internal-spacing)),
+    rgba(255, 255, 255, 0) 100%
+  );
 }
+
 .resource-selection-menu {
   display: flex;
   flex-direction: row;
@@ -137,57 +136,35 @@ const filterByType = (type: string) => {
   justify-content: center;
   align-items: center;
   align-content: space-between;
-  padding: 0px;
-  gap: 8px;
+  gap: var(--wac--accessible-spacing--halfx);
 }
 
-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  border: none;
-  background: none;
-  font-style: normal;
-  font-weight: 700;
-  font-size: var(--wac-font-size--med);
-  line-height: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #000000;
-  transition: background-color 300ms ease;
-}
-
-button.active {
-  background: #ffe16a;
-  transition: background-color 300ms ease;
-}
-
-.search-bar {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px;
-  gap: 16px;
+.search-input {
   width: 100%;
-  background: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 5px;
+  padding: var(--wac--accessible-spacing--1x);
+  border: 2px solid black;
+  border-radius: var(--wac--fixed-spacing--halfx);
+  font-size: inherit;
+
+  &:focus {
+    outline: var(--wac--outline);
+    border-color: blue;
+  }
 }
 
-@media (min-width: 940px) {
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--wac--semantic-spacing--tertiary);
+}
+
+@media screen and (min-width: 940px) {
   .search-list-container {
-    height: 100vh;
+    gap: var(--wac--semantic-spacing--primary);
   }
-  .search-results {
-    overflow-y: scroll;
-    padding-top: 40px;
-    mask-image: linear-gradient(to top, transparent, black 10%, black 90%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  .search-input {
+    padding: var(--wac--accessible-spacing--2x);
   }
 }
 </style>
