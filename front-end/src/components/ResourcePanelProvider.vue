@@ -1,7 +1,7 @@
 <template>
   <Transition>
     <slot
-      v-if="resource"
+      v-if="resource && resourceRelations"
       :resource="resource"
       :resource-relations="resourceRelations"
       :error="errorFetchingResource"

@@ -2,24 +2,24 @@ import type { JSONSchemaType } from 'ajv';
 import ajv from '@/ajv';
 
 export interface Artwork {
-  Artist: string;
+  Artist?: string;
   Photograph?: {
     Image: string;
     Photographer: string;
   };
-  Location: {
+  Location?: {
     Coordinates?: string;
     'Located On': string;
   };
-  Medium: string;
+  Medium?: string;
   Description?: string;
-  Title: string;
+  Title?: string;
 }
 
 const ArtworkSchema: JSONSchemaType<Artwork> = {
   type: 'object',
   properties: {
-    Artist: { type: 'string' },
+    Artist: { type: 'string', nullable: true },
     Description: { type: 'string', nullable: true },
     Photograph: {
       type: 'object',
@@ -36,14 +36,15 @@ const ArtworkSchema: JSONSchemaType<Artwork> = {
         Coordinates: { type: 'string', nullable: true },
         'Located On': { type: 'string' }
       },
-      required: ['Located On']
+      required: ['Located On'],
+      nullable: true
     },
     Medium: {
-      type: 'string'
+      type: 'string',
+      nullable: true
     },
-    Title: { type: 'string' }
+    Title: { type: 'string', nullable: true }
   },
-  required: ['Artist', 'Title', 'Location'],
   additionalProperties: true
 };
 
