@@ -1,25 +1,117 @@
 :root {
-  --color-black: #363636;
-  --color-white: #ffffff;
-  --font-size-base: 16px;
-  --wac-font-size--small: calc(var(--font-size-base) * 0.75);
-  --wac-font-size--med: var(--font-size-base);
-  --wac-font-size--lg: calc(var(--font-size-base) * 1.25);
-  --wac-font-size--xl: calc(var(--font-size-base) * 1.5);
-  --wac-font-size--xxl: calc(var(--font-size-base) * 2);
-  --wac-font-size--xxxl: calc(var(--font-size-base) * 3);
-  --wac-font-size--xxxxl: calc(var(--font-size-base) * 4);
+  --wac--font-size: 16px;
+  --wac--font-size--sm: calc(var(--wac--font-size) * 0.75);
+  --wac--font-size--lg: calc(var(--wac--font-size) * 1.25);
+  --wac--font-size--xl: calc(var(--wac--font-size) * 1.5);
+  --wac--font-size--xxl: calc(var(--wac--font-size) * 2);
+  --wac--font-size--xxxl: calc(var(--wac--font-size) * 3);
+  --wac--font-size--xxxxl: calc(var(--wac--font-size) * 4);
+
+  --wac--line-height: 1.4;
+  --wac--line-height--tight: 1.2;
+
+  --wac--font-weight--normal: 400;
+  --wac--font-weight--bold: 700;
+  --wac--font-weight--xbold: 900;
+
+  --wac--color--gray--dark: #363636;
+  --wac--color--highlight: #ffe16a;
+
+  /* These spacings shouldn't increase with font-size. They have no accessibility impact. */
+  --wac--fixed-spacing--1x: 10px;
+  --wac--fixed-spacing--2x: calc(2 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--3x: calc(3 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--4x: calc(4 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--6x: calc(6 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--8x: calc(8 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--10x: calc(10 * var(--wac--fixed-spacing--1x));
+  --wac--fixed-spacing--halfx: calc(var(--wac--fixed-spacing--1x) / 2);
+
+  /* These spacings should increase with font-size. They have an accessibility impact. */
+  --wac--accessible-spacing--1x: 0.625rem;
+  --wac--accessible-spacing--2x: calc(2 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--3x: calc(3 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--4x: calc(4 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--6x: calc(6 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--8x: calc(8 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--10x: calc(10 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--15x: calc(15 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--halfx: calc(var(--wac--accessible-spacing--1x) / 2);
+
+  /* These spacings are not distinct from the above; they're just semantically-defined. */
+  --wac--semantic-spacing--primary: var(--wac--accessible-spacing--8x);
+  --wac--semantic-spacing--secondary: var(--wac--accessible-spacing--4x);
+  --wac--semantic-spacing--tertiary: var(--wac--accessible-spacing--2x);
+
+  --wac--text--sensible-max-width: 60ch;
+  --wac--image--thumbnail-size: var(--wac--accessible-spacing--15x);
+
+  --wac--outline: 2px solid blue;
 }
 
-@media screen and (max-width: 940px) {
-  :root {
-    --font-size-base: 16px;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--color-white);
   font-family: 'Inter Variable', sans-serif;
-  font-size: var(--wac-font-size--med);
-  padding: 20px;
+  font-size: var(--wac--font-size);
+  background-color: white;
+  color: black;
+  padding: var(--wac--semantic-spacing--tertiary);
+
+  transition: padding 200ms;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: var(--wac--font-weight--bold);
+  font-size: inherit;
+}
+
+h1 {
+  font-weight: var(--wac--font-weight--xbold);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  all: unset;
+
+  font-weight: var(--wac--font-weight--bold);
+  padding: var(--wac--accessible-spacing--halfx);
+
+  transition: background-color 100ms ease;
+  cursor: pointer;
+
+  &.active {
+    background: var(--wac--color--highlight);
+  }
+
+  &:focus-visible {
+    outline: var(--wac--outline);
+  }
+}
+
+@media screen and (min-width: 940px) {
+  :root {
+    --wac--semantic-spacing--primary: var(--wac--accessible-spacing--8x);
+    --wac--semantic-spacing--secondary: var(--wac--accessible-spacing--4x);
+    --wac--semantic-spacing--tertiary: var(--wac--accessible-spacing--2x);
+  }
+
+  body {
+    padding: var(--wac--semantic-spacing--primary);
+  }
 }

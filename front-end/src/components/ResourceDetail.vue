@@ -51,7 +51,7 @@
 .resource-detail-metadata-title {
   font-style: normal;
   font-weight: 700;
-  font-size: var(--wac-font-size--med);
+  font-size: var(--wac--font-size);
   line-height: 100%;
 
   color: #999999;
@@ -60,7 +60,7 @@
 .resource-detail-metadata-content {
   font-style: normal;
   font-weight: 400;
-  font-size: var(--wac-font-size--med);
+  font-size: var(--wac--font-size);
   line-height: 140%;
 
   color: #999999;
@@ -69,14 +69,14 @@
 .resource-detail-header-label {
   font-style: normal;
   font-weight: 400;
-  font-size: var(--wac-font-size--lg);
+  font-size: var(--wac--font-size--lg);
   line-height: 100%;
 }
 
 .resource-detail-header-title {
   font-style: normal;
   font-weight: 900;
-  font-size: var(--wac-font-size--xxl);
+  font-size: var(--wac--font-size--xxl);
   line-height: 100%;
 }
 </style>

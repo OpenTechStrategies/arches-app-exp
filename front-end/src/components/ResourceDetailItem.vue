@@ -56,7 +56,7 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-header-byline {
   font-style: normal;
   font-weight: 700;
-  font-size: var(--wac-font-size--med);
+  font-size: var(--wac--font-size);
   line-height: 100%;
 
   color: #000000;
@@ -65,7 +65,7 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-header-title {
   font-style: normal;
   font-weight: 900;
-  font-size: var(--wac-font-size--xxl);
+  font-size: var(--wac--font-size--xxl);
   line-height: 120%;
   text-decoration-line: underline;
 
@@ -75,7 +75,7 @@ const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.im
 .resource-detail-item-credit {
   font-style: normal;
   font-weight: 400;
-  font-size: var(--wac-font-size--med);
+  font-size: var(--wac--font-size);
   line-height: 140%;
 
   color: #000000;

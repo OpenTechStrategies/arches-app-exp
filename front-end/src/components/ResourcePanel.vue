@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.resource" class="resource-detail">
-    <RouterLink to="/">
+    <RouterLink :to="isProd ? '/archesdataviewer/' : '/'">
       <div class="resource-detail-back-button">Back to search</div>
     </RouterLink>
     <ResourceDetail>
@@ -95,6 +95,8 @@ const props = defineProps<{
 }>();
 
 const { graphIdToNameTable } = props.idReferences;
+
+const isProd = import.meta.env.PROD;
 </script>
 
 <style scoped>
@@ -109,14 +111,5 @@ const { graphIdToNameTable } = props.idReferences;
 
 .resource-detail-back-button {
   cursor: pointer;
-}
-
-@media (min-width: 940px) {
-  .resource-detail {
-    height: 100vh;
-  }
-  .resource-detail {
-    overflow-y: scroll;
-  }
 }
 </style>

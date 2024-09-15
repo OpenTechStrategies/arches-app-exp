@@ -61,7 +61,7 @@ const relatedArtworks = artist
 .more-artworks-by-artist-title {
   font-style: normal;
   font-weight: 700;
-  font-size: var(--wac-font-size--med);
+  font-size: var(--wac--font-size);
   line-height: 100%;
 
   color: #000000;
