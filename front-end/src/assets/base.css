@@ -8,7 +8,9 @@
   --wac--font-size--xxxxl: calc(var(--wac--font-size) * 4);
 
   --wac--line-height: 1.4;
-  --wac--line-height--tight: 1.2 --wac--font-weight--normal: 400;
+  --wac--line-height--tight: 1.2;
+
+  --wac--font-weight--normal: 400;
   --wac--font-weight--bold: 700;
   --wac--font-weight--xbold: 900;
 
