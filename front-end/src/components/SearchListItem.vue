@@ -70,7 +70,6 @@ const imageUrl = props.imageTileData
   font-size: var(--wac--font-size--lg);
   font-weight: var(--wac--font-weight--xbold);
   text-decoration: underline;
-  
 }
 
 .description {

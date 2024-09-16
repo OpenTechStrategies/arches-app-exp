@@ -1,30 +1,30 @@
 <template>
   <div v-if="relatedArtworks && relatedArtworks.length > 1">
-  <div v-if="artist" class="more-artworks-by-artist-title">
-    More artwork by
-    <RouterLink
-      :to="`/archesdataviewer/home/resource/${artist.resourceinstanceid}`"
-      class="resource-link"
-    >
-      {{ artist.displayname }}
-    </RouterLink>
+    <div v-if="artist" class="more-artworks-by-artist-title">
+      More artwork by
+      <RouterLink
+        :to="`/archesdataviewer/home/resource/${artist.resourceinstanceid}`"
+        class="resource-link"
+      >
+        {{ artist.displayname }}
+      </RouterLink>
+    </div>
+    <div class="more-artworks-by-artist-gallery">
+      <MoreArtworksByArtistItem
+        v-for="artwork in relatedArtworks"
+        :key="artwork.resourceinstanceid"
+        :artwork="artwork"
+        :image-tile-data="
+          getImageTileDataForResource(
+            artwork,
+            props.imagesPrefetch,
+            props.resourceRelationsPrefetch,
+            props.idReferences
+          )
+        "
+      />
+    </div>
   </div>
-  <div class="more-artworks-by-artist-gallery">
-    <MoreArtworksByArtistItem
-      v-for="artwork in relatedArtworks"
-      :key="artwork.resourceinstanceid"
-      :artwork="artwork"
-      :image-tile-data="
-        getImageTileDataForResource(
-          artwork,
-          props.imagesPrefetch,
-          props.resourceRelationsPrefetch,
-          props.idReferences
-        )
-      "
-    />
-  </div>
-</div>
 </template>
 
 <script setup lang="ts">
