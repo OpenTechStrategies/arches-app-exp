@@ -48,20 +48,28 @@ let leaflet: L.Map | undefined;
 const markerTable = new Map<string, Marker<null>>();
 
 const initMap = (element: HTMLElement) => {
-  const map = L.map(element).setView([41.87213786, -87.62576558], 13);
+  const map = L.map(element).setView([41.87213786, -87.62576558], 15);
   leaflet = map;
+
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
+
+  const customIcon = L.icon({
+    iconUrl: 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/marker-icon-2x.png',
+    iconSize: [16, 30],
+    popupAnchor: [0, -32]
+  });
+
   mapResources.value.forEach((value) => {
     if (value.coordinates) {
       const coordinate = value.coordinates?.features[0].geometry.coordinates ?? undefined;
       if (coordinate) {
-        const marker = L.marker([coordinate[1], coordinate[0]]);
+        const marker = L.marker([coordinate[1], coordinate[0]], { icon: customIcon });
         marker.bindPopup(`<b>${value.resource.descriptors.en.name}</b>`);
         marker.on('click', () => {
-          router.push(`/archesdataviewer/resource/${value.resource.resourceinstanceid}`);
+          router.push(`/archesdataviewer/home/resource/${value.resource.resourceinstanceid}`);
         });
         markerTable.set(value.resource.resourceinstanceid, marker);
         marker.addTo(map);

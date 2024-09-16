@@ -14,7 +14,7 @@
   </div>
 
   <div class="resource-detail-metadata">
-    <div class="resource-detail-metadata-title">Arches metadata</div>
+    <div class="resource-detail-metadata-title">Arches metadata:</div>
     <div class="resource-detail-metadata-content">
       <slot name="metadata"></slot>
     </div>

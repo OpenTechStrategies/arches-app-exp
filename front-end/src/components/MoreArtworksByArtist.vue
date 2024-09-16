@@ -1,7 +1,10 @@
 <template>
   <div v-if="artist" class="more-artworks-by-artist-title">
     More artwork by
-    <RouterLink :to="`/archesdataviewer/resource/${artist.resourceinstanceid}`" class="resource-link">
+    <RouterLink
+      :to="`/archesdataviewer/home/resource/${artist.resourceinstanceid}`"
+      class="resource-link"
+    >
       {{ artist.displayname }}
     </RouterLink>
   </div>

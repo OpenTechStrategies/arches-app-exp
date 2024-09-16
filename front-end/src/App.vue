@@ -85,7 +85,7 @@ watch(
 
 async function prefetchResources() {
   try {
-    const url = new URL(`${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/prefetch`);
+    const url = new URL(`${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/prefetch/`);
     const response = await fetch(url.toString());
     const data: Prefetch = await response.json();
     idReferences.value = data.idReferences;

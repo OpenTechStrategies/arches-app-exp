@@ -26,7 +26,11 @@ const resolvedImageUrl = computed(() =>
       <img v-if="resolvedImageUrl" :src="resolvedImageUrl" alt="resource image" />
       <img
         v-else
-        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
+        :src="
+          isProd
+            ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/noimage.png'
+            : '/noimage.png'
+        "
         alt="no image available"
         loading="lazy"
       />

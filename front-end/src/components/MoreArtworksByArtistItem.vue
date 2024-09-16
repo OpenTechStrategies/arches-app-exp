@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="`/archesdataviewer/resource/${props.artwork.resourceinstanceid}`">
+  <RouterLink :to="`/archesdataviewer/home/resource/${props.artwork.resourceinstanceid}`">
     <div>
       <img
         :class="['more-artwork-image', { blocked: isBlocked }]"
@@ -31,7 +31,9 @@ const resolvedImageUrl = computed(() =>
 );
 
 const fallbackImageUrl = computed(() =>
-  isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'
+  isProd
+    ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/noimage.png'
+    : '/noimage.png'
 );
 
 const isBlocked = computed(() => route.params?.id === props.artwork.resourceinstanceid);

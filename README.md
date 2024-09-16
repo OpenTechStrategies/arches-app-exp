@@ -2,6 +2,8 @@
 The Arches Data Viewer is a WIP ['Arches Application'](https://arches.readthedocs.io/en/stable/developing/extending/creating-apps/), an extension of the [Arches Project](https://www.archesproject.org/). The goal of this project is 
 to create an isolated front-end component that consumes data from the Arches platform. 
 
+It is currently hosted at (https://arches-app-demo.opentechstrategies.com/archesdataviewer/home/)
+
 # Technologies used
 An Arches Application is itself a Django Application, which can be installed into an existing instance of Arches. 
 The code in the ```archesdataviewer``` folder is modeled off of [this repository](https://github.com/chiatt/dashboard). Currently,
