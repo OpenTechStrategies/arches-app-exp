@@ -3,14 +3,14 @@
     <div>
       <img
         v-if="imageUrl"
-        :class="`more-artwork-image ${route.params?.id[0] === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
+        :class="`more-artwork-image ${route.params?.id === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
         loading="lazy"
         :src="imageUrl"
         alt="thumbnail image"
       />
       <img
         v-else
-        :class="`more-artwork-image ${route.params?.id[0] === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
+        :class="`more-artwork-image ${route.params?.id === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
         :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
         alt="no image available"
         loading="lazy"

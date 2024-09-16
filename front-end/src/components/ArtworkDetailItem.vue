@@ -20,9 +20,7 @@
         >
         <span v-if="props.panelResourceType !== PanelResourceEnum.STRUCTURE">
           at
-          <RouterLink :to="`/resource/${structure.resourceinstanceid}`" class="resource-link">
-            {{ structure.displayname }}</RouterLink
-          ></span
+          {{ structure.displayname }}</span
         >
       </p>
     </template>
@@ -32,9 +30,8 @@
     >
       <p>
         Photographer
-        <RouterLink :to="`/resource/${photographer.resourceinstanceid}`" class="resource-link">
-          {{ photographer.displayname }}
-        </RouterLink>
+
+        {{ photographer.displayname }}
       </p>
     </template>
     <template
