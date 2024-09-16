@@ -44,9 +44,14 @@
 </template>
 
 <script setup lang="ts">
+import { watch, ref } from 'vue';
 import type { Artwork, Prefetch, ApiResourceRelation } from '@/types';
 import { PanelResourceEnum } from '@/types';
 import ResourceDetailItem from './ResourceDetailItem.vue';
+
+const photographer = ref<ApiResourceRelation>();
+const structure = ref<ApiResourceRelation>();
+const artist = ref<ApiResourceRelation>();
 
 const props = defineProps<{
   artwork: Artwork;
@@ -58,15 +63,19 @@ const props = defineProps<{
 
 const { graphIdToNameTable } = props.idReferences;
 
-const photographer = props.resourceRelations.find(
-  (resource) => graphIdToNameTable[resource.graph_id] === 'Photographer'
-);
-
-const structure = props.resourceRelations.find(
-  (resource) => graphIdToNameTable[resource.graph_id] === 'Structure'
-);
-
-const artist = props.resourceRelations.find(
-  (resource) => graphIdToNameTable[resource.graph_id] === 'Artist'
+watch(
+  () => props.resourceRelations,
+  (newRelations) => {
+    photographer.value = newRelations.find(
+      (resource) => graphIdToNameTable[resource.graph_id] === 'Photographer'
+    );
+    structure.value = newRelations.find(
+      (resource) => graphIdToNameTable[resource.graph_id] === 'Structure'
+    );
+    artist.value = newRelations.find(
+      (resource) => graphIdToNameTable[resource.graph_id] === 'Artist'
+    );
+  },
+  { immediate: true }
 );
 </script>

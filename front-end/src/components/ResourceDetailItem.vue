@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+
+const isProd = import.meta.env.PROD;
+
+const props = defineProps<{
+  imageUrl: string | undefined;
+}>();
+
+const resolvedImageUrl = computed(() =>
+  props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.imageUrl : undefined
+);
+</script>
+
 <template>
   <div class="resource-detail-item">
     <div class="resource-detail-item-header">
@@ -9,7 +23,7 @@
       </div>
     </div>
     <div class="resource-detail-item-image">
-      <img v-if="imageUrl" loading="lazy" :src="imageUrl" alt="resource image" />
+      <img v-if="resolvedImageUrl" :src="resolvedImageUrl" alt="resource image" />
       <img
         v-else
         :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
@@ -26,16 +40,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const isProd = import.meta.env.PROD;
-
-const props = defineProps<{
-  imageUrl: string | undefined;
-}>();
-
-const imageUrl = props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.imageUrl : undefined;
-</script>
 
 <style scoped>
 .resource-detail-item {

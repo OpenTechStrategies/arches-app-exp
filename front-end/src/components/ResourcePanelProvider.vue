@@ -47,8 +47,12 @@ async function fetchRelatedResources() {
 }
 
 async function fetchData() {
-  fetchResource();
-  fetchRelatedResources();
+  try {
+    await fetchResource();
+    await fetchRelatedResources();
+  } catch (error) {
+    errorFetchingResource.value = true;
+  }
 }
 
 watch(() => route.params.id, fetchData, { immediate: true });
