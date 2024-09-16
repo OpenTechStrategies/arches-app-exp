@@ -4,13 +4,6 @@
       <div class="resource-selection-menu">
         <button
           type="button"
-          :class="{ active: selectedResourceType === null }"
-          @click="clearFilter"
-        >
-          Everything
-        </button>
-        <button
-          type="button"
           :class="{ active: selectedResourceType === 'Artist' }"
           @click="filterByType('Artist')"
         >
@@ -22,20 +15,6 @@
           @click="filterByType('Artwork')"
         >
           Artworks
-        </button>
-        <button
-          type="button"
-          :class="{ active: selectedResourceType === 'Photographer' }"
-          @click="filterByType('Photographer')"
-        >
-          Photographers
-        </button>
-        <button
-          type="button"
-          :class="{ active: selectedResourceType === 'Structure' }"
-          @click="filterByType('Structure')"
-        >
-          Structures
         </button>
       </div>
       <input
@@ -72,7 +51,7 @@ import { getImageTileDataForResource } from '@/utils';
 import SearchListItem from './SearchListItem.vue';
 
 const query = ref<string>('');
-const selectedResourceType = ref<string | null>(null);
+const selectedResourceType = ref<string | null>('Artwork');
 
 const props = defineProps<{
   resourcesPrefetch: Array<Resource>;
@@ -94,10 +73,6 @@ const filteredResources = computed(() =>
     return matchesQuery && matchesType;
   })
 );
-
-const clearFilter = () => {
-  selectedResourceType.value = null;
-};
 
 const filterByType = (type: string) => {
   selectedResourceType.value = type;
