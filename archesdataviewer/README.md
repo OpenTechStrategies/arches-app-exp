@@ -21,7 +21,7 @@ server {
     error_log /var/log/nginx/arches_error.log;
     access_log /var/log/nginx/arches_access.log;
 
-    location /media  {
+    location /media {
         alias /opt/arches/arches_project/arches_project/media;
     }
 
@@ -40,23 +40,24 @@ server {
     }
 
     # HACK TO MAKE IT WORK FOR APPLICATION DEMO.
-    
+
     location /static/archesdataviewer {
         alias /opt/arches/.venv/lib/python3.11/site-packages/archesdataviewer/static;
     }
-
-    location ~ ^/archesdataviewer/(.+\.(?:png))$ {
+   
+    location ~ ^/archesdataviewer/(.+\.png)$ {
         alias /opt/arches/.venv/lib/python3.11/site-packages/archesdataviewer/static/$1;
-    } 
+    }
 
-
+    location ~ ^/archesdataviewer/(.+\.(?:css|js))$ {
+        alias /opt/arches/.venv/lib/python3.11/site-packages/archesdataviewer/static/$1;
+    }
 
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/arches-app-demo.opentechstrategies.com/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/arches-app-demo.opentechstrategies.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
 }
 
 
@@ -65,25 +66,19 @@ server {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     listen 80;
     server_name arches-app-demo.opentechstrategies.com;
     return 404; # managed by Certbot
-
-
 }
-
 
 server {
     if ($host = arches-app-demo.opentechstrategies.com) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     server_name arches-app-demo.opentechstrategies.com;
     listen 80;
     return 404; # managed by Certbot
-
-
 }
+
 ```

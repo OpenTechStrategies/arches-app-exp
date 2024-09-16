@@ -1,5 +1,8 @@
 <template>
-  <RouterLink :to="`/archesdataviewer/resource/${props.resourceId}`" class="search-result-container">
+  <RouterLink
+    :to="`/archesdataviewer/home/resource/${props.resourceId}`"
+    class="search-result-container"
+  >
     <div class="search-result">
       <div class="metadata">
         <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>
@@ -15,7 +18,11 @@
       <img
         v-else
         class="image"
-        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
+        :src="
+          isProd
+            ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/noimage.png'
+            : '/noimage.png'
+        "
         alt="no image available"
         loading="lazy"
       />

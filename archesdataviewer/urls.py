@@ -1,9 +1,7 @@
-from django.urls import path
-
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    path('archesdataviewer/', views.index, name='archesdataviewer'),
-    path("archesdataviewer/prefetch" , views.prefetch, name="prefetch"),
+    path("archesdataviewer/prefetch/", views.prefetch, name="prefetch"),
+    re_path(r"^archesdataviewer/home/.*$", views.index, name="archesdataviewer"),
 ]
-
