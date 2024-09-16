@@ -45,13 +45,11 @@ const props = defineProps<{
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
 }>();
 
-
 const artist = computed(() =>
   props.resourceRelations.find(
     (resource) => props.idReferences.graphIdToNameTable[resource.graph_id] === 'Artist'
   )
 );
-
 
 const relatedArtworks = computed(() => {
   if (!artist.value) return undefined;
