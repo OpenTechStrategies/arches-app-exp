@@ -5,7 +5,7 @@
   >
     <template v-if="props.panelResourceType !== PanelResourceEnum.ARTWORK" #item-header-title>
       <p>
-        <RouterLink :to="`/resource/${props.artworkId}`" class="resource-link">{{
+        <RouterLink :to="`/archesdataviewer/resource/${props.artworkId}`" class="resource-link">{{
           artwork.Title
         }}</RouterLink>
       </p>
@@ -14,7 +14,7 @@
       <p>
         <span v-if="props.panelResourceType !== PanelResourceEnum.ARTIST"
           >by
-          <RouterLink :to="`/resource/${artist.resourceinstanceid}`" class="resource-link">{{
+          <RouterLink :to="`/archesdataviewer/resource/${artist.resourceinstanceid}`" class="resource-link">{{
             artist.displayname
           }}</RouterLink></span
         >

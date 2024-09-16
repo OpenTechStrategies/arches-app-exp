@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="`/resource/${props.resourceId}`" class="search-result-container">
+  <RouterLink :to="`/archesdataviewer/resource/${props.resourceId}`" class="search-result-container">
     <div class="search-result">
       <div class="metadata">
         <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>

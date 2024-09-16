@@ -61,7 +61,7 @@ const initMap = (element: HTMLElement) => {
         const marker = L.marker([coordinate[1], coordinate[0]]);
         marker.bindPopup(`<b>${value.resource.descriptors.en.name}</b>`);
         marker.on('click', () => {
-          router.push(`/resource/${value.resource.resourceinstanceid}`);
+          router.push(`/archesdataviewer/resource/${value.resource.resourceinstanceid}`);
         });
         markerTable.set(value.resource.resourceinstanceid, marker);
         marker.addTo(map);

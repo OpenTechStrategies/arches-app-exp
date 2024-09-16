@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="`/resource/${props.artwork.resourceinstanceid}`">
+  <RouterLink :to="`/archesdataviewer/resource/${props.artwork.resourceinstanceid}`">
     <div>
       <img
         :class="['more-artwork-image', { blocked: isBlocked }]"
