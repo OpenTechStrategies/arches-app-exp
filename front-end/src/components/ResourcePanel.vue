@@ -1,5 +1,5 @@
 <template>
-  <div v-if="props.resource" class="resource-detail">
+  <div v-if="props.resource" ref="resourcePanel" class="resource-detail">
     <RouterLink :to="isProd ? '/archesdataviewer/' : '/'">
       <div class="resource-detail-back-button">Back to search</div>
     </RouterLink>
@@ -80,6 +80,8 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
@@ -97,6 +99,19 @@ const props = defineProps<{
 const { graphIdToNameTable } = props.idReferences;
 
 const isProd = import.meta.env.PROD;
+
+const route = useRoute();
+const resourcePanel = ref<HTMLDivElement>();
+
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (newId && resourcePanel.value) {
+      resourcePanel.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style scoped>
