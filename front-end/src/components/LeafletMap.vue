@@ -4,8 +4,10 @@
       <span>Explore the artwork geographically</span>
       <ChevronRightIcon class="button-icon" />
     </button>
-    <div class="map-wrapper">
-      <div id="map" ref="mapElement" />
+    <div @click="expandMap = true">
+      <div class="map-wrapper">
+        <div id="map" ref="mapElement" />
+      </div>
     </div>
   </div>
 </template>
