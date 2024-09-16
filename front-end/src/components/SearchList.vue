@@ -17,11 +17,7 @@
           Artworks
         </button>
       </div>
-      <input
-        v-model="query"
-        class="search-input"
-        placeholder="Search artwork titles and artist names..."
-      />
+      <input v-model="query" class="search-input" :placeholder="placeholderText" />
     </div>
     <div class="search-results">
       <SearchListItem
@@ -77,6 +73,16 @@ const filteredResources = computed(() =>
 const filterByType = (type: string) => {
   selectedResourceType.value = type;
 };
+
+const placeholderText = computed(() => {
+  if (selectedResourceType.value === 'Artwork') {
+    return 'Search artworks by name...';
+  }
+  if (selectedResourceType.value === 'Artist') {
+    return 'Search artists by name...';
+  }
+  return '';
+});
 </script>
 
 <style scoped>

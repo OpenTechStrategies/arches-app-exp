@@ -63,7 +63,12 @@
       </template>
       <template #metadata>
         <div>Graph ID: {{ props.resource.graph_id }}</div>
-        <div>Resource Instance ID: {{ props.resource.resourceinstanceid }}</div>
+        <div>
+          Resource Instance ID:
+          <a :href="`${archesUrl}/report/${props.resource.resourceinstanceid}`">{{
+            props.resource.resourceinstanceid
+          }}</a>
+        </div>
       </template>
     </ResourceDetail>
   </div>
@@ -95,6 +100,8 @@ const props = defineProps<{
 }>();
 
 const { graphIdToNameTable } = props.idReferences;
+
+const archesUrl = import.meta.env.VITE_ARCHES_API_URL;
 </script>
 
 <style scoped>
