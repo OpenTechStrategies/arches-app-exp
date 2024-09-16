@@ -48,11 +48,11 @@ let leaflet: L.Map | undefined;
 const markerTable = new Map<string, Marker<null>>();
 
 const initMap = (element: HTMLElement) => {
-  const map = L.map(element).setView([41.87213786, -87.62576558], 15);
+  const map = L.map(element).setView([41.87213786, -87.62576558], 14);
   leaflet = map;
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 

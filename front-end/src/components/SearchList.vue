@@ -77,11 +77,11 @@ const filterByType = (type: string) => {
 const placeholderText = computed(() => {
   if (selectedResourceType.value === 'Artwork') {
     return 'Search artworks by name...';
-  } if (selectedResourceType.value === 'Artist') {
+  }
+  if (selectedResourceType.value === 'Artist') {
     return 'Search artists by name...';
-  } 
-    return '';
-  
+  }
+  return '';
 });
 </script>
 
