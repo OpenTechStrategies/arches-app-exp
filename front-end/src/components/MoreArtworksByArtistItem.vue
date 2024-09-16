@@ -2,24 +2,16 @@
   <RouterLink :to="`/resource/${props.artwork.resourceinstanceid}`">
     <div>
       <img
-        v-if="imageUrl"
-        :class="`more-artwork-image ${route.params?.id === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
-        loading="lazy"
-        :src="imageUrl"
-        alt="thumbnail image"
-      />
-      <img
-        v-else
-        :class="`more-artwork-image ${route.params?.id === props.artwork.resourceinstanceid ? 'blocked' : ''}`"
-        :src="isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'"
-        alt="no image available"
-        loading="lazy"
+        :class="['more-artwork-image', { blocked: isBlocked }]"
+        :src="resolvedImageUrl || fallbackImageUrl"
+        :alt="resolvedImageUrl ? 'Thumbnail image' : 'No image available'"
       />
     </div>
   </RouterLink>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { ImageTileData, Resource } from '@/types';
 import { useRoute } from 'vue-router';
 
@@ -32,9 +24,17 @@ const props = defineProps<{
 
 const isProd = import.meta.env.PROD;
 
-const imageUrl = props.imageTileData
-  ? import.meta.env.VITE_ARCHES_API_URL + props.imageTileData[0].url
-  : undefined;
+const resolvedImageUrl = computed(() =>
+  props.imageTileData?.length
+    ? import.meta.env.VITE_ARCHES_API_URL + props.imageTileData[0].url
+    : undefined
+);
+
+const fallbackImageUrl = computed(() =>
+  isProd ? '/archesdataviewer/noimage.png' : '/noimage.png'
+);
+
+const isBlocked = computed(() => route.params?.id === props.artwork.resourceinstanceid);
 </script>
 
 <style scoped>
@@ -44,6 +44,9 @@ const imageUrl = props.imageTileData
   object-fit: cover;
   flex-shrink: 0;
   cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
 }
 
 .more-artwork-image:hover {

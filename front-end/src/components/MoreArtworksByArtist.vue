@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type {
   ApiResource,
   ApiResourceRelation,
@@ -44,19 +45,26 @@ const props = defineProps<{
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
 }>();
 
-const artist = props.resourceRelations.find(
-  (resource) => props.idReferences.graphIdToNameTable[resource.graph_id] === 'Artist'
+
+const artist = computed(() =>
+  props.resourceRelations.find(
+    (resource) => props.idReferences.graphIdToNameTable[resource.graph_id] === 'Artist'
+  )
 );
 
-const relatedArtworks = artist
-  ? getMoreArtworksByArtist(
-      artist,
-      props.resourcesPrefetch,
-      props.resourceRelationsPrefetch,
-      props.idReferences
-    )
-  : undefined;
+
+const relatedArtworks = computed(() => {
+  if (!artist.value) return undefined;
+
+  return getMoreArtworksByArtist(
+    artist.value,
+    props.resourcesPrefetch,
+    props.resourceRelationsPrefetch,
+    props.idReferences
+  );
+});
 </script>
+
 <style scoped>
 .more-artworks-by-artist-title {
   font-style: normal;
