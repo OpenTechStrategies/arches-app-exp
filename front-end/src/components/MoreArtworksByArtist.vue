@@ -1,4 +1,5 @@
 <template>
+  <div v-if="relatedArtworks && relatedArtworks.length > 1">
   <div v-if="artist" class="more-artworks-by-artist-title">
     More artwork by
     <RouterLink
@@ -8,7 +9,7 @@
       {{ artist.displayname }}
     </RouterLink>
   </div>
-  <div v-if="relatedArtworks" class="more-artworks-by-artist-gallery">
+  <div class="more-artworks-by-artist-gallery">
     <MoreArtworksByArtistItem
       v-for="artwork in relatedArtworks"
       :key="artwork.resourceinstanceid"
@@ -23,6 +24,7 @@
       "
     />
   </div>
+</div>
 </template>
 
 <script setup lang="ts">

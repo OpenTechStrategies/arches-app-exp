@@ -34,7 +34,6 @@
     >
       <p>
         Photographer:
-
         {{ photographer.displayname }}
       </p>
     </template>
