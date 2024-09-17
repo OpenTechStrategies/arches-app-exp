@@ -14,6 +14,7 @@
   --wac--font-weight--bold: 700;
   --wac--font-weight--xbold: 900;
 
+  --wac--color--gray: #999;
   --wac--color--gray--dark: #363636;
   --wac--color--highlight: #ffe16a;
 
@@ -42,11 +43,15 @@
   --wac--semantic-spacing--primary: var(--wac--accessible-spacing--8x);
   --wac--semantic-spacing--secondary: var(--wac--accessible-spacing--4x);
   --wac--semantic-spacing--tertiary: var(--wac--accessible-spacing--2x);
+  --wac--semantic-spacing--quartary: var(--wac--accessible-spacing--1x);
+  --wac--semantic-spacing--quintary: var(--wac--accessible-spacing--halfx);
 
   --wac--text--sensible-max-width: 60ch;
   --wac--image--thumbnail-size: var(--wac--accessible-spacing--15x);
 
-  --wac--outline: 2px solid blue;
+  --wac--outline--color: blue;
+  --wac--outline--width: 2px;
+  --wac--outline: var(--wac--outline--width) solid var(--wac--outline--color);
 }
 
 *,
@@ -58,6 +63,7 @@
 body {
   font-family: 'Inter Variable', sans-serif;
   font-size: var(--wac--font-size);
+  line-height: var(--wac--line-height);
   background-color: white;
   color: black;
   padding: var(--wac--semantic-spacing--tertiary);
@@ -81,36 +87,51 @@ h1 {
   font-weight: var(--wac--font-weight--xbold);
 }
 
-p {
+p,
+figure {
   margin: 0;
   padding: 0;
 }
 
-button {
+button,
+.button {
+  --wac--button--padding: var(--wac--accessible-spacing--1x);
+
   all: unset;
 
   font-weight: var(--wac--font-weight--bold);
-  padding: var(--wac--accessible-spacing--halfx);
+  padding: var(--wac--button--padding);
+  border: 2px solid black;
 
-  transition: background-color 100ms ease;
+  transition-property: background-color, border-color, outline;
+  transition-duration: 100ms;
+  transition-timing-function: ease;
   cursor: pointer;
 
-  &.active {
-    background: var(--wac--color--highlight);
+  &:has(.button-icon) {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.4ch;
   }
 
   &:focus-visible {
     outline: var(--wac--outline);
+    border-color: var(--wac--outline--color);
+  }
+}
+
+.button-icon {
+  width: calc(var(--wac--line-height) * 1em);
+  height: calc(var(--wac--line-height) * 1em);
+  transition: transform 100ms ease;
+
+  .expanded & {
+    transform: rotate(90deg);
   }
 }
 
 @media screen and (min-width: 940px) {
-  :root {
-    --wac--semantic-spacing--primary: var(--wac--accessible-spacing--8x);
-    --wac--semantic-spacing--secondary: var(--wac--accessible-spacing--4x);
-    --wac--semantic-spacing--tertiary: var(--wac--accessible-spacing--2x);
-  }
-
   body {
     padding: var(--wac--semantic-spacing--primary);
   }

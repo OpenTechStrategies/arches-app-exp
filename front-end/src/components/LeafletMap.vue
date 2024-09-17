@@ -1,9 +1,11 @@
 <template>
   <div :class="expandMap ? 'map-container expanded' : 'map-container collapsed'">
-    <button type="button" class="toggle-map" @click="expandMap = !expandMap">
-      <span>Explore the artwork geographically</span>
-      <ChevronRightIcon class="button-icon" />
-    </button>
+    <div class="toggle-map-container">
+      <button type="button" class="toggle-map" @click="expandMap = !expandMap">
+        <span>Explore the artwork geographically</span>
+        <ChevronRightIcon class="button-icon" />
+      </button>
+    </div>
     <div @click="expandMap = true">
       <div class="map-wrapper">
         <div id="map" ref="mapElement" />
@@ -108,23 +110,7 @@ watch(
 .map-container {
   display: flex;
   flex-direction: column;
-}
-
-.toggle-map {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.4ch;
-}
-
-.button-icon {
-  width: calc(var(--wac--line-height) * 1em);
-  height: calc(var(--wac--line-height) * 1em);
-  transition: transform 100ms ease;
-
-  .expanded & {
-    transform: rotate(90deg);
-  }
+  gap: var(--wac--semantic-spacing--tertiary);
 }
 
 #map {
@@ -146,7 +132,7 @@ watch(
 }
 
 @media screen and (min-width: 940px) {
-  .toggle-map {
+  .toggle-map-container {
     display: none;
   }
 
