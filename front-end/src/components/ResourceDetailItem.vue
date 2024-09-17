@@ -15,14 +15,14 @@ const resolvedImageUrl = computed(() =>
 <template>
   <div class="resource-detail-item">
     <div class="resource-detail-item-header">
-      <div v-if="$slots['item-header-title']" class="resource-detail-item-header-title">
+      <div v-if="$slots['item-header-title']" class="resource-detail-item-title">
         <slot name="item-header-title"></slot>
       </div>
-      <div v-if="$slots['item-header-byline']" class="resource-detail-item-header-byline">
+      <div v-if="$slots['item-header-byline']" class="resource-detail-item-byline">
         <slot name="item-header-byline"></slot>
       </div>
     </div>
-    <div class="resource-detail-item-image">
+    <figure class="resource-detail-item-image">
       <img v-if="resolvedImageUrl" :src="resolvedImageUrl" alt="resource image" />
       <img
         v-else
@@ -34,10 +34,10 @@ const resolvedImageUrl = computed(() =>
         alt="no image available"
         loading="lazy"
       />
-      <div v-if="$slots['item-credit']" class="resource-detail-item-credit">
+      <figcaption v-if="$slots['item-credit']" class="resource-detail-item-credit">
         <slot name="item-credit"></slot>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
 
     <div v-if="$slots['item-description']" class="resource-detail-item-description">
       <slot name="item-description"></slot>
@@ -49,56 +49,43 @@ const resolvedImageUrl = computed(() =>
 .resource-detail-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 32px;
+  gap: var(--wac--semantic-spacing--tertiary);
 }
 
 .resource-detail-item-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
+  gap: var(--wac--semantic-spacing--quartary);
+
+  line-height: var(--wac--line-height--tight);
 }
 
-.resource-detail-item-header-byline {
-  font-style: normal;
-  font-weight: 700;
-  font-size: var(--wac--font-size);
-  line-height: 100%;
-
-  color: #000000;
-}
-
-.resource-detail-item-header-title {
-  font-style: normal;
-  font-weight: 900;
-  font-size: var(--wac--font-size--xxl);
-  line-height: 120%;
+.resource-detail-item-title {
+  font-weight: var(--wac--font-weight--xbold);
+  font-size: var(--wac--font-size--lg);
   text-decoration-line: underline;
-
-  color: #000000;
 }
 
-.resource-detail-item-credit {
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--wac--font-size);
-  line-height: 140%;
-
-  color: #000000;
+.resource-detail-item-byline {
+  font-weight: var(--wac--font-weight--bold);
 }
 
 .resource-detail-item-image {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
+  gap: var(--wac--semantic-spacing--quartary);
 }
 
-.resource-detail-item-image img {
+.resource-detail-item-image > img {
   width: 100%;
   height: 100%;
+}
+
+.resource-detail-item-credit {
+  color: var(--wac--color--gray);
+}
+
+.resource-detail-item-description {
+  font-size: var(--wac--font-size--lg);
 }
 </style>

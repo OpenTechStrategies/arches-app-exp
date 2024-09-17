@@ -1,9 +1,9 @@
 <template>
   <div class="resource-detail-header">
-    <div class="resource-detail-header-label">
+    <div class="resource-detail-type">
       <slot name="header-label"></slot>
     </div>
-    <div class="resource-detail-header-title">
+    <div class="resource-detail-title">
       <slot name="header-title"></slot>
     </div>
   </div>
@@ -27,17 +27,18 @@
 .resource-detail-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
+  gap: var(--wac--semantic-spacing--quintary);
 }
 
-.resource-detail-metadata {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
+.resource-detail-type {
+  font-size: var(--wac--font-size--lg);
+  line-height: var(--wac--line-height--tight);
+}
+
+.resource-detail-title {
+  font-weight: var(--wac--font-weight--xbold);
+  font-size: var(--wac--font-size--xxl);
+  line-height: var(--wac--line-height--tight);
 }
 
 .resource-detail-more-by-artist {
@@ -48,35 +49,14 @@
   gap: 16px;
 }
 
+.resource-detail-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wac--semantic-spacing--quartary);
+  color: var(--wac--color--gray);
+}
+
 .resource-detail-metadata-title {
-  font-style: normal;
-  font-weight: 700;
-  font-size: var(--wac--font-size);
-  line-height: 100%;
-
-  color: #999999;
-}
-
-.resource-detail-metadata-content {
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--wac--font-size);
-  line-height: 140%;
-
-  color: #999999;
-}
-
-.resource-detail-header-label {
-  font-style: normal;
-  font-weight: 400;
-  font-size: var(--wac--font-size--lg);
-  line-height: 100%;
-}
-
-.resource-detail-header-title {
-  font-style: normal;
-  font-weight: 900;
-  font-size: var(--wac--font-size--xxl);
-  line-height: 100%;
+  font-weight: var(--wac--font-weight--bold);
 }
 </style>

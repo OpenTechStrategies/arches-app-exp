@@ -118,6 +118,14 @@ const placeholderText = computed(() => {
   align-items: center;
   align-content: space-between;
   gap: var(--wac--accessible-spacing--halfx);
+
+  button {
+    --wac--button--padding: var(--wac--accessible-spacing--halfx);
+
+    &.active {
+      background: var(--wac--color--highlight);
+    }
+  }
 }
 
 .search-input {

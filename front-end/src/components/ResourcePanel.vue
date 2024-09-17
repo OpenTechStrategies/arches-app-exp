@@ -1,8 +1,11 @@
 <template>
   <div v-if="props.resource" class="resource-detail">
-    <RouterLink :to="'/archesdataviewer/home/'">
-      <div class="resource-detail-back-button">Back to search</div>
-    </RouterLink>
+    <div>
+      <RouterLink :to="'/archesdataviewer/home/'" class="button">
+        <ChevronLeftIcon class="button-icon" />
+        <span>Back to search</span>
+      </RouterLink>
+    </div>
     <ResourceDetail>
       <template #header-label>
         {{ graphIdToNameTable[props.resource.graph_id] }}
@@ -85,6 +88,7 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
+import { ChevronLeftIcon } from '@heroicons/vue/24/solid';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
@@ -105,16 +109,9 @@ const archesUrl = import.meta.env.VITE_ARCHES_API_URL;
 </script>
 
 <style scoped>
-.resource-detail-back-button {
+.resource-detail {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 0px;
-  gap: 8px;
-  font-weight: 700;
-}
-
-.resource-detail-back-button {
-  cursor: pointer;
+  flex-direction: column;
+  gap: var(--wac--semantic-spacing--secondary);
 }
 </style>

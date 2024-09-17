@@ -4,16 +4,14 @@
     :image-url="props.artwork.Photograph?.Image"
   >
     <template v-if="props.panelResourceType !== PanelResourceEnum.ARTWORK" #item-header-title>
-      <p>
-        <RouterLink
-          :to="`/archesdataviewer/home/resource/${props.artworkId}`"
-          class="resource-link"
-          >{{ artwork.Title }}</RouterLink
-        >
-      </p>
+      <RouterLink
+        :to="`/archesdataviewer/home/resource/${props.artworkId}`"
+        class="resource-link"
+        >{{ artwork.Title }}</RouterLink
+      >
     </template>
     <template v-if="artist && structure" #item-header-byline>
-      <p>
+      <span>
         <span v-if="props.panelResourceType !== PanelResourceEnum.ARTIST"
           >by
           <RouterLink
@@ -26,16 +24,16 @@
           at
           {{ structure.displayname }}</span
         >
-      </p>
+      </span>
     </template>
     <template
       v-if="photographer && props.panelResourceType !== PanelResourceEnum.PHOTOGRAPHER"
       #item-credit
     >
-      <p>
+      <span>
         Photographer:
         {{ photographer.displayname }}
-      </p>
+      </span>
     </template>
     <template
       v-if="props.artwork.Description && props.panelResourceType === PanelResourceEnum.ARTWORK"

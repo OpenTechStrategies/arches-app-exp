@@ -49,6 +49,10 @@ const imageUrl = props.imageTileData
 </script>
 
 <style scoped>
+.search-result-container {
+  text-decoration: none;
+}
+
 .search-result {
   display: flex;
   justify-content: flex-end;
@@ -89,10 +93,6 @@ const imageUrl = props.imageTileData
   height: var(--wac--image--thumbnail-size);
   object-fit: cover;
   flex-shrink: 0;
-}
-
-.search-result-container {
-  text-decoration: none;
 }
 
 @media screen and (min-width: 940px) {
