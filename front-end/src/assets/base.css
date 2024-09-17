@@ -93,6 +93,19 @@ figure {
   padding: 0;
 }
 
+a {
+  text-decoration: underline;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: var(--wac--outline);
+  }
+}
+
 button,
 .button {
   --wac--button--padding: var(--wac--accessible-spacing--1x);
