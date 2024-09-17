@@ -120,13 +120,15 @@ prefetchResources();
   line-height: var(--wac--line-height--tight);
   font-size: var(--wac--font-size--lg);
   max-width: var(--wac--text--sensible-max-width);
+  text-wrap: balance;
 }
 
 .footer {
   display: flex;
   flex-direction: column;
   gap: var(--wac--accessible-spacing--2x);
-  max-width: var(--wac--text--sensible-max-width);
+  max-width: calc(var(--wac--text--sensible-max-width) * 1.5);
+  text-wrap: balance;
 }
 
 .footer-blurb {
