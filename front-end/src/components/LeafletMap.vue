@@ -26,6 +26,7 @@ import { ChevronRightIcon } from '@heroicons/vue/24/solid';
 const router = useRouter();
 const route = useRoute();
 const expandMap = ref<boolean>(false);
+const mapResources = ref<Array<MapResource>>([]);
 
 const props = defineProps<{
   resourcesPrefetch: Array<Resource>;
@@ -33,7 +34,12 @@ const props = defineProps<{
   idReferences: Prefetch['idReferences'];
 }>();
 
-const mapResources = ref<Array<MapResource>>([]);
+const DEFAULT_LAT = 41.87213786;
+const DEFAULT_LONG = -87.62576558;
+const DEFAULT_ZOOM_LEVEL = 14;
+const HIGHLIGHT_ZOOM_LEVEL = 18;
+
+const isProd = import.meta.env.PROD;
 
 mapResources.value = props.resourcesPrefetch.map((resource) => ({
   resource,
@@ -49,8 +55,24 @@ let leaflet: L.Map | undefined;
 
 const markerTable = new Map<string, Marker<null>>();
 
+const defaultIcon = L.icon({
+  iconUrl: isProd
+    ? `${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/marker-icon.png`
+    : '/marker-icon.png',
+  iconSize: [22, 34],
+  popupAnchor: [0, -32]
+});
+
+const activeIcon = L.icon({
+  iconUrl: isProd
+    ? `${import.meta.env.VITE_ARCHES_API_URL}/archesdataviewer/marker-icon-active.png`
+    : '/marker-icon-active.png',
+  iconSize: [33, 51],
+  popupAnchor: [0, -32]
+});
+
 const initMap = (element: HTMLElement) => {
-  const map = L.map(element).setView([41.87213786, -87.62576558], 14);
+  const map = L.map(element).setView([DEFAULT_LAT, DEFAULT_LONG], DEFAULT_ZOOM_LEVEL);
   leaflet = map;
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -58,17 +80,11 @@ const initMap = (element: HTMLElement) => {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
 
-  const customIcon = L.icon({
-    iconUrl: 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/marker-icon-2x.png',
-    iconSize: [16, 30],
-    popupAnchor: [0, -32]
-  });
-
   mapResources.value.forEach((value) => {
     if (value.coordinates) {
       const coordinate = value.coordinates?.features[0].geometry.coordinates ?? undefined;
       if (coordinate) {
-        const marker = L.marker([coordinate[1], coordinate[0]], { icon: customIcon });
+        const marker = L.marker([coordinate[1], coordinate[0]], { icon: defaultIcon });
         marker.bindPopup(`<b>${value.resource.descriptors.en.name}</b>`);
         marker.on('click', () => {
           router.push(`/archesdataviewer/home/resource/${value.resource.resourceinstanceid}`);
@@ -85,6 +101,13 @@ const initMap = (element: HTMLElement) => {
 onMounted(() => {
   if (mapElement.value) {
     leaflet = initMap(mapElement.value);
+    if (route.params.id) {
+      const marker = markerTable.get(route.params.id as string);
+      if (marker) {
+        marker.openPopup();
+        leaflet?.flyTo(marker.getLatLng(), HIGHLIGHT_ZOOM_LEVEL);
+      }
+    }
   }
 });
 
@@ -92,14 +115,22 @@ watch(
   () => route.params.id,
   (newId) => {
     if (newId) {
+      markerTable.forEach((marker) => {
+        marker.setIcon(defaultIcon);
+        marker.setZIndexOffset(0);
+      });
       const marker = markerTable.get(newId as string);
       if (marker) {
+        marker.setIcon(activeIcon);
+        marker.setZIndexOffset(1000);
         marker.openPopup();
+        leaflet?.flyTo(marker.getLatLng(), HIGHLIGHT_ZOOM_LEVEL);
       } else {
         leaflet?.closePopup();
       }
     } else {
       leaflet?.closePopup();
+      leaflet?.setView([DEFAULT_LAT, DEFAULT_LONG], DEFAULT_ZOOM_LEVEL);
     }
   },
   { immediate: true }
