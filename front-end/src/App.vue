@@ -22,7 +22,7 @@
         />
         <div v-else class="map-placeholder">Loading map…</div>
       </div>
-      <div id="search-list-container" ref="searchListContainer">
+      <div id="search-list-container">
         <RouterView v-slot="{ Component }">
           <Transition
             v-if="resourcesPrefetch && resourceRelationsPrefetch && idReferences && imagesPrefetch"
@@ -52,8 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref } from 'vue';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -69,19 +68,6 @@ const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
 const locationsPrefetch = ref<Array<Tile<CoordinatesTileData>> | undefined>(undefined);
 const resourceRelationsPrefetch = ref<Array<ResourceXResource> | undefined>(undefined);
 const resourcesPrefetch = ref<Array<Resource> | undefined>(undefined);
-
-const searchListContainer = ref<HTMLDivElement | null>(null);
-
-const route = useRoute();
-
-watch(
-  () => route.params.id,
-  (newId) => {
-    if (newId && searchListContainer.value) {
-      searchListContainer.value.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-);
 
 async function prefetchResources() {
   try {
