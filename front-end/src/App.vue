@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -88,10 +88,28 @@ async function prefetchResources() {
   }
 }
 
+onBeforeMount(() => {
+  if (import.meta.env.PROD) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @font-face {
+        font-family: 'Inter Variable';
+        src: url('https://arches-app-demo.opentechstrategies.com/static/archesdataviewer/vite_build/assets/inter-latin-wght-normal-C2S99t-D.woff2') format('woff2');
+        font-weight: 100 900;
+        font-display: swap;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+});
+
 prefetchResources();
 </script>
 
 <style scoped>
+@import url('https://arches-app-demo.opentechstrategies.com/static/archesdataviewer/vite_build/assets/inter-latin-wght-normal-C2S99t-D.woff2')
+format('woff2');
+
 .home {
   display: flex;
   flex-direction: column;
