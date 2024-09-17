@@ -4,17 +4,17 @@
       <div class="resource-selection-menu">
         <button
           type="button"
-          :class="{ active: selectedResourceType === 'Artist' }"
-          @click="filterByType('Artist')"
-        >
-          Artists
-        </button>
-        <button
-          type="button"
           :class="{ active: selectedResourceType === 'Artwork' }"
           @click="filterByType('Artwork')"
         >
           Artworks
+        </button>
+        <button
+          type="button"
+          :class="{ active: selectedResourceType === 'Artist' }"
+          @click="filterByType('Artist')"
+        >
+          Artists
         </button>
       </div>
       <input v-model="query" class="search-input" :placeholder="placeholderText" />
