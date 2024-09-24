@@ -114,11 +114,11 @@ onMounted(() => {
 watch(
   () => route.params.id,
   (newId) => {
+    markerTable.forEach((marker) => {
+      marker.setIcon(defaultIcon);
+      marker.setZIndexOffset(0);
+    });
     if (newId) {
-      markerTable.forEach((marker) => {
-        marker.setIcon(defaultIcon);
-        marker.setZIndexOffset(0);
-      });
       const marker = markerTable.get(newId as string);
       if (marker) {
         marker.setIcon(activeIcon);
