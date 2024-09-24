@@ -42,9 +42,27 @@
       <div class="footer-blurb">
         <h2>About / Credit</h2>
         <p>
-          This site is a project of XYZ and ABC in association with DEF. All artwork is courtesy of
-          the respective artist. You can email contact@example.org to suggest changes or pat our
-          collective back.
+          This site is a project of
+          <a href="https://opentechstrategies.com/">Open Tech Strategies, LLC</a>. Our thanks to the
+          artists and curators who created and continue to build the
+          <a href="https://students.colum.edu/deps/wabash-arts-corridor">Wabash Arts Corridor</a> in
+          Chicago. Please write us at
+          <a
+            href="mailto:info@opentechstrategies.com?subject=Explore%20Wabash%20Arts%20Corridor%20site"
+            >info@opentechstrategies.com</a
+          >
+          to suggest changes or improvements to this site.
+        </p>
+        <p>
+          This site is free &amp; open source software, based on the
+          <a href="https://www.archesproject.org/">Arches</a> heritage data management platform. See
+          the <a href="https://github.com/OpenTechStrategies/arches-app-exp">application code</a>,
+          the
+          <a href="https://code.librehq.com/ots/arches/arches-demo-data/-/tree/main/wac">data</a>,
+          and our
+          <a href="https://code.librehq.com/ots/arches/arches-sites/-/tree/main/ots/wac"
+            >data import scripts</a
+          >. Contributions welcome.
         </p>
       </div>
     </footer>
