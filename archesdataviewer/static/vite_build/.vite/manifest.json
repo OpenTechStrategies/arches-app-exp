@@ -1,48 +1,11 @@
 {
   "index.html": {
-    "file": "assets/index-CDN88RxT.js",
+    "file": "assets/index-DxYgfFyc.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index-BgRmE63X.css"
-    ],
-    "assets": [
-      "assets/inter-cyrillic-ext-wght-normal-B2xhLi22.woff2",
-      "assets/inter-cyrillic-wght-normal-CMZtQduZ.woff2",
-      "assets/inter-greek-ext-wght-normal-CGAr0uHJ.woff2",
-      "assets/inter-greek-wght-normal-CaVNZxsx.woff2",
-      "assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2",
-      "assets/inter-latin-ext-wght-normal-CFHvXkgd.woff2",
-      "assets/inter-latin-wght-normal-C2S99t-D.woff2"
+      "assets/index-CkyBGNpN.css"
     ]
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-cyrillic-ext-wght-normal.woff2": {
-    "file": "assets/inter-cyrillic-ext-wght-normal-B2xhLi22.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-cyrillic-ext-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2": {
-    "file": "assets/inter-cyrillic-wght-normal-CMZtQduZ.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-greek-ext-wght-normal.woff2": {
-    "file": "assets/inter-greek-ext-wght-normal-CGAr0uHJ.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-greek-ext-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-greek-wght-normal.woff2": {
-    "file": "assets/inter-greek-wght-normal-CaVNZxsx.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-greek-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2": {
-    "file": "assets/inter-latin-ext-wght-normal-CFHvXkgd.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2": {
-    "file": "assets/inter-latin-wght-normal-C2S99t-D.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2"
-  },
-  "node_modules/@fontsource-variable/inter/files/inter-vietnamese-wght-normal.woff2": {
-    "file": "assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2",
-    "src": "node_modules/@fontsource-variable/inter/files/inter-vietnamese-wght-normal.woff2"
   }
 }
