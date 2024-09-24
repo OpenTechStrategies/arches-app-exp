@@ -1,4 +1,3 @@
-import '@fontsource-variable/inter';
 import './assets/main.css';
 import { createApp } from 'vue';
 import router from './router';
