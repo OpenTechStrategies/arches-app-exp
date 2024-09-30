@@ -5,7 +5,9 @@
   >
     <div class="search-result">
       <div class="metadata">
-        <div class="resource-type">{{ props.resourceType ?? 'Resource' }}</div>
+        <div v-if="props.resourceType === 'Artist'" class="resource-type">
+          {{ props.resourceType }}
+        </div>
         <div class="title">{{ props.resourceName }}</div>
         <div
           v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
