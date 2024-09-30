@@ -2,7 +2,7 @@
   <RouterLink :to="`/archesdataviewer/home/resource/${props.artwork.resourceinstanceid}`">
     <div>
       <img
-        :class="['more-artwork-image', { blocked: isBlocked }]"
+        class="more-artwork-image"
         :src="resolvedImageUrl || fallbackImageUrl"
         :alt="resolvedImageUrl ? 'Thumbnail image' : 'No image available'"
       />
@@ -13,9 +13,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { ImageTileData, Resource } from '@/types';
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
 
 const props = defineProps<{
   artwork: Resource;
@@ -35,8 +32,6 @@ const fallbackImageUrl = computed(() =>
     ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/noimage.png'
     : '/noimage.png'
 );
-
-const isBlocked = computed(() => route.params?.id === props.artwork.resourceinstanceid);
 </script>
 
 <style scoped>
@@ -53,10 +48,5 @@ const isBlocked = computed(() => route.params?.id === props.artwork.resourceinst
 
 .more-artwork-image:hover {
   opacity: 0.5;
-}
-
-.blocked {
-  filter: brightness(50%);
-  pointer-events: none;
 }
 </style>
