@@ -11,7 +11,9 @@
     </div>
     <div class="more-artworks-by-artist-gallery">
       <MoreArtworksByArtistItem
-        v-for="artwork in relatedArtworks"
+        v-for="artwork in relatedArtworks?.filter(
+          (artwork) => artwork?.resourceinstanceid !== props.resource?.resourceinstanceid
+        )"
         :key="artwork.resourceinstanceid"
         :artwork="artwork"
         :image-tile-data="
