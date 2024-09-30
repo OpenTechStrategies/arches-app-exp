@@ -85,6 +85,7 @@ const relatedArtworks = computed(() => {
   align-items: flex-start;
   align-content: flex-start;
   padding: 0px;
+  margin-top: var(--wac--accessible-spacing--1x);
   gap: 16px;
   isolation: isolate;
 }
