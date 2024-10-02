@@ -1,7 +1,7 @@
 <template>
   <div v-if="props.resource" class="resource-detail">
     <div>
-      <RouterLink :to="'/archesdataviewer/home/'" class="button">
+      <RouterLink :to="'/'" class="button">
         <ChevronLeftIcon class="button-icon" />
         <span>Back to search</span>
       </RouterLink>

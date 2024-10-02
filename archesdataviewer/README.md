@@ -76,24 +76,24 @@ server {
     }
 
 
-location / {
-        # For the root URL ("/"), serve as /home
-        if ($request_uri = "/") {
-            rewrite ^ /home/ break;
+    location / {
+            # For the root URL ("/"), serve as /home
+            if ($request_uri = "/") {
+                rewrite ^ /home/ break;
+            }
+
+            # For any other URL, prepend "/home" to the request
+            rewrite ^/(.*)$ /home/$1 break;
+
+            # Pass the request to Django
+            uwsgi_pass django;
+            include /etc/nginx/uwsgi_params;
+
+            uwsgi_param Host $http_host;
+            uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            proxy_redirect off;
         }
-
-        # For any other URL, prepend "/home" to the request
-        rewrite ^/(.*)$ /home/$1 break;
-
-        # Pass the request to Django
-        uwsgi_pass django;
-        include /etc/nginx/uwsgi_params;
-
-        uwsgi_param Host $http_host;
-        uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
-
-        proxy_redirect off;
-    }
 
 
     # HACK TO MAKE IT WORK FOR APPLICATION DEMO.
