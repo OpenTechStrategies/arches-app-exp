@@ -2,10 +2,7 @@
   <div v-if="relatedArtworks && relatedArtworks.length > 1">
     <div v-if="artist" class="more-artworks-by-artist-title">
       More artwork by
-      <RouterLink
-        :to="`/archesdataviewer/home/resource/${artist.resourceinstanceid}`"
-        class="resource-link"
-      >
+      <RouterLink :to="`/wac/resource/${artist.resourceinstanceid}`" class="resource-link">
         {{ artist.displayname }}
       </RouterLink>
     </div>

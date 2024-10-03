@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path("archesdataviewer/prefetch/", views.prefetch, name="prefetch"),
-    re_path(r"^archesdataviewer/home/.*$", views.index, name="archesdataviewer"),
+    re_path(r"^home/.*$", views.index, name="archesdataviewer"),
 ]
