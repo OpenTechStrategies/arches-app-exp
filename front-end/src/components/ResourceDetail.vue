@@ -9,11 +9,16 @@
   </div>
 
   <slot name="items"></slot>
+
   <div v-if="$slots['more-by-artist']" class="resource-detail-more-by-artist">
     <slot name="more-by-artist"></slot>
   </div>
 
-  <div class="resource-detail-metadata">
+  <button type="button" class="toggle-metadata" @click="toggleMetadata">
+    <span>{{ showMetadata ? 'Hide arches metadata' : 'Show arches metadata' }}</span>
+  </button>
+
+  <div :class="['resource-detail-metadata', { collapsed: !showMetadata }]">
     <div class="resource-detail-metadata-title">Arches metadata:</div>
     <div class="resource-detail-metadata-content">
       <slot name="metadata"></slot>
@@ -21,7 +26,15 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const showMetadata = ref<boolean>(false);
+
+const toggleMetadata = () => {
+  showMetadata.value = !showMetadata.value;
+};
+</script>
 
 <style scoped>
 .resource-detail-header {
@@ -50,13 +63,22 @@
 }
 
 .resource-detail-metadata {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wac--semantic-spacing--quartary);
+  overflow: hidden;
+  max-height: 50px;
+  transition: max-height 0.5s ease;
   color: var(--wac--color--gray);
+}
+
+.resource-detail-metadata.collapsed {
+  max-height: 0px;
 }
 
 .resource-detail-metadata-title {
   font-weight: var(--wac--font-weight--bold);
+}
+
+.toggle-metadata {
+  display: inline-block;
+  max-width: 180px;
 }
 </style>
