@@ -1,5 +1,9 @@
 <template>
-  <RouterLink :to="`/wac/resource/${props.resourceId}`" class="search-result-container">
+  <RouterLink
+    v-if="imageUrl !== undefined"
+    :to="`/wac/resource/${props.resourceId}`"
+    class="search-result-container"
+  >
     <div class="search-result">
       <div class="metadata">
         <div v-if="props.resourceType === 'Artist'" class="resource-type">
