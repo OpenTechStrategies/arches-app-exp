@@ -76,4 +76,31 @@ const getMoreArtworksByArtist = (
   return relatedArtworks ?? undefined;
 };
 
-export { getImageTileDataForResource, castToPanelResourceType, getMoreArtworksByArtist };
+const getArtistForArtwork = (
+  resource: Resource | ApiResource,
+  resourcesPrefetch: Array<Resource> | undefined,
+  resourceRelationsPrefetch: Array<ResourceXResource>,
+  idReferences: Prefetch['idReferences']
+) => {
+  const relation = resourceRelationsPrefetch.find(
+    (resourceRelation) =>
+      resourceRelation.resourceinstanceidfrom_id === resource.resourceinstanceid &&
+      resourceRelation.resourceinstanceto_graphid_id === idReferences.nameToGraphIdTable.Artist
+  );
+
+  if (!relation) {
+    return undefined;
+  }
+  const artist = resourcesPrefetch?.find(
+    (artistPrefetch) => artistPrefetch.resourceinstanceid === relation.resourceinstanceidto_id
+  );
+
+  return artist;
+};
+
+export {
+  getImageTileDataForResource,
+  castToPanelResourceType,
+  getMoreArtworksByArtist,
+  getArtistForArtwork
+};
