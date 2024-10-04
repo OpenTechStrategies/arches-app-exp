@@ -65,7 +65,6 @@
         />
       </template>
       <template #metadata>
-        <div>Graph ID: {{ props.resource.graph_id }}</div>
         <div>
           Resource Instance ID:
           <a :href="`${archesUrl}/report/${props.resource.resourceinstanceid}`">{{
