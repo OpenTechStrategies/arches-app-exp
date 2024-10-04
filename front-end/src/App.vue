@@ -1,8 +1,17 @@
 <template>
   <div class="home">
     <header class="welcome">
-      <h1>Explore Chicago’s Wabash Arts Corridor</h1>
-      <p>
+      <div class="toggle-top-text">
+        <button
+          type="button"
+          :class="showTopText ? 'expanded' : 'collapsed'"
+          @click="toggleTopText"
+        >
+          <h1>Explore Chicago’s Wabash Arts Corridor</h1>
+          <ChevronRightIcon class="button-icon" />
+        </button>
+      </div>
+      <p :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
         In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
         the creative spirit by using urban spaces and reclaimable resources to revitalize and
         transform the South Loop business district into one of the city’s major cultural assets. The
@@ -71,6 +80,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { ChevronRightIcon } from '@heroicons/vue/24/solid';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -80,6 +90,12 @@ import type {
   Prefetch,
   ResourceXResource
 } from './types';
+
+const showTopText = ref<boolean>(false);
+
+const toggleTopText = () => {
+  showTopText.value = !showTopText.value;
+};
 
 const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
 const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
@@ -150,6 +166,24 @@ main {
 #map-container,
 #search-list-container {
   flex-basis: 50%;
+}
+
+.top-text {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.6s ease-in-out,
+    padding 0.3s ease;
+}
+
+.top-text.expanded {
+  max-height: 400px;
+  padding-top: 10px;
+}
+
+.top-text.collapsed {
+  max-height: 0;
+  padding-top: 0;
 }
 
 @media screen and (min-width: 940px) {

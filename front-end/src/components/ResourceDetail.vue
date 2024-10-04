@@ -13,11 +13,16 @@
   <div v-if="$slots['more-by-artist']" class="resource-detail-more-by-artist">
     <slot name="more-by-artist"></slot>
   </div>
-
-  <button type="button" class="toggle-metadata" @click="toggleMetadata">
-    <span>{{ showMetadata ? 'Hide arches metadata' : 'Show arches metadata' }}</span>
-  </button>
-
+  <div>
+    <button
+      type="button"
+      :class="showMetadata ? 'toggle-metadata expanded' : 'toggle-metadata collapsed'"
+      @click="toggleMetadata"
+    >
+      <span>{{ showMetadata ? 'Hide arches metadata' : 'Show arches metadata' }}</span>
+      <ChevronRightIcon class="button-icon" />
+    </button>
+  </div>
   <div :class="['resource-detail-metadata', { collapsed: !showMetadata }]">
     <div class="resource-detail-metadata-title">Arches metadata:</div>
     <div class="resource-detail-metadata-content">
@@ -28,6 +33,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { ChevronRightIcon } from '@heroicons/vue/24/solid';
 
 const showMetadata = ref<boolean>(false);
 
@@ -75,10 +81,5 @@ const toggleMetadata = () => {
 
 .resource-detail-metadata-title {
   font-weight: var(--wac--font-weight--bold);
-}
-
-.toggle-metadata {
-  display: inline-block;
-  max-width: 180px;
 }
 </style>
