@@ -10,6 +10,9 @@
           {{ props.resourceType }}
         </div>
         <div class="title">{{ props.resourceName }}</div>
+        <div v-if="props.resourceType === 'Artwork'" class="artist-credit">
+          {{ props.artist?.displayname ? `(${props.artist?.displayname})` : '' }}
+        </div>
         <div
           v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
           class="description"
@@ -34,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ImageTileData } from '@/types';
+import type { ImageTileData, Resource } from '@/types';
 
 const props = defineProps<{
   resourceName: string;
@@ -42,6 +45,7 @@ const props = defineProps<{
   resourceDescription: string;
   resourceType: string | undefined;
   imageTileData: ImageTileData[] | undefined;
+  artist: Resource | undefined;
 }>();
 
 const isProd = import.meta.env.PROD;
@@ -89,6 +93,10 @@ const imageUrl = props.imageTileData
   display: -webkit-box;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.artist-credit {
+  font-style: italic;
 }
 
 .image {

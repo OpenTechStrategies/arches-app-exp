@@ -35,6 +35,14 @@
             props.idReferences
           )
         "
+        :artist="
+          getArtistForArtwork(
+            result,
+            props.resourcesPrefetch,
+            props.resourceRelationsPrefetch,
+            props.idReferences
+          )
+        "
       />
     </div>
   </div>
@@ -43,7 +51,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
-import { getImageTileDataForResource } from '@/utils';
+import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from './SearchListItem.vue';
 
 const query = ref<string>('');
