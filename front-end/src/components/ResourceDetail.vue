@@ -72,7 +72,7 @@ const toggleMetadata = () => {
 
 .resource-detail-metadata {
   overflow: hidden;
-  max-height: 50px;
+  max-height: 200px;
   transition: max-height 0.5s ease;
   color: var(--wac--color--gray);
 }

@@ -66,10 +66,21 @@
       </template>
       <template #metadata>
         <div>
-          Resource Instance ID:
-          <a :href="`${archesUrl}/report/${props.resource.resourceinstanceid}`">{{
-            props.resource.resourceinstanceid
-          }}</a>
+          <p
+            v-if="
+              props.idReferences.graphIdToNameTable[props.resource.graph_id] &&
+              props.resource.displayname
+            "
+          >
+            {{ props.idReferences.graphIdToNameTable[props.resource.graph_id] }} -
+            {{ props.resource.displayname }}
+          </p>
+          <p>
+            Resource Instance ID:
+            <a :href="`${archesUrl}/report/${props.resource.resourceinstanceid}`">{{
+              props.resource.resourceinstanceid
+            }}</a>
+          </p>
         </div>
       </template>
     </ResourceDetail>
