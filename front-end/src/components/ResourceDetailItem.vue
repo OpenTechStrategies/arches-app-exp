@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { splitImageUrl } from '@/utils';
 
 const isProd = import.meta.env.PROD;
 
@@ -7,8 +8,10 @@ const props = defineProps<{
   imageUrl: string | undefined;
 }>();
 
-const resolvedImageUrl = computed(() =>
-  props.imageUrl ? import.meta.env.VITE_ARCHES_API_URL + props.imageUrl : undefined
+const resolvedImageUrls = computed(() =>
+  props.imageUrl
+    ? splitImageUrl(props.imageUrl).map((url) => import.meta.env.VITE_ARCHES_API_URL + url.trim())
+    : undefined
 );
 </script>
 
@@ -22,10 +25,15 @@ const resolvedImageUrl = computed(() =>
         <slot name="item-header-byline"></slot>
       </div>
     </div>
-    <figure class="resource-detail-item-image">
-      <img v-if="resolvedImageUrl" :src="resolvedImageUrl" alt="resource image" />
+    <figure v-if="resolvedImageUrls" class="resource-detail-item-image">
       <img
-        v-else
+        v-for="resolvedImageUrl in resolvedImageUrls"
+        :key="resolvedImageUrl"
+        :src="resolvedImageUrl"
+        alt="resource image"
+      />
+      <img
+        v-if="!resolvedImageUrls"
         :src="
           isProd
             ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/noimage.png'
