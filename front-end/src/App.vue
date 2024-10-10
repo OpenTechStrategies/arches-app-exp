@@ -8,7 +8,7 @@
           @click="toggleTopText"
         >
           <h1>Explore Chicago’s Wabash Arts Corridor</h1>
-          <ChevronRightIcon class="button-icon" />
+          <InformationCircleIcon class="button-icon" />
         </button>
       </div>
       <p :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
@@ -80,7 +80,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { ChevronRightIcon } from '@heroicons/vue/24/solid';
+import { InformationCircleIcon } from '@heroicons/vue/24/solid';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,

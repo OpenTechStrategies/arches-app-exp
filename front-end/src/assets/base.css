@@ -140,7 +140,7 @@ button,
   height: calc(var(--wac--line-height) * 1em);
   transition: transform 100ms ease;
 
-  .expanded & {
+  .chevron-expanded & {
     transform: rotate(90deg);
   }
 }
