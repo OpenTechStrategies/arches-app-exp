@@ -2,7 +2,7 @@
   <div v-if="props.resource" class="resource-detail">
     <div>
       <RouterLink :to="'/'" class="button">
-        <ChevronLeftIcon class="button-icon" />
+        <ArrowLeftIcon class="button-icon" />
         <span>Back to search</span>
       </RouterLink>
     </div>
@@ -87,7 +87,7 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
-import { ChevronLeftIcon } from '@heroicons/vue/24/solid';
+import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
