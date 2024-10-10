@@ -20,7 +20,7 @@
           {{ props.resourceDescription }}
         </div>
       </div>
-      <img v-if="imageUrl" class="image" loading="lazy" :src="imageUrl" alt="thumbnail image" />
+      <img v-if="imageUrl" class="image" :src="imageUrl" alt="thumbnail image" />
       <img
         v-else
         class="image"
@@ -30,7 +30,6 @@
             : '/noimage.png'
         "
         alt="no image available"
-        loading="lazy"
       />
     </div>
   </RouterLink>
