@@ -4,6 +4,8 @@ to create an isolated front-end component that consumes data from the Arches pla
 
 It is currently hosted at (https://arches-app-demo.opentechstrategies.com/archesdataviewer/home/)
 
+This application is customized around the [Wabash Arts Corridor Dataset](https://code.librehq.com/ots/arches/arches-demo-data).
+
 # Technologies used
 An Arches Application is itself a Django Application, which can be installed into an existing instance of Arches. 
 The code in the ```archesdataviewer``` folder is modeled off of [this repository](https://github.com/chiatt/dashboard). Currently,
