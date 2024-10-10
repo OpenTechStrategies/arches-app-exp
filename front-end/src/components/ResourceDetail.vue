@@ -16,7 +16,9 @@
   <div>
     <button
       type="button"
-      :class="showMetadata ? 'toggle-metadata expanded' : 'toggle-metadata collapsed'"
+      :class="
+        showMetadata ? 'toggle-metadata expanded chevron-expanded' : 'toggle-metadata collapsed'
+      "
       @click="toggleMetadata"
     >
       <span>{{ showMetadata ? 'Hide arches metadata' : 'Show arches metadata' }}</span>

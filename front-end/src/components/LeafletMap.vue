@@ -1,5 +1,5 @@
 <template>
-  <div :class="expandMap ? 'map-container expanded' : 'map-container collapsed'">
+  <div :class="expandMap ? 'map-container expanded chevron-expanded' : 'map-container collapsed'">
     <div class="toggle-map-container">
       <button type="button" class="toggle-map" @click="expandMap = !expandMap">
         <span>Explore the artwork geographically</span>
