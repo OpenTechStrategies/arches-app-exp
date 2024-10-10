@@ -191,6 +191,7 @@ main {
 
 .top-text-button {
   border: none;
+  padding: 0;
 }
 
 .toggle-top-text {
