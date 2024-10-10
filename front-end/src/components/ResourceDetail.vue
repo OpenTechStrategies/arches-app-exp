@@ -14,21 +14,23 @@
     <slot name="more-by-artist"></slot>
   </div>
   <div>
-    <button
-      type="button"
-      :class="
-        showMetadata ? 'toggle-metadata expanded chevron-expanded' : 'toggle-metadata collapsed'
-      "
-      @click="toggleMetadata"
-    >
-      <span>{{ showMetadata ? 'Hide arches metadata' : 'Show arches metadata' }}</span>
-      <ChevronRightIcon class="button-icon" />
-    </button>
-  </div>
-  <div :class="['resource-detail-metadata', { collapsed: !showMetadata }]">
-    <div class="resource-detail-metadata-title">Arches metadata:</div>
-    <div class="resource-detail-metadata-content">
-      <slot name="metadata"></slot>
+    <div class="resource-detail-metadata-container">
+      <button
+        type="button"
+        :class="
+          showMetadata ? 'toggle-metadata expanded chevron-expanded' : 'toggle-metadata collapsed'
+        "
+        @click="toggleMetadata"
+      >
+        <span>{{ showMetadata ? 'Hide arches metadata ' : 'Show arches metadata' }}</span>
+        <ChevronRightIcon class="button-icon" />
+      </button>
+      <div :class="['resource-detail-metadata', { collapsed: !showMetadata }]">
+        <div class="resource-detail-metadata-title">Arches metadata:</div>
+        <div class="resource-detail-metadata-content">
+          <slot name="metadata"></slot>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -70,10 +72,17 @@ const toggleMetadata = () => {
   gap: 16px;
 }
 
+.resource-detail-metadata-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
 .resource-detail-metadata {
   overflow: hidden;
-  max-height: 200px;
-  transition: max-height 0.5s ease;
+  max-height: 150px;
+  transition: max-height 300ms ease-in-out;
   color: var(--wac--color--gray);
 }
 
