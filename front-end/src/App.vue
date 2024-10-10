@@ -4,11 +4,14 @@
       <div class="toggle-top-text">
         <button
           type="button"
-          :class="showTopText ? 'expanded' : 'collapsed'"
+          :class="showTopText ? 'top-text-button expanded' : 'top-text-button collapsed'"
           @click="toggleTopText"
         >
           <h1>Explore Chicago’s Wabash Arts Corridor</h1>
           <InformationCircleIcon class="button-icon" />
+        </button>
+        <button type="button" class="top-text-button x-button" @click="toggleTopText">
+          <XMarkIcon :class="showTopText ? 'button-icon shown' : 'button-icon hidden'" />
         </button>
       </div>
       <p :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
@@ -80,7 +83,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { InformationCircleIcon } from '@heroicons/vue/24/solid';
+import { InformationCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -172,18 +175,36 @@ main {
   max-height: 0;
   overflow: hidden;
   transition:
-    max-height 0.6s ease-in-out,
-    padding 0.3s ease;
+    max-height 500ms ease-in-out,
+    padding 300ms ease;
 }
 
 .top-text.expanded {
-  max-height: 400px;
+  max-height: 350px;
   padding-top: 10px;
 }
 
 .top-text.collapsed {
   max-height: 0;
   padding-top: 0;
+}
+
+.top-text-button {
+  border: none;
+}
+
+.toggle-top-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.x-button {
+  opacity: 1;
+  margin-left: auto;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 @media screen and (min-width: 940px) {
