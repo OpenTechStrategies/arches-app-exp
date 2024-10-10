@@ -98,9 +98,12 @@ const getArtistForArtwork = (
   return artist;
 };
 
+const splitImageUrl = (imageUrl: string) => imageUrl.split('|');
+
 export {
   getImageTileDataForResource,
   castToPanelResourceType,
   getMoreArtworksByArtist,
-  getArtistForArtwork
+  getArtistForArtwork,
+  splitImageUrl
 };
