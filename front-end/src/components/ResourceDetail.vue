@@ -22,11 +22,11 @@
         "
         @click="toggleMetadata"
       >
-        <span>{{ showMetadata ? 'Hide arches metadata ' : 'Show arches metadata' }}</span>
+        <span>{{ showMetadata ? 'Hide Arches Metadata ' : 'Show Arches Metadata' }}</span>
         <ChevronRightIcon class="button-icon" />
       </button>
       <div :class="['resource-detail-metadata', { collapsed: !showMetadata }]">
-        <div class="resource-detail-metadata-title">Arches metadata:</div>
+        <div class="resource-detail-metadata-title">Arches Metadata:</div>
         <div class="resource-detail-metadata-content">
           <slot name="metadata"></slot>
         </div>
