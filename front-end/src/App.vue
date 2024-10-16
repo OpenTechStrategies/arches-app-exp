@@ -14,15 +14,24 @@
           <XMarkIcon :class="showTopText ? 'button-icon shown' : 'button-icon hidden'" />
         </button>
       </div>
-      <p :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
-        In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
-        the creative spirit by using urban spaces and reclaimable resources to revitalize and
-        transform the South Loop business district into one of the city’s major cultural assets. The
-        heart of WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by
-        Michigan Avenue and to the west by State Street. The corridor is regarded as an “living
-        urban canvas” due to its ever-growing number of large-scale mural installations and
-        collaborative projects.
-      </p>
+      <div :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
+        <p>
+          In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
+          the creative spirit by using urban spaces and reclaimable resources to revitalize and
+          transform the South Loop business district into one of the city’s major cultural assets.
+          The heart of WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by
+          Michigan Avenue and to the west by State Street. The corridor is regarded as an “living
+          urban canvas” due to its ever-growing number of large-scale mural installations and
+          collaborative projects.
+        </p>
+        <p class="citation">
+          See Columbia College's
+          <a href="https://students.colum.edu/ssac/wabash-arts-corridor"
+            >page about the Wabash Arts Corridor</a
+          >
+          for more information.
+        </p>
+      </div>
     </header>
     <main>
       <div id="map-container">
@@ -179,8 +188,14 @@ main {
     padding 300ms ease;
 }
 
+.citation {
+  line-height: var(--wac--line-height);
+  font-size: var(--wac--font-size);
+  padding-top: 10px;
+}
+
 .top-text.expanded {
-  max-height: 350px;
+  max-height: 400px;
   padding-top: 10px;
 }
 
@@ -211,6 +226,10 @@ main {
 @media screen and (min-width: 940px) {
   .welcome {
     font-size: var(--wac--font-size--xxl);
+  }
+
+  .citation {
+    font-size: var(--wac--font-size--lg);
   }
 
   main {
