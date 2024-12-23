@@ -1,36 +1,37 @@
 <template>
   <div class="home">
     <header class="welcome">
-      <div class="toggle-top-text">
-        <button
-          type="button"
-          :class="showTopText ? 'top-text-button expanded' : 'top-text-button collapsed'"
-          @click="toggleTopText"
-        >
-          <h1>Explore Chicago’s Wabash Arts Corridor</h1>
-          <InformationCircleIcon class="button-icon" />
-        </button>
-        <button type="button" class="top-text-button x-button" @click="toggleTopText">
-          <XMarkIcon :class="showTopText ? 'button-icon shown' : 'button-icon hidden'" />
-        </button>
-      </div>
-      <div :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
-        <p>
-          In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
-          the creative spirit by using urban spaces and reclaimable resources to revitalize and
-          transform the South Loop business district into one of the city’s major cultural assets.
-          The heart of WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by
-          Michigan Avenue and to the west by State Street. The corridor is regarded as an “living
-          urban canvas” due to its ever-growing number of large-scale mural installations and
-          collaborative projects.
-        </p>
-        <p class="citation">
-          See Columbia College's
-          <a href="https://students.colum.edu/ssac/wabash-arts-corridor"
-            >page about the Wabash Arts Corridor</a
-          >
-          for more information.
-        </p>
+      <div class="welcome-content">
+        <h1>
+          Explore Chicago’s <br />
+          Wabash Arts Corridor
+        </h1>
+        <div class="welcome-credits">
+          <div class="welcome-credit">
+            <p>Designed by</p>
+            <img
+              :src="
+                isProd
+                  ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
+                  : '/ots_logo.png'
+              "
+              alt="no image available"
+              loading="lazy"
+            />
+          </div>
+          <div class="welcome-credit">
+            <p>Powered by</p>
+            <img
+              :src="
+                isProd
+                  ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
+                  : '/arches_logo.png'
+              "
+              alt="no image available"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
     </header>
     <main>
@@ -103,11 +104,7 @@ import type {
   ResourceXResource
 } from './types';
 
-const showTopText = ref<boolean>(false);
-
-const toggleTopText = () => {
-  showTopText.value = !showTopText.value;
-};
+const isProd = import.meta.env.PROD;
 
 const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
 const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
@@ -151,8 +148,38 @@ prefetchResources();
   font-size: var(--wac--font-size);
   line-height: var(--wac--line-height--tight);
   font-size: var(--wac--font-size--lg);
-  max-width: var(--wac--text--sensible-max-width);
   text-wrap: balance;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-credits {
+  display: flex;
+  gap: var(--wac--accessible-spacing--halfx);
+  flex-wrap: wrap;
+}
+
+.welcome-credit {
+  display: flex;
+  align-items: center;
+  gap: var(--wac--accessible-spacing--halfx);
+}
+
+.welcome-credits img {
+  max-height: 25px;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.welcome-credits p {
+  font-weight: var(--wac--font-weight--normal);
+  font-size: var(--wac--font-size);
+  margin: 0;
+  white-space: nowrap;
 }
 
 .footer {
@@ -224,6 +251,38 @@ main {
 }
 
 @media screen and (min-width: 940px) {
+  .welcome-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .welcome h1 {
+    flex: 1;
+  }
+
+  .welcome-credits {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--wac--accessible-spacing--halfx);
+    flex-wrap: wrap;
+  }
+
+  .welcome-credit {
+    display: flex;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+  }
+
+  .welcome-credits img {
+    max-height: 50px;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
   .welcome {
     font-size: var(--wac--font-size--xxl);
   }
