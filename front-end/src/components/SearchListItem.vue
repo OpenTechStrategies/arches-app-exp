@@ -6,18 +6,15 @@
   >
     <div class="search-result">
       <div class="metadata">
-        <div v-if="props.resourceType === 'Artist'" class="resource-type">
-          {{ props.resourceType }}
+        <div class="title-wrapper">
+          <PhotoIcon v-if="props.resourceType === 'Artwork'" class="search-list-item-icon" />
+          <UserIcon v-if="props.resourceType === 'Artist'" class="search-list-item-icon" />
+          <div class="title">
+            {{ props.resourceName }}
+          </div>
         </div>
-        <div class="title">{{ props.resourceName }}</div>
         <div v-if="props.resourceType === 'Artwork'" class="artist-credit">
-          {{ props.artist?.displayname ? `(${props.artist?.displayname})` : '' }}
-        </div>
-        <div
-          v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
-          class="description"
-        >
-          {{ props.resourceDescription }}
+          {{ props.artist?.displayname ? ` by ${props.artist?.displayname}` : '' }}
         </div>
       </div>
       <img v-if="imageUrl" class="image" :src="imageUrl" alt="thumbnail image" />
@@ -37,6 +34,7 @@
 
 <script setup lang="ts">
 import type { ImageTileData, Resource } from '@/types';
+import { PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
 
 const props = defineProps<{
   resourceName: string;
@@ -62,8 +60,8 @@ const imageUrl = props.imageTileData
 .search-result {
   display: flex;
   justify-content: flex-end;
-  flex-direction: row-reverse;
-  gap: var(--wac--semantic-spacing--tertiary);
+  flex-direction: column;
+  gap: var(--wac--semantic-spacing--quartary);
   cursor: pointer;
 }
 
@@ -71,47 +69,48 @@ const imageUrl = props.imageTileData
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: var(--wac--accessible-spacing--1x);
   gap: var(--wac--accessible-spacing--halfx);
-
   line-height: var(--wac--line-height--tight);
+  text-overflow: ellipsis;
+  max-width: var(--wac--image--thumbnail-size-x);
+}
+
+.title-wrapper {
+  display: flex;
+  gap: var(--wac--accessible-spacing--halfx);
 }
 
 .title {
   font-size: var(--wac--font-size--lg);
-  font-weight: var(--wac--font-weight--xbold);
-  text-decoration: underline;
-}
-
-.description {
-  font-size: var(--wac--font-size--sm);
-  margin-top: var(--wac--accessible-spacing--1x);
-
+  font-weight: var(--wac--font-weight--bold);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   display: -webkit-box;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.artist-credit {
-  font-style: italic;
-}
-
 .image {
-  width: var(--wac--image--thumbnail-size);
-  height: var(--wac--image--thumbnail-size);
+  width: var(--wac--image--thumbnail-size-x);
+  height: var(--wac--image--thumbnail-size-y);
   object-fit: cover;
   flex-shrink: 0;
+  background-color: white;
+  padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
+    var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);
+  box-shadow: 1px 2px 0px grey;
+}
+
+.search-list-item-icon {
+  width: calc(var(--wac--line-height) * 1em);
+  height: calc(var(--wac--line-height) * 1em);
 }
 
 @media screen and (min-width: 940px) {
   .title {
-    font-size: var(--wac--font-size--xl);
-  }
-
-  .description {
-    font-size: var(--wac--font-size);
+    font-size: var(--wac--font-size--lg);
   }
 }
 </style>

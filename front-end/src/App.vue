@@ -1,36 +1,37 @@
 <template>
   <div class="home">
     <header class="welcome">
-      <div class="toggle-top-text">
-        <button
-          type="button"
-          :class="showTopText ? 'top-text-button expanded' : 'top-text-button collapsed'"
-          @click="toggleTopText"
-        >
-          <h1>Explore Chicago’s Wabash Arts Corridor</h1>
-          <InformationCircleIcon class="button-icon" />
-        </button>
-        <button type="button" class="top-text-button x-button" @click="toggleTopText">
-          <XMarkIcon :class="showTopText ? 'button-icon shown' : 'button-icon hidden'" />
-        </button>
-      </div>
-      <div :class="showTopText ? 'top-text expanded' : 'top-text collapsed'">
-        <p>
-          In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
-          the creative spirit by using urban spaces and reclaimable resources to revitalize and
-          transform the South Loop business district into one of the city’s major cultural assets.
-          The heart of WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by
-          Michigan Avenue and to the west by State Street. The corridor is regarded as an “living
-          urban canvas” due to its ever-growing number of large-scale mural installations and
-          collaborative projects.
-        </p>
-        <p class="citation">
-          See Columbia College's
-          <a href="https://students.colum.edu/ssac/wabash-arts-corridor"
-            >page about the Wabash Arts Corridor</a
-          >
-          for more information.
-        </p>
+      <div class="welcome-content">
+        <h1>
+          Explore Chicago’s <br />
+          Wabash Arts Corridor
+        </h1>
+        <div class="welcome-credits">
+          <div class="welcome-credit">
+            <p>Designed by</p>
+            <img
+              :src="
+                isProd
+                  ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
+                  : '/ots_logo.png'
+              "
+              alt="no image available"
+              loading="lazy"
+            />
+          </div>
+          <div class="welcome-credit">
+            <p>Powered by</p>
+            <img
+              :src="
+                isProd
+                  ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
+                  : '/arches_logo.png'
+              "
+              alt="no image available"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
     </header>
     <main>
@@ -59,40 +60,11 @@
         </RouterView>
       </div>
     </main>
-    <footer class="footer">
-      <div class="footer-blurb">
-        <h2>About / Credit</h2>
-        <p>
-          This site is a project of
-          <a href="https://opentechstrategies.com/">Open Tech Strategies, LLC</a>. Our thanks to the
-          artists and curators who created and continue to build the
-          <a href="https://students.colum.edu/deps/wabash-arts-corridor">Wabash Arts Corridor</a> in
-          Chicago. Please write us at
-          <a
-            href="mailto:info@opentechstrategies.com?subject=Explore%20Wabash%20Arts%20Corridor%20site"
-            >info@opentechstrategies.com</a
-          >
-          to suggest changes or improvements to this site.
-        </p>
-        <p>
-          This site is free &amp; open source software, based on the
-          <a href="https://www.archesproject.org/">Arches</a> heritage data management platform. See
-          the <a href="https://github.com/OpenTechStrategies/arches-app-exp">application code</a>,
-          the
-          <a href="https://code.librehq.com/ots/arches/arches-demo-data/-/tree/main/wac">data</a>,
-          and our
-          <a href="https://code.librehq.com/ots/arches/arches-sites/-/tree/main/ots/wac"
-            >data import scripts</a
-          >. Contributions welcome.
-        </p>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { InformationCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -103,11 +75,7 @@ import type {
   ResourceXResource
 } from './types';
 
-const showTopText = ref<boolean>(false);
-
-const toggleTopText = () => {
-  showTopText.value = !showTopText.value;
-};
+const isProd = import.meta.env.PROD;
 
 const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
 const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
@@ -138,6 +106,10 @@ prefetchResources();
 </script>
 
 <style scoped>
+main {
+  border-radius: 32px;
+}
+
 .home {
   display: flex;
   flex-direction: column;
@@ -151,22 +123,38 @@ prefetchResources();
   font-size: var(--wac--font-size);
   line-height: var(--wac--line-height--tight);
   font-size: var(--wac--font-size--lg);
-  max-width: var(--wac--text--sensible-max-width);
   text-wrap: balance;
 }
 
-.footer {
+.welcome-content {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--accessible-spacing--2x);
-  max-width: calc(var(--wac--text--sensible-max-width) * 1.5);
-  text-wrap: balance;
 }
 
-.footer-blurb {
+.welcome-credits {
   display: flex;
-  flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
+  gap: var(--wac--accessible-spacing--halfx);
+  flex-wrap: wrap;
+}
+
+.welcome-credit {
+  display: flex;
+  align-items: center;
+  gap: var(--wac--accessible-spacing--halfx);
+}
+
+.welcome-credits img {
+  max-height: 25px;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.welcome-credits p {
+  font-weight: var(--wac--font-weight--normal);
+  font-size: var(--wac--font-size);
+  margin: 0;
+  white-space: nowrap;
 }
 
 main {
@@ -180,56 +168,51 @@ main {
   flex-basis: 50%;
 }
 
-.top-text {
-  max-height: 0;
-  overflow: hidden;
-  transition:
-    max-height 500ms ease-in-out,
-    padding 300ms ease;
-}
-
-.citation {
-  line-height: var(--wac--line-height);
-  font-size: var(--wac--font-size);
-  padding-top: 10px;
-}
-
-.top-text.expanded {
-  max-height: 400px;
-  padding-top: 10px;
-}
-
-.top-text.collapsed {
-  max-height: 0;
-  padding-top: 0;
-}
-
-.top-text-button {
-  border: none;
-  padding: 0;
-}
-
-.toggle-top-text {
-  display: flex;
-  flex-direction: row;
-}
-
-.x-button {
-  opacity: 1;
-  margin-left: auto;
-}
-
-.hidden {
-  opacity: 0;
+#search-list-container {
+  background-color: #fff8e0;
+  border-radius: 32px;
+  padding: var(--wac--accessible-spacing--2x);
 }
 
 @media screen and (min-width: 940px) {
-  .welcome {
-    font-size: var(--wac--font-size--xxl);
+  main {
+    padding-left: var(--wac--accessible-spacing--2x);
+    background-color: #fff8e0;
+  }
+  .welcome-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .citation {
-    font-size: var(--wac--font-size--lg);
+  .welcome h1 {
+    flex: 1;
+  }
+
+  .welcome-credits {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--wac--accessible-spacing--halfx);
+    flex-wrap: wrap;
+  }
+
+  .welcome-credit {
+    display: flex;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+  }
+
+  .welcome-credits img {
+    max-height: 50px;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .welcome {
+    font-size: var(--wac--font-size--xxl);
   }
 
   main {

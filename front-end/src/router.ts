@@ -8,6 +8,21 @@ const routes = [
   {
     path: '/wac/resource/:id',
     component: ResourceDetailView
+  },
+  {
+    path: '/artists',
+    component: SearchView,
+    props: { routeQuery: 'artists' }
+  },
+  {
+    path: '/artworks',
+    component: SearchView,
+    props: { routeQuery: 'artworks' }
+  },
+  {
+    path: '/about',
+    component: SearchView,
+    props: { routeQuery: 'about' }
   }
 ];
 
