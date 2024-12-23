@@ -16,7 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.1.5",
+    "@heroicons/vue": "^2.2.0",
     "@vue/eslint-config-airbnb-with-typescript": "^8.0.0",
     "ajv": "^8.17.1",
     "leaflet": "^1.9.4",
