@@ -162,7 +162,7 @@ main {
 main {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--semantic-spacing--primary);
+  gap: var(--wac--semantic-spacing--secondary);
 }
 
 #map-container,

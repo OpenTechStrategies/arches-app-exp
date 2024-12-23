@@ -22,7 +22,8 @@
         >
       </span>
     </template>
-    <template
+    <!-- NOTE: We currently only have one photographer in the dataset, and that is unlikely to change anytime soon. When we do get more photographers we can uncomment this block-->
+    <!-- <template
       v-if="photographer && props.panelResourceType !== PanelResourceEnum.PHOTOGRAPHER"
       #item-credit
     >
@@ -30,7 +31,7 @@
         Photographer:
         {{ photographer.displayname }}
       </span>
-    </template>
+    </template> -->
     <template
       v-if="props.artwork.Description && props.panelResourceType === PanelResourceEnum.ARTWORK"
       #item-description

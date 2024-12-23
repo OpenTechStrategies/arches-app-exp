@@ -142,9 +142,8 @@ watch(
 }
 
 .map-wrapper {
-  --wac--map-collapsed-height: 90px;
-  --wac--map-expanded-height: 800px;
-
+  --wac--map-expanded-height: 100vh;
+  overflow: hidden;
   height: var(--wac--map-expanded-height);
   transition: height 0.5s ease;
 }
@@ -153,8 +152,7 @@ watch(
   .map-container {
     position: sticky;
     top: 0;
-
-    padding-top: var(--wac--semantic-spacing--tertiary);
+    overflow: hidden;
     gap: var(--wac--semantic-spacing--tertiary);
 
     &.collapsed .map-wrapper {

@@ -152,6 +152,23 @@ button,
   }
 }
 
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 32px;
+  text-decoration: none;
+}
+
+.back-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1rem;
+  height: 1rem;
+}
+
 @media screen and (min-width: 940px) {
   body {
     padding: var(--wac--semantic-spacing--primary);

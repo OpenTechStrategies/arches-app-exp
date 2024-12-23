@@ -1,16 +1,25 @@
 <template>
   <div v-if="props.resource" class="resource-detail">
-    <div>
-      <RouterLink :to="'/'" class="button">
-        <ArrowLeftIcon class="button-icon" />
-        <span>Back to search</span>
+    <div class="resource-detail-header">
+      <div class="resource-detail-title">
+        <PhotoIcon
+          v-if="graphIdToNameTable[props.resource.graph_id] === 'Artwork'"
+          class="resource-header-icon"
+        />
+        <UserIcon
+          v-if="graphIdToNameTable[props.resource.graph_id] === 'Artist'"
+          class="resource-header-icon"
+        />
+        <div>{{ props.resource.displayname ?? '' }}</div>
+      </div>
+      <RouterLink :to="'/'" class="resource-detail-back-button">
+        <button type="button" class="back-button">
+          <ArrowLeftIcon class="back-button-icon" />
+          <span>Back </span>
+        </button>
       </RouterLink>
     </div>
     <ResourceDetail>
-      <template #header-label>
-        {{ graphIdToNameTable[props.resource.graph_id] }}
-      </template>
-      <template #header-title>{{ props.resource.displayname ?? '' }} </template>
       <template #items>
         <ArtworkDetailItem
           v-if="
@@ -64,25 +73,6 @@
           :id-references="props.idReferences"
         />
       </template>
-      <template #metadata>
-        <div>
-          <p
-            v-if="
-              props.idReferences.graphIdToNameTable[props.resource.graph_id] &&
-              props.resource.displayname
-            "
-          >
-            {{ props.idReferences.graphIdToNameTable[props.resource.graph_id] }} -
-            {{ props.resource.displayname }}
-          </p>
-          <p>
-            Resource Instance ID:
-            <a :href="`${archesUrl}/report/${props.resource.resourceinstanceid}`">{{
-              props.resource.resourceinstanceid
-            }}</a>
-          </p>
-        </div>
-      </template>
     </ResourceDetail>
   </div>
 </template>
@@ -98,7 +88,7 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
-import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
+import { ArrowLeftIcon, PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
@@ -114,14 +104,32 @@ const props = defineProps<{
 }>();
 
 const { graphIdToNameTable } = props.idReferences;
-
-const archesUrl = import.meta.env.VITE_ARCHES_API_URL;
 </script>
 
 <style scoped>
 .resource-detail {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--semantic-spacing--secondary);
+  margin-top: var(--wac--accessible-spacing--2x);
+}
+
+.resource-detail-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resource-detail-title {
+  display: flex;
+  font-size: var(--wac--font-size--xl);
+  font-weight: var(--wac--font-weight--bold);
+}
+
+.resource-detail-back-button {
+  text-decoration: none;
+  font-size: var(--wac--font-size);
+}
+.resource-header-icon {
+  width: calc(var(--wac--line-height) * 1em);
+  height: calc(var(--wac--line-height) * 1em);
 }
 </style>

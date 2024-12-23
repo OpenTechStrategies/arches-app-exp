@@ -225,7 +225,7 @@
           <div class="search-results-header-title">
             <h1>WAC: A Visual Journey</h1>
           </div>
-          <button type="button" class="see-all-button back-button" @click="filterByType(null)">
+          <button type="button" class="back-button" @click="filterByType(null)">
             <div class="back-button-icon">
               <ArrowLeftIcon />
             </div>
@@ -391,7 +391,6 @@ const filterByType = (type: string | null) => {
   height: 24px;
   color: black;
 }
-
 .nav-button {
   display: flex;
   flex-direction: column;
@@ -466,21 +465,6 @@ span {
   max-width: 150px;
   height: auto;
   object-fit: contain;
-}
-
-.back-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.back-button-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 1rem;
-  height: 1rem;
 }
 
 @media screen and (min-width: 940px) {
