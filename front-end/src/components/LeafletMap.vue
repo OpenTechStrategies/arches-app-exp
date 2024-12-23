@@ -139,16 +139,23 @@ watch(
 #map {
   width: 100%;
   height: 100%;
+  border-radius: 32px;
 }
 
 .map-wrapper {
-  --wac--map-expanded-height: 100vh;
+  --wac--map-expanded-height: 400px;
   overflow: hidden;
   height: var(--wac--map-expanded-height);
   transition: height 0.5s ease;
 }
 
 @media screen and (min-width: 940px) {
+  #map {
+    border-radius: 0px;
+  }
+  .map-wrapper {
+    --wac--map-expanded-height: 100vh;
+  }
   .map-container {
     position: sticky;
     top: 0;

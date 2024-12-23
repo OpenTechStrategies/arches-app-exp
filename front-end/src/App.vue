@@ -107,8 +107,6 @@ prefetchResources();
 
 <style scoped>
 main {
-  background-color: #fff8e0;
-  padding-left: var(--wac--accessible-spacing--2x);
   border-radius: 32px;
 }
 
@@ -170,7 +168,17 @@ main {
   flex-basis: 50%;
 }
 
+#search-list-container {
+  background-color: #fff8e0;
+  border-radius: 32px;
+  padding: var(--wac--accessible-spacing--2x);
+}
+
 @media screen and (min-width: 940px) {
+  main {
+    padding-left: var(--wac--accessible-spacing--2x);
+    background-color: #fff8e0;
+  }
   .welcome-content {
     display: flex;
     flex-direction: row;

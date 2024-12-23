@@ -372,7 +372,6 @@ watch(
   display: flex;
   flex-direction: column;
   gap: var(--wac--semantic-spacing--quartary);
-  margin-left: 50px;
 }
 
 .search-header {
@@ -494,6 +493,10 @@ span {
 }
 
 @media screen and (min-width: 940px) {
+  .search-list-container {
+    margin-left: 50px;
+  }
+
   .search-input {
     padding: var(--wac--accessible-spacing--2x);
   }
