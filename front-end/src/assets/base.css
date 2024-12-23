@@ -69,7 +69,7 @@ body {
   padding: var(--wac--semantic-spacing--tertiary);
   background-image:
     linear-gradient(to bottom, white 30%, rgba(255, 255, 255, 0) 70%),
-    url('background.png');
+    url('https://arches-app-demo.opentechstrategies.com/archesdataviewer/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
