@@ -11,13 +11,7 @@
         </div>
         <div class="title">{{ props.resourceName }}</div>
         <div v-if="props.resourceType === 'Artwork'" class="artist-credit">
-          {{ props.artist?.displayname ? `(${props.artist?.displayname})` : '' }}
-        </div>
-        <div
-          v-if="props.resourceDescription && props.resourceDescription !== 'Undefined'"
-          class="description"
-        >
-          {{ props.resourceDescription }}
+          {{ props.artist?.displayname ? ` by ${props.artist?.displayname}` : '' }}
         </div>
       </div>
       <img v-if="imageUrl" class="image" :src="imageUrl" alt="thumbnail image" />
@@ -62,8 +56,8 @@ const imageUrl = props.imageTileData
 .search-result {
   display: flex;
   justify-content: flex-end;
-  flex-direction: row-reverse;
-  gap: var(--wac--semantic-spacing--tertiary);
+  flex-direction: column;
+  gap: var(--wac--semantic-spacing--quartary);
   cursor: pointer;
 }
 
@@ -71,47 +65,38 @@ const imageUrl = props.imageTileData
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: var(--wac--accessible-spacing--1x);
   gap: var(--wac--accessible-spacing--halfx);
-
   line-height: var(--wac--line-height--tight);
+  text-overflow: ellipsis;
+  max-width: var(--wac--image--thumbnail-size-x);
 }
 
 .title {
   font-size: var(--wac--font-size--lg);
-  font-weight: var(--wac--font-weight--xbold);
-  text-decoration: underline;
-}
-
-.description {
-  font-size: var(--wac--font-size--sm);
-  margin-top: var(--wac--accessible-spacing--1x);
-
+  font-weight: var(--wac--font-weight--bold);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   display: -webkit-box;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.artist-credit {
-  font-style: italic;
-}
-
 .image {
-  width: var(--wac--image--thumbnail-size);
-  height: var(--wac--image--thumbnail-size);
+  width: var(--wac--image--thumbnail-size-x);
+  height: var(--wac--image--thumbnail-size-y);
   object-fit: cover;
   flex-shrink: 0;
+  background-color: white;
+  padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
+    var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);
+  box-shadow: 0px 5px 5px grey;
 }
 
 @media screen and (min-width: 940px) {
   .title {
-    font-size: var(--wac--font-size--xl);
-  }
-
-  .description {
-    font-size: var(--wac--font-size);
+    font-size: var(--wac--font-size--lg);
   }
 }
 </style>

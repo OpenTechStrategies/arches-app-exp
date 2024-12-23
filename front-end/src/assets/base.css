@@ -37,6 +37,8 @@
   --wac--accessible-spacing--8x: calc(8 * var(--wac--accessible-spacing--1x));
   --wac--accessible-spacing--10x: calc(10 * var(--wac--accessible-spacing--1x));
   --wac--accessible-spacing--15x: calc(15 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--20x: calc(20 * var(--wac--accessible-spacing--1x));
+  --wac--accessible-spacing--30x: calc(30 * var(--wac--accessible-spacing--1x));
   --wac--accessible-spacing--halfx: calc(var(--wac--accessible-spacing--1x) / 2);
 
   /* These spacings are not distinct from the above; they're just semantically-defined. */
@@ -47,7 +49,8 @@
   --wac--semantic-spacing--quintary: var(--wac--accessible-spacing--halfx);
 
   --wac--text--sensible-max-width: 60ch;
-  --wac--image--thumbnail-size: var(--wac--accessible-spacing--15x);
+  --wac--image--thumbnail-size-x: var(--wac--accessible-spacing--30x);
+  --wac--image--thumbnail-size-y: var(--wac--accessible-spacing--20x);
 
   --wac--outline--color: blue;
   --wac--outline--width: 2px;
@@ -67,14 +70,12 @@ body {
   line-height: var(--wac--line-height);
   color: black;
   padding: var(--wac--semantic-spacing--tertiary);
-  background-image:
-    linear-gradient(to bottom, white 30%, rgba(255, 255, 255, 0) 70%),
+  background-image: linear-gradient(to bottom, white 30%, rgba(255, 255, 255, 0) 70%),
     url('https://arches-app-demo.opentechstrategies.com/archesdataviewer/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
 
 h1,
 h2,

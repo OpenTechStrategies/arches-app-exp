@@ -93,7 +93,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { InformationCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import LeafletMap from '@/components/LeafletMap.vue';
 import type {
   ImageTileData,
@@ -135,9 +134,10 @@ prefetchResources();
 </script>
 
 <style scoped>
-
-main{
-  background-color: #FFF8E0;
+main {
+  background-color: #fff8e0;
+  padding-left: var(--wac--accessible-spacing--2x);
+  border-radius: 32px;
 }
 
 .home {
@@ -212,49 +212,6 @@ main {
   flex-basis: 50%;
 }
 
-.top-text {
-  max-height: 0;
-  overflow: hidden;
-  transition:
-    max-height 500ms ease-in-out,
-    padding 300ms ease;
-}
-
-.citation {
-  line-height: var(--wac--line-height);
-  font-size: var(--wac--font-size);
-  padding-top: 10px;
-}
-
-.top-text.expanded {
-  max-height: 400px;
-  padding-top: 10px;
-}
-
-.top-text.collapsed {
-  max-height: 0;
-  padding-top: 0;
-}
-
-.top-text-button {
-  border: none;
-  padding: 0;
-}
-
-.toggle-top-text {
-  display: flex;
-  flex-direction: row;
-}
-
-.x-button {
-  opacity: 1;
-  margin-left: auto;
-}
-
-.hidden {
-  opacity: 0;
-}
-
 @media screen and (min-width: 940px) {
   .welcome-content {
     display: flex;
@@ -290,10 +247,6 @@ main {
 
   .welcome {
     font-size: var(--wac--font-size--xxl);
-  }
-
-  .citation {
-    font-size: var(--wac--font-size--lg);
   }
 
   main {

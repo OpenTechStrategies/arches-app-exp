@@ -59,15 +59,15 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
-import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
-import SearchListItem from './SearchListItem.vue';
 import {
   PhotoIcon,
   UserIcon,
   InformationCircleIcon,
   MagnifyingGlassIcon
 } from '@heroicons/vue/24/outline';
+import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
+import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
+import SearchListItem from './SearchListItem.vue';
 
 const query = ref<string>('');
 const selectedResourceType = ref<string | null>('Artwork');
@@ -104,10 +104,10 @@ const redirectToAboutPage = () => {
 
 <style scoped>
 .search-list-container {
-  padding-left: var(--wac--accessible-spacing--2x);
   display: flex;
   flex-direction: column;
   gap: var(--wac--semantic-spacing--secondary);
+  margin-left: 50px;
 }
 
 .search-header {
@@ -176,10 +176,11 @@ span {
 }
 
 .search-results {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--wac--semantic-spacing--tertiary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0;
+  max-width: 650px;
 }
 
 @media screen and (min-width: 940px) {

@@ -2,7 +2,7 @@
   <div class="map-container expanded chevron-expanded">
     <div>
       <div class="map-wrapper">
-        <div id="map" ref="mapElement"/>
+        <div id="map" ref="mapElement" />
       </div>
     </div>
   </div>
@@ -150,10 +150,6 @@ watch(
 }
 
 @media screen and (min-width: 940px) {
-  .toggle-map-container {
-    display: none;
-  }
-
   .map-container {
     position: sticky;
     top: 0;
