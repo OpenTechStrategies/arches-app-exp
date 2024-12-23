@@ -9,7 +9,7 @@
         type="button"
         class="nav-button"
         :class="{ active: selectedResourceType === 'Artwork' }"
-        @click="filterByType('Artwork')"
+        @click="router.push('/artworks')"
       >
         <PhotoIcon class="button-icon" />
         <span>Artworks</span>
@@ -18,7 +18,7 @@
         type="button"
         class="nav-button"
         :class="{ active: selectedResourceType === 'Artist' }"
-        @click="filterByType('Artist')"
+        @click="router.push('/artists')"
       >
         <UserIcon class="button-icon" />
         <span>Artists</span>
@@ -27,7 +27,7 @@
         type="button"
         class="nav-button"
         :class="{ active: selectedResourceType === 'About' }"
-        @click="filterByType('About')"
+        @click="router.push('/about')"
       >
         <InformationCircleIcon class="button-icon" />
         <span>About</span>
@@ -40,7 +40,7 @@
             <PhotoIcon class="search-results-header-icon" />
             <h1>Artworks</h1>
           </div>
-          <button type="button" class="see-all-button" @click="filterByType('Artwork')">
+          <button type="button" class="see-all-button" @click="router.push('/artworks')">
             SEE ALL
           </button>
         </div>
@@ -79,7 +79,7 @@
             <UserIcon class="search-results-header-icon" />
             <h1>Artists</h1>
           </div>
-          <button type="button" class="see-all-button" @click="filterByType('Artist')">
+          <button type="button" class="see-all-button" @click="router.push('/artists')">
             SEE ALL
           </button>
         </div>
@@ -225,7 +225,7 @@
           <div class="search-results-header-title">
             <h1>WAC: A Visual Journey</h1>
           </div>
-          <button type="button" class="back-button" @click="filterByType(null)">
+          <button type="button" class="back-button" @click="router.push('/')">
             <div class="back-button-icon">
               <ArrowLeftIcon />
             </div>
@@ -289,7 +289,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import {
   PhotoIcon,
   UserIcon,
@@ -301,17 +302,30 @@ import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from 
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from './SearchListItem.vue';
 
+const router = useRouter();
+
 const isProd = import.meta.env.PROD;
 
 const query = ref<string>('');
 const selectedResourceType = ref<string | null>(null);
 
 const props = defineProps<{
+  routeQuery?: string;
   resourcesPrefetch: Array<Resource>;
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
   resourceRelationsPrefetch: Array<ResourceXResource>;
   idReferences: Prefetch['idReferences'];
 }>();
+
+if (props.routeQuery) {
+  if (props.routeQuery === 'artworks') {
+    selectedResourceType.value = 'Artwork';
+  } else if (props.routeQuery === 'artists') {
+    selectedResourceType.value = 'Artist';
+  } else if (props.routeQuery === 'about') {
+    selectedResourceType.value = 'About';
+  }
+}
 
 const artworksArray = props.resourcesPrefetch
   .filter((resource) => props.idReferences.graphIdToNameTable[resource.graph_id] === 'Artwork')
@@ -336,9 +350,21 @@ const filteredResources = computed(() =>
   })
 );
 
-const filterByType = (type: string | null) => {
-  selectedResourceType.value = type;
-};
+watch(
+  () => props.routeQuery,
+  (newRouteQuery) => {
+    if (newRouteQuery === 'artworks') {
+      selectedResourceType.value = 'Artwork';
+    } else if (newRouteQuery === 'artists') {
+      selectedResourceType.value = 'Artist';
+    } else if (newRouteQuery === 'about') {
+      selectedResourceType.value = 'About';
+    } else {
+      selectedResourceType.value = null;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style scoped>

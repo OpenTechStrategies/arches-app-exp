@@ -1,4 +1,22 @@
 <template>
+  <div class="search-header">
+    <button type="button" class="nav-button" @click="router.push(`/`)">
+      <MagnifyingGlassIcon class="button-icon" />
+      <span>Search</span>
+    </button>
+    <button type="button" class="nav-button" @click="router.push(`/artists`)">
+      <PhotoIcon class="button-icon" />
+      <span>Artworks</span>
+    </button>
+    <button type="button" class="nav-button" @click="router.push(`/artworks`)">
+      <UserIcon class="button-icon" />
+      <span>Artists</span>
+    </button>
+    <button type="button" class="nav-button" @click="router.push(`/about`)">
+      <InformationCircleIcon class="button-icon" />
+      <span>About</span>
+    </button>
+  </div>
   <div v-if="props.resource" class="resource-detail">
     <div class="resource-detail-header">
       <div class="resource-detail-title">
@@ -19,6 +37,7 @@
         </button>
       </RouterLink>
     </div>
+
     <ResourceDetail>
       <template #items>
         <ArtworkDetailItem
@@ -88,11 +107,20 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
-import { ArrowLeftIcon, PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
+import {
+  ArrowLeftIcon,
+  PhotoIcon,
+  UserIcon,
+  InformationCircleIcon,
+  MagnifyingGlassIcon
+} from '@heroicons/vue/24/outline';
+import { useRouter } from 'vue-router';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
 import MoreArtworksByArtist from './MoreArtworksByArtist.vue';
+
+const router = useRouter();
 
 const props = defineProps<{
   resource: ApiResource;
@@ -107,10 +135,40 @@ const { graphIdToNameTable } = props.idReferences;
 </script>
 
 <style scoped>
+.search-header {
+  --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-block: var(--wac--search-header--internal-spacing);
+
+  background: linear-gradient(
+    180deg,
+    #fff8e0 calc(100% - var(--wac--search-header--internal-spacing)),
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wac--accessible-spacing--halfx);
+  border: none;
+  background: none;
+  font-size: inherit;
+  cursor: pointer;
+  font-weight: var(--wac--font-weight--normal);
+}
+
 .resource-detail {
   display: flex;
   flex-direction: column;
-  margin-top: var(--wac--accessible-spacing--2x);
+  margin-left: var(--wac--accessible-spacing--2x);
+  margin-right: var(--wac--accessible-spacing--2x);
+  gap: var(--wac--accessible-spacing--1x);
 }
 
 .resource-detail-header {
