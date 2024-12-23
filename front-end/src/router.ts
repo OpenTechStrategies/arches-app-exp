@@ -8,6 +8,10 @@ const routes = [
   {
     path: '/wac/resource/:id',
     component: ResourceDetailView
+  },
+  {
+    path: '/about',
+    component: SearchView
   }
 ];
 

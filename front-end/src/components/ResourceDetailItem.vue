@@ -87,6 +87,10 @@ const resolvedImageUrls = computed(() =>
 .resource-detail-item-image > img {
   width: 100%;
   height: 100%;
+  background-color: white;
+  padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
+    var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);
+  box-shadow: 1px 2px 2px grey;
 }
 
 .resource-detail-item-credit {
@@ -95,5 +99,6 @@ const resolvedImageUrls = computed(() =>
 
 .resource-detail-item-description {
   font-size: var(--wac--font-size--lg);
+  margin: var(--wac--accessible-spacing--1x);
 }
 </style>
