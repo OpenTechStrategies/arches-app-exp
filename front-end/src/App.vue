@@ -135,6 +135,11 @@ prefetchResources();
 </script>
 
 <style scoped>
+
+main{
+  background-color: #FFF8E0;
+}
+
 .home {
   display: flex;
   flex-direction: column;

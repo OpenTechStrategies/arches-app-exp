@@ -1,14 +1,8 @@
 <template>
-  <div :class="expandMap ? 'map-container expanded chevron-expanded' : 'map-container collapsed'">
-    <div class="toggle-map-container">
-      <button type="button" class="toggle-map" @click="expandMap = !expandMap">
-        <span>Explore the artwork geographically</span>
-        <ChevronRightIcon class="button-icon" />
-      </button>
-    </div>
-    <div @click="expandMap = true">
+  <div class="map-container expanded chevron-expanded">
+    <div>
       <div class="map-wrapper">
-        <div id="map" ref="mapElement" />
+        <div id="map" ref="mapElement"/>
       </div>
     </div>
   </div>
@@ -21,11 +15,9 @@ import type { Marker } from 'leaflet';
 import type { Tile, CoordinatesTileData, Resource, Prefetch, MapResource } from '@/types';
 import L from 'leaflet';
 import { useRouter, useRoute } from 'vue-router';
-import { ChevronRightIcon } from '@heroicons/vue/24/solid';
 
 const router = useRouter();
 const route = useRoute();
-const expandMap = ref<boolean>(false);
 const mapResources = ref<Array<MapResource>>([]);
 
 const props = defineProps<{
@@ -151,15 +143,10 @@ watch(
 
 .map-wrapper {
   --wac--map-collapsed-height: 90px;
-  --wac--map-expanded-height: 600px;
+  --wac--map-expanded-height: 800px;
 
   height: var(--wac--map-expanded-height);
   transition: height 0.5s ease;
-
-  .collapsed & {
-    height: var(--wac--map-collapsed-height);
-    pointer-events: none;
-  }
 }
 
 @media screen and (min-width: 940px) {
