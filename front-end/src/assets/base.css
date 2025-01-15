@@ -69,12 +69,12 @@ body {
   font-size: var(--wac--font-size);
   line-height: var(--wac--line-height);
   color: black;
-  padding: var(--wac--semantic-spacing--tertiary);
   background-image: linear-gradient(to bottom, white 30%, rgba(255, 255, 255, 0) 70%),
     url('https://arches-app-demo.opentechstrategies.com/archesdataviewer/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  margin: 0px;
 }
 
 h1,
@@ -168,9 +168,16 @@ button,
   width: 1rem;
   height: 1rem;
 }
+.map-icon {
+  display: flex;
+}
 
 @media screen and (min-width: 940px) {
   body {
     padding: var(--wac--semantic-spacing--primary);
+    margin: 8px;
+  }
+  .map-icon {
+    display: none;
   }
 }

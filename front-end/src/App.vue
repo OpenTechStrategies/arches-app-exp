@@ -2,7 +2,7 @@
   <div class="home">
     <header class="welcome">
       <div class="welcome-content">
-        <h1>
+        <h1 class="welcome-text">
           Explore Chicago’s <br />
           Wabash Arts Corridor
         </h1>
@@ -36,7 +36,7 @@
     </header>
     <main>
       <div id="map-container">
-        <LeafletMap
+        <DesktopLeafletMap
           v-if="resourcesPrefetch && idReferences && locationsPrefetch"
           :resources-prefetch="resourcesPrefetch"
           :id-references="idReferences"
@@ -45,9 +45,58 @@
         <div v-else class="map-placeholder">Loading map…</div>
       </div>
       <div id="search-list-container">
+        <div class="search-header">
+          <div class="search-input-wrapper">
+            <MagnifyingGlassIcon class="search-icon" />
+            <input v-model="query" class="search-input" placeholder="Search" />
+          </div>
+          <button
+            type="button"
+            class="nav-button"
+            :class="{ active: activePage === '/artworks' }"
+            @click="router.push('/artworks')"
+          >
+            <PhotoIcon class="button-icon" />
+            <span>Artworks</span>
+          </button>
+          <button
+            type="button"
+            class="nav-button"
+            :class="{ active: activePage === '/artists' }"
+            @click="router.push('/artists')"
+          >
+            <UserIcon class="button-icon" />
+            <span>Artists</span>
+          </button>
+          <button
+            id="map-icon"
+            type="button"
+            class="nav-button map-icon"
+            :class="{ active: activePage === '/map' }"
+            @click="router.push('/map')"
+          >
+            <MapPinIcon class="button-icon" />
+            <span>Map</span>
+          </button>
+          <button
+            type="button"
+            class="nav-button"
+            :class="{ active: activePage === '/about' }"
+            @click="router.push('/about')"
+          >
+            <InformationCircleIcon class="button-icon" />
+            <span>About</span>
+          </button>
+        </div>
         <RouterView v-slot="{ Component }">
           <Transition
-            v-if="resourcesPrefetch && resourceRelationsPrefetch && idReferences && imagesPrefetch"
+            v-if="
+              resourcesPrefetch &&
+              resourceRelationsPrefetch &&
+              idReferences &&
+              imagesPrefetch &&
+              locationsPrefetch
+            "
           >
             <component
               :is="Component"
@@ -55,6 +104,8 @@
               :resource-relations-prefetch="resourceRelationsPrefetch"
               :id-references="idReferences"
               :images-prefetch="imagesPrefetch"
+              :locations-prefetch="locationsPrefetch"
+              :query="query"
             />
           </Transition>
         </RouterView>
@@ -64,8 +115,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import LeafletMap from '@/components/LeafletMap.vue';
+import { ref, watch } from 'vue';
+import DesktopLeafletMap from '@/components/DesktopLeafletMap.vue';
+import { useRouter } from 'vue-router';
+import {
+  PhotoIcon,
+  UserIcon,
+  InformationCircleIcon,
+  MagnifyingGlassIcon,
+  MapPinIcon
+} from '@heroicons/vue/24/outline';
 import type {
   ImageTileData,
   Tile,
@@ -75,6 +134,8 @@ import type {
   ResourceXResource
 } from './types';
 
+const router = useRouter();
+
 const isProd = import.meta.env.PROD;
 
 const idReferences = ref<Prefetch['idReferences'] | undefined>(undefined);
@@ -82,6 +143,8 @@ const imagesPrefetch = ref<Array<Tile<ImageTileData[]>> | undefined>(undefined);
 const locationsPrefetch = ref<Array<Tile<CoordinatesTileData>> | undefined>(undefined);
 const resourceRelationsPrefetch = ref<Array<ResourceXResource> | undefined>(undefined);
 const resourcesPrefetch = ref<Array<Resource> | undefined>(undefined);
+const query = ref<string>('');
+const activePage = ref<string>('');
 
 async function prefetchResources() {
   try {
@@ -103,6 +166,11 @@ async function prefetchResources() {
 }
 
 prefetchResources();
+
+watch(
+  () => router.currentRoute.value,
+  (newValue) => (activePage.value = newValue.path)
+);
 </script>
 
 <style scoped>
@@ -113,7 +181,6 @@ main {
 .home {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--semantic-spacing--primary);
 }
 
 .welcome {
@@ -124,6 +191,7 @@ main {
   line-height: var(--wac--line-height--tight);
   font-size: var(--wac--font-size--lg);
   text-wrap: balance;
+  margin: var(--wac--accessible-spacing--2x);
 }
 
 .welcome-content {
@@ -150,10 +218,14 @@ main {
   object-fit: contain;
 }
 
+.welcome-text {
+  font-size: var(--wac--font-size--xxl);
+}
+
 .welcome-credits p {
   font-weight: var(--wac--font-weight--normal);
   font-size: var(--wac--font-size);
-  margin: 0;
+  margin: 0px;
   white-space: nowrap;
 }
 
@@ -169,9 +241,71 @@ main {
 }
 
 #search-list-container {
-  background-color: #fff8e0;
+  border-radius: 32px;
+  order: -1;
+  background: #fff8e0;
+}
+
+#map-container {
+  display: none;
+}
+
+.search-header {
+  --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    white calc(100% - var(--wac--search-header--internal-spacing)),
+    rgba(255, 255, 255, 0) 100%
+  );
+  width: 100vw;
+  gap: var(--wac--semantic-spacing--tertiary);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #ffd54f;
+  max-height: 50px;
+  width: 100%;
   border-radius: 32px;
   padding: var(--wac--accessible-spacing--2x);
+  gap: var(--wac--accessible-spacing--halfx);
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  font-size: inherit;
+  background: transparent;
+  outline: none;
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  color: black;
+}
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wac--accessible-spacing--halfx);
+  border: none;
+  background: none;
+  font-size: inherit;
+  cursor: pointer;
+  font-weight: var(--wac--font-weight--normal);
+  &.active {
+    background: var(--wac--color--highlight);
+  }
 }
 
 @media screen and (min-width: 940px) {
@@ -215,8 +349,42 @@ main {
     font-size: var(--wac--font-size--xxl);
   }
 
+  #search-list-container {
+    order: 0;
+    padding: var(--wac--accessible-spacing--2x);
+    background: none;
+  }
+
   main {
     flex-direction: row-reverse;
+  }
+  .home {
+    gap: var(--wac--semantic-spacing--primary);
+  }
+  #map-container {
+    display: block;
+  }
+
+  .search-header {
+    --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wac--search-header--internal-spacing);
+    padding-block: var(--wac--search-header--internal-spacing);
+    width: 100%;
+
+    background: linear-gradient(
+      180deg,
+      #fff8e0 calc(100% - var(--wac--search-header--internal-spacing)),
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  #map-icon {
+    display: none;
   }
 }
 </style>

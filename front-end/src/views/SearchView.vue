@@ -5,6 +5,7 @@
     :resources-prefetch="props.resourcesPrefetch"
     :id-references="props.idReferences"
     :route-query="props.routeQuery"
+    :query="query"
   />
 </template>
 
@@ -18,5 +19,6 @@ const props = defineProps<{
   imagesPrefetch: Array<Tile<ImageTileData[]>>;
   resourceRelationsPrefetch: Array<ResourceXResource>;
   idReferences: Prefetch['idReferences'];
+  query: string;
 }>();
 </script>
