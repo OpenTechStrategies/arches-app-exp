@@ -2,6 +2,10 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 import SearchView from '@/views/SearchView.vue';
 import ResourceDetailView from '@/views/ResourceDetailView.vue';
+import AboutView from '@/views/AboutView.vue';
+import ArtistsView from './views/ArtistsView.vue';
+import ArtworksView from './views/ArtworksView.vue';
+import MapView from './views/MapView.vue';
 
 const routes = [
   { path: '/', component: SearchView },
@@ -11,18 +15,19 @@ const routes = [
   },
   {
     path: '/artists',
-    component: SearchView,
-    props: { routeQuery: 'artists' }
+    component: ArtistsView
   },
   {
     path: '/artworks',
-    component: SearchView,
-    props: { routeQuery: 'artworks' }
+    component: ArtworksView
   },
   {
     path: '/about',
-    component: SearchView,
-    props: { routeQuery: 'about' }
+    component: AboutView
+  },
+  {
+    path: '/map',
+    component: MapView
   }
 ];
 
