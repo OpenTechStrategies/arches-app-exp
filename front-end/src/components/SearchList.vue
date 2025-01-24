@@ -129,7 +129,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { PhotoIcon, UserIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
@@ -170,22 +170,6 @@ const filteredResources = computed(() =>
 
     return matchesQuery && matchesType;
   })
-);
-
-watch(
-  () => props.routeQuery,
-  (newRouteQuery) => {
-    if (newRouteQuery === 'artworks') {
-      selectedResourceType.value = 'Artwork';
-    } else if (newRouteQuery === 'artists') {
-      selectedResourceType.value = 'Artist';
-    } else if (newRouteQuery === 'about') {
-      selectedResourceType.value = 'About';
-    } else {
-      selectedResourceType.value = null;
-    }
-  },
-  { immediate: true }
 );
 </script>
 

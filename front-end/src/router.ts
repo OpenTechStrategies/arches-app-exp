@@ -5,6 +5,7 @@ import ResourceDetailView from '@/views/ResourceDetailView.vue';
 import AboutView from '@/views/AboutView.vue';
 import ArtistsView from './views/ArtistsView.vue';
 import ArtworksView from './views/ArtworksView.vue';
+import MapView from './views/MapView.vue';
 
 const routes = [
   { path: '/', component: SearchView },
@@ -14,18 +15,19 @@ const routes = [
   },
   {
     path: '/artists',
-    component: ArtistsView,
-    props: { routeQuery: 'artists' }
+    component: ArtistsView
   },
   {
     path: '/artworks',
-    component: ArtworksView,
-    props: { routeQuery: 'artworks' }
+    component: ArtworksView
   },
   {
     path: '/about',
-    component: AboutView,
-    props: { routeQuery: 'about' }
+    component: AboutView
+  },
+  {
+    path: '/map',
+    component: MapView
   }
 ];
 

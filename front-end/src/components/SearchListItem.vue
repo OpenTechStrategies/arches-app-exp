@@ -2,7 +2,7 @@
   <RouterLink
     v-if="imageUrl !== undefined"
     :to="`/wac/resource/${props.resourceId}`"
-    class="search-result-container"
+    class="search-item-container"
   >
     <div class="search-result">
       <div class="metadata">
@@ -53,10 +53,9 @@ const imageUrl = props.imageTileData
 </script>
 
 <style scoped>
-.search-result-container {
+.search-item-container {
   text-decoration: none;
 }
-
 .search-result {
   display: flex;
   justify-content: flex-end;

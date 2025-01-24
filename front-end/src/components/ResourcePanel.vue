@@ -90,13 +90,10 @@ import type {
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
 import { ArrowLeftIcon, PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
-import { useRouter } from 'vue-router';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
 import MoreArtworksByArtist from './MoreArtworksByArtist.vue';
-
-const router = useRouter();
 
 const props = defineProps<{
   resource: ApiResource;
@@ -117,6 +114,7 @@ const { graphIdToNameTable } = props.idReferences;
   gap: var(--wac--accessible-spacing--1x);
   background-color: #fff8e0;
   padding: var(--wac--accessible-spacing--1x);
+  height: 100vh;
 }
 
 .resource-detail-header {

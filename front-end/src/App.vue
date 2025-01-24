@@ -169,7 +169,10 @@ prefetchResources();
 
 watch(
   () => router.currentRoute.value,
-  (newValue) => (activePage.value = newValue.path)
+  (newValue) => {
+    activePage.value = newValue.path;
+    return true;
+  }
 );
 </script>
 
@@ -265,6 +268,7 @@ main {
   );
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
+  z-index: 999;
 }
 
 .search-input-wrapper {

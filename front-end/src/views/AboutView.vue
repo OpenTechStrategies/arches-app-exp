@@ -78,23 +78,6 @@ span {
   text-align: center;
 }
 
-.search-results-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
-}
-
-.search-results-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.search-results-header-title {
-  display: flex;
-  font-size: var(--wac--font-size--xxl);
-  gap: var(--wac--accessible-spacing--2x);
-}
-
 .credits {
   display: flex;
   flex-direction: column;
