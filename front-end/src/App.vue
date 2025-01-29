@@ -3,8 +3,10 @@
     <header class="welcome">
       <div class="welcome-content">
         <h1 class="welcome-text">
-          Explore Chicago’s <br />
-          Wabash Arts Corridor
+          <a href="/">
+            Explore Chicago’s <br />
+            Wabash Arts Corridor
+          </a>
         </h1>
         <div class="welcome-credits">
           <div class="welcome-credit">
@@ -223,6 +225,10 @@ main {
 
 .welcome-text {
   font-size: var(--wac--font-size--xxl);
+}
+
+.welcome-text a {
+  text-decoration: none;
 }
 
 .welcome-credits p {
