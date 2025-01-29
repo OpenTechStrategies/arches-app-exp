@@ -49,8 +49,8 @@
   --wac--semantic-spacing--quintary: var(--wac--accessible-spacing--halfx);
 
   --wac--text--sensible-max-width: 60ch;
-  --wac--image--thumbnail-size-x: var(--wac--accessible-spacing--30x);
-  --wac--image--thumbnail-size-y: var(--wac--accessible-spacing--20x);
+  --wac--image--thumbnail-size-x: 268px;
+  --wac--image--thumbnail-size-y: 191px;
 
   --wac--outline--color: blue;
   --wac--outline--width: 2px;
