@@ -241,7 +241,6 @@ main {
 main {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--semantic-spacing--primary);
 }
 
 #map-container,
@@ -250,7 +249,6 @@ main {
 }
 
 #search-list-container {
-  border-radius: 32px;
   order: -1;
   background: #fff8e0;
 }
