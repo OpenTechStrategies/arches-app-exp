@@ -42,7 +42,7 @@ import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from 
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from '../components/SearchListItem.vue';
 
-const selectedResourceType = ref<string | null>(null);
+const selectedResourceType = 'Artist'
 
 const props = defineProps<{
   routeQuery?: string;
@@ -53,15 +53,6 @@ const props = defineProps<{
   query: string;
 }>();
 
-if (props.routeQuery) {
-  if (props.routeQuery === 'artworks') {
-    selectedResourceType.value = 'Artwork';
-  } else if (props.routeQuery === 'artists') {
-    selectedResourceType.value = 'Artist';
-  } else if (props.routeQuery === 'about') {
-    selectedResourceType.value = 'About';
-  }
-}
 
 const filteredResources = computed(() =>
   props.resourcesPrefetch.filter((resource) => {
@@ -69,8 +60,8 @@ const filteredResources = computed(() =>
       .toLowerCase()
       .includes(props.query.toLowerCase());
 
-    const matchesType = selectedResourceType.value
-      ? props.idReferences.graphIdToNameTable[resource.graph_id] === selectedResourceType.value
+    const matchesType = selectedResourceType
+      ? props.idReferences.graphIdToNameTable[resource.graph_id] === selectedResourceType
       : true;
 
     return matchesQuery && matchesType;
