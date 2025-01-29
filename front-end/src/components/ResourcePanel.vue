@@ -10,12 +10,13 @@
           v-if="graphIdToNameTable[props.resource.graph_id] === 'Artist'"
           class="resource-header-icon"
         />
-        <div>{{ props.resource.displayname ?? '' }}</div>
+        <h1>{{ props.resource.displayname ?? '' }}</h1>
       </div>
+
       <RouterLink :to="'/'" class="resource-detail-back-button">
         <button type="button" class="back-button">
           <ArrowLeftIcon class="back-button-icon" />
-          <span>Back </span>
+          BACK
         </button>
       </RouterLink>
     </div>
@@ -124,17 +125,22 @@ const { graphIdToNameTable } = props.idReferences;
 
 .resource-detail-title {
   display: flex;
-  font-size: var(--wac--font-size--xl);
-  font-weight: var(--wac--font-weight--bold);
+  gap: var(--wac--accessible-spacing--1x);
 }
 
 .resource-detail-back-button {
   text-decoration: none;
-  font-size: var(--wac--font-size--sm);
+  justify-content: flex-end;
 }
 .resource-header-icon {
-  width: calc(var(--wac--line-height) * 1em);
-  height: calc(var(--wac--line-height) * 1em);
+  width: var(--wac--line-height--h1);
+  height: var(--wac--line-height--h1);
+}
+
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .resource-detail {
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 940px) {

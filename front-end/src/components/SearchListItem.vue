@@ -7,15 +7,13 @@
     <div class="search-result">
       <div class="metadata">
         <div class="title-wrapper">
-          <PhotoIcon v-if="props.resourceType === 'Artwork'" class="search-list-item-icon" />
-          <UserIcon v-if="props.resourceType === 'Artist'" class="search-list-item-icon" />
-          <div class="title">
+          <h3 class="title">
             {{ props.resourceName }}
-          </div>
+          </h3>
         </div>
-        <div v-if="props.resourceType === 'Artwork'" class="artist-credit">
+        <h3 v-if="props.resourceType === 'Artwork'" class="artist-credit h3-sub">
           {{ props.artist?.displayname ? ` by ${props.artist?.displayname}` : '' }}
-        </div>
+        </h3>
       </div>
       <img v-if="imageUrl" class="image" :src="imageUrl" alt="thumbnail image" />
       <img
@@ -34,7 +32,6 @@
 
 <script setup lang="ts">
 import type { ImageTileData, Resource } from '@/types';
-import { PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
 
 const props = defineProps<{
   resourceName: string;
@@ -81,8 +78,6 @@ const imageUrl = props.imageTileData
 }
 
 .title {
-  font-size: var(--wac--font-size--lg);
-  font-weight: var(--wac--font-weight--bold);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -100,16 +95,5 @@ const imageUrl = props.imageTileData
   padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
     var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);
   box-shadow: 1px 2px 0px grey;
-}
-
-.search-list-item-icon {
-  width: calc(var(--wac--line-height) * 1em);
-  height: calc(var(--wac--line-height) * 1em);
-}
-
-@media screen and (min-width: 940px) {
-  .title {
-    font-size: var(--wac--font-size--lg);
-  }
 }
 </style>

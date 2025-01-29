@@ -139,7 +139,6 @@ watch(
 #map {
   width: 100%;
   height: 100%;
-  border-radius: 32px;
 }
 
 .map-wrapper {
@@ -147,6 +146,15 @@ watch(
   overflow: hidden;
   height: var(--wac--map-expanded-height);
   transition: height 0.5s ease;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .map-wrapper {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
 }
 
 @media screen and (min-width: 940px) {

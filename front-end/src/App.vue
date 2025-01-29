@@ -3,13 +3,16 @@
     <header class="welcome">
       <div class="welcome-content">
         <h1 class="welcome-text">
-          Explore Chicago’s <br />
-          Wabash Arts Corridor
+          <a href="/">
+            Explore Chicago’s <br />
+            Wabash Arts Corridor
+          </a>
         </h1>
         <div class="welcome-credits">
-          <div class="welcome-credit">
+          <a class="welcome-credit" href="https://opentechstrategies.com/">
             <p>Designed by</p>
             <img
+              id="ots-logo"
               :src="
                 isProd
                   ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
@@ -18,10 +21,12 @@
               alt="no image available"
               loading="lazy"
             />
-          </div>
-          <div class="welcome-credit">
+          </a>
+
+          <a class="welcome-credit" href="https://www.archesproject.org/">
             <p>Powered by</p>
             <img
+              id="arches-logo"
               :src="
                 isProd
                   ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
@@ -30,7 +35,7 @@
               alt="no image available"
               loading="lazy"
             />
-          </div>
+          </a>
         </div>
       </div>
     </header>
@@ -57,7 +62,7 @@
             @click="router.push('/artworks')"
           >
             <PhotoIcon class="button-icon" />
-            <span>Artworks</span>
+            <p>Artworks</p>
           </button>
           <button
             type="button"
@@ -66,7 +71,7 @@
             @click="router.push('/artists')"
           >
             <UserIcon class="button-icon" />
-            <span>Artists</span>
+            <p>Artists</p>
           </button>
           <button
             id="map-icon"
@@ -76,7 +81,7 @@
             @click="router.push('/map')"
           >
             <MapPinIcon class="button-icon" />
-            <span>Map</span>
+            <p>Map</p>
           </button>
           <button
             type="button"
@@ -85,7 +90,7 @@
             @click="router.push('/about')"
           >
             <InformationCircleIcon class="button-icon" />
-            <span>About</span>
+            <p>About</p>
           </button>
         </div>
         <RouterView v-slot="{ Component }">
@@ -178,7 +183,7 @@ watch(
 
 <style scoped>
 main {
-  border-radius: 32px;
+  border-radius: 20px;
 }
 
 .home {
@@ -208,21 +213,27 @@ main {
   flex-wrap: wrap;
 }
 
+.welcome-text {
+  font-size: 32px;
+  line-height: 38.4px;
+}
+
 .welcome-credit {
   display: flex;
   align-items: center;
   gap: var(--wac--accessible-spacing--halfx);
+  text-decoration: none;
 }
 
 .welcome-credits img {
-  max-height: 25px;
+  max-height: 20px;
   max-width: 150px;
   height: auto;
   object-fit: contain;
 }
 
-.welcome-text {
-  font-size: var(--wac--font-size--xxl);
+.welcome-text a {
+  text-decoration: none;
 }
 
 .welcome-credits p {
@@ -235,7 +246,6 @@ main {
 main {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--semantic-spacing--primary);
 }
 
 #map-container,
@@ -244,7 +254,6 @@ main {
 }
 
 #search-list-container {
-  border-radius: 32px;
   order: -1;
   background: #fff8e0;
 }
@@ -269,6 +278,7 @@ main {
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
+  margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 
 .search-input-wrapper {
@@ -312,6 +322,88 @@ main {
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  main {
+    background-color: #fff8e0;
+  }
+  .welcome-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .welcome h1 {
+    flex: 1;
+  }
+  #arches-logo,
+  #ots-logo {
+    max-height: 26px;
+  }
+  .welcome-credits {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-end;
+    gap: var(--wac--accessible-spacing--halfx);
+    flex-wrap: wrap;
+  }
+
+  .welcome-credit {
+    display: flex;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+  }
+
+  .welcome-credits img {
+    max-height: 50px;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .welcome {
+    font-size: var(--wac--font-size--xxl);
+  }
+
+  #search-list-container {
+    order: 0;
+    padding: var(--wac--accessible-spacing--2x);
+    background: none;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  #map-container {
+    display: block;
+  }
+
+  .search-header {
+    --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wac--search-header--internal-spacing);
+    padding-block: var(--wac--search-header--internal-spacing);
+    width: 100%;
+
+    background: linear-gradient(
+      180deg,
+      #fff8e0 calc(100% - var(--wac--search-header--internal-spacing)),
+      rgba(255, 255, 255, 0) 100%
+    );
+    margin-bottom: 0px;
+  }
+  #map-icon {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 940px) {
   main {
     padding-left: var(--wac--accessible-spacing--2x);
@@ -327,7 +419,10 @@ main {
   .welcome h1 {
     flex: 1;
   }
-
+  #arches-logo,
+  #ots-logo {
+    max-height: 26px;
+  }
   .welcome-credits {
     display: flex;
     align-items: center;
@@ -362,9 +457,7 @@ main {
   main {
     flex-direction: row-reverse;
   }
-  .home {
-    gap: var(--wac--semantic-spacing--primary);
-  }
+
   #map-container {
     display: block;
   }

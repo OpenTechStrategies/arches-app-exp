@@ -1,6 +1,6 @@
 <template>
-  <div class="search-results-container">
-    <div class="search-results-header">
+  <div class="search-results-container about">
+    <div class="search-results-header about-title">
       <div class="search-results-header-title">
         <h1>WAC: A Visual Journey</h1>
       </div>
@@ -8,32 +8,36 @@
         <div class="back-button-icon">
           <ArrowLeftIcon />
         </div>
-        <span>Back</span>
+        <span>BACK</span>
       </button>
     </div>
-    <p>
-      In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in the
-      creative spirit by using urban spaces and reclaimable resources to revitalize and transform
-      the South Loop business district into one of the city's major cultural assets. The heart of
-      WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by Michigan Avenue
-      and to the west by State Street. The corridor is regarded as an “living urban canvas” due to
-      its ever-growing number of large-scale mural installations and collaborative projects.
-    </p>
-    <br />
-    <p>See Columbia College's page about the Wabash Arts Corridor for more information.</p>
-    <br />
-    <p>
-      About / Credit This site is a project of Open Tech Strategies, LLC. Our thanks to the artists
-      and curators who created and continue to build the Wabash Arts Corridor in Chicago. Please
-      write us at info@opentechstrategies.com to suggest changes or improvements to this site.
-    </p>
-    <br />
-    <p>
-      This site is free & open source software, based on the Arches heritage data management
-      platform. See the application code, the data, and our data import scripts. Contributions
-      welcome.
-    </p>
-    <br />
+    <div>
+      <p>
+        In 2013, Columbia College Chicago launched the Wabash Arts Corridor to immerse students in
+        the creative spirit by using urban spaces and reclaimable resources to revitalize and
+        transform the South Loop business district into one of the city's major cultural assets. The
+        heart of WAC is Wabash Avenue from Van Buren to Roosevelt and is framed to the east by
+        Michigan Avenue and to the west by State Street. The corridor is regarded as an “living
+        urban canvas” due to its ever-growing number of large-scale mural installations and
+        collaborative projects.
+      </p>
+      <br />
+      <p>See Columbia College's page about the Wabash Arts Corridor for more information.</p>
+      <br />
+      <p>
+        About / Credit This site is a project of Open Tech Strategies, LLC. Our thanks to the
+        artists and curators who created and continue to build the Wabash Arts Corridor in Chicago.
+        Please write us at info@opentechstrategies.com to suggest changes or improvements to this
+        site.
+      </p>
+      <br />
+      <p>
+        This site is free & open source software, based on the Arches heritage data management
+        platform. See the application code, the data, and our data import scripts. Contributions
+        welcome.
+      </p>
+      <br />
+    </div>
     <div class="credits">
       <div class="credit">
         <p>Designed by</p>
@@ -96,5 +100,13 @@ span {
   max-width: 150px;
   height: auto;
   object-fit: contain;
+}
+
+.about {
+  margin: var(--wac--accessible-spacing--2x);
+}
+
+.about-title {
+  margin-left: 0%;
 }
 </style>
