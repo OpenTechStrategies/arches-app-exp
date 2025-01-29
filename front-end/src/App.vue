@@ -9,7 +9,7 @@
           </a>
         </h1>
         <div class="welcome-credits">
-          <div class="welcome-credit">
+          <a class="welcome-credit" href="https://opentechstrategies.com/">
             <p>Designed by</p>
             <img
               :src="
@@ -18,10 +18,12 @@
                   : '/ots_logo.png'
               "
               alt="no image available"
+              id="ots-logo"
               loading="lazy"
             />
-          </div>
-          <div class="welcome-credit">
+          </a>
+
+          <a class="welcome-credit" href="https://www.archesproject.org/">
             <p>Powered by</p>
             <img
               :src="
@@ -30,9 +32,10 @@
                   : '/arches_logo.png'
               "
               alt="no image available"
+              id="arches-logo"
               loading="lazy"
             />
-          </div>
+          </a>
         </div>
       </div>
     </header>
@@ -214,6 +217,7 @@ main {
   display: flex;
   align-items: center;
   gap: var(--wac--accessible-spacing--halfx);
+  text-decoration: none;
 }
 
 .welcome-credits img {
@@ -331,7 +335,10 @@ main {
   .welcome h1 {
     flex: 1;
   }
-
+  #arches-logo,
+  #ots-logo {
+    max-height: 26px;
+  }
   .welcome-credits {
     display: flex;
     align-items: center;
