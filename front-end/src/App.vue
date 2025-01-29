@@ -180,7 +180,7 @@ watch(
 
 <style scoped>
 main {
-  border-radius: 32px;
+  border-radius: 20px;
 }
 
 .home {
