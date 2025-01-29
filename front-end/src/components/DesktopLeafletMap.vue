@@ -150,6 +150,13 @@ watch(
   border-bottom-right-radius: 20px;
 }
 
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  .map-wrapper {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+}
+
 @media screen and (min-width: 940px) {
   #map {
     border-radius: 0px;

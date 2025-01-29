@@ -12,13 +12,13 @@
           <a class="welcome-credit" href="https://opentechstrategies.com/">
             <p>Designed by</p>
             <img
+              id="ots-logo"
               :src="
                 isProd
                   ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
                   : '/ots_logo.png'
               "
               alt="no image available"
-              id="ots-logo"
               loading="lazy"
             />
           </a>
@@ -26,13 +26,13 @@
           <a class="welcome-credit" href="https://www.archesproject.org/">
             <p>Powered by</p>
             <img
+              id="arches-logo"
               :src="
                 isProd
                   ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
                   : '/arches_logo.png'
               "
               alt="no image available"
-              id="arches-logo"
               loading="lazy"
             />
           </a>
@@ -62,7 +62,7 @@
             @click="router.push('/artworks')"
           >
             <PhotoIcon class="button-icon" />
-            <span>Artworks</span>
+            <p>Artworks</p>
           </button>
           <button
             type="button"
@@ -71,7 +71,7 @@
             @click="router.push('/artists')"
           >
             <UserIcon class="button-icon" />
-            <span>Artists</span>
+            <p>Artists</p>
           </button>
           <button
             id="map-icon"
@@ -81,7 +81,7 @@
             @click="router.push('/map')"
           >
             <MapPinIcon class="button-icon" />
-            <span>Map</span>
+            <p>Map</p>
           </button>
           <button
             type="button"
@@ -90,7 +90,7 @@
             @click="router.push('/about')"
           >
             <InformationCircleIcon class="button-icon" />
-            <span>About</span>
+            <p>About</p>
           </button>
         </div>
         <RouterView v-slot="{ Component }">
@@ -213,6 +213,11 @@ main {
   flex-wrap: wrap;
 }
 
+.welcome-text {
+  font-size: 32px;
+  line-height: 38.4px;
+}
+
 .welcome-credit {
   display: flex;
   align-items: center;
@@ -221,14 +226,10 @@ main {
 }
 
 .welcome-credits img {
-  max-height: 25px;
+  max-height: 20px;
   max-width: 150px;
   height: auto;
   object-fit: contain;
-}
-
-.welcome-text {
-  font-size: var(--wac--font-size--xxl);
 }
 
 .welcome-text a {
@@ -277,6 +278,7 @@ main {
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
+  margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 
 .search-input-wrapper {
@@ -317,6 +319,88 @@ main {
   font-weight: var(--wac--font-weight--normal);
   &.active {
     background: var(--wac--color--highlight);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 940px) {
+  main {
+    background-color: #fff8e0;
+  }
+  .welcome-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .welcome h1 {
+    flex: 1;
+  }
+  #arches-logo,
+  #ots-logo {
+    max-height: 26px;
+  }
+  .welcome-credits {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-end;
+    gap: var(--wac--accessible-spacing--halfx);
+    flex-wrap: wrap;
+  }
+
+  .welcome-credit {
+    display: flex;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+  }
+
+  .welcome-credits img {
+    max-height: 50px;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .welcome {
+    font-size: var(--wac--font-size--xxl);
+  }
+
+  #search-list-container {
+    order: 0;
+    padding: var(--wac--accessible-spacing--2x);
+    background: none;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  #map-container {
+    display: block;
+  }
+
+  .search-header {
+    --wac--search-header--internal-spacing: var(--wac--semantic-spacing--tertiary);
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wac--search-header--internal-spacing);
+    padding-block: var(--wac--search-header--internal-spacing);
+    width: 100%;
+
+    background: linear-gradient(
+      180deg,
+      #fff8e0 calc(100% - var(--wac--search-header--internal-spacing)),
+      rgba(255, 255, 255, 0) 100%
+    );
+    margin-bottom: 0px;
+  }
+  #map-icon {
+    display: none;
   }
 }
 
@@ -373,9 +457,7 @@ main {
   main {
     flex-direction: row-reverse;
   }
-  .home {
-    gap: var(--wac--semantic-spacing--primary);
-  }
+
   #map-container {
     display: block;
   }

@@ -9,18 +9,16 @@
       }}</RouterLink>
     </template>
     <template v-if="artist && structure" #item-header-byline>
-      <span>
-        <span v-if="props.panelResourceType !== PanelResourceEnum.ARTIST"
-          >by
-          <RouterLink :to="`/wac/resource/${artist.resourceinstanceid}`" class="resource-link">{{
-            artist.displayname
-          }}</RouterLink></span
-        >
-        <span v-if="props.panelResourceType !== PanelResourceEnum.STRUCTURE">
-          at
-          {{ structure.displayname }}</span
-        >
-      </span>
+      <h2 v-if="props.panelResourceType !== PanelResourceEnum.ARTIST" class="h2-sub">
+        by
+        <RouterLink :to="`/wac/resource/${artist.resourceinstanceid}`" class="resource-link">{{
+          artist.displayname
+        }}</RouterLink>
+      </h2>
+      <h2 v-if="props.panelResourceType !== PanelResourceEnum.STRUCTURE" class="h2-sub">
+        at
+        {{ structure.displayname }}
+      </h2>
     </template>
     <!-- NOTE: We currently only have one photographer in the dataset, and that is unlikely to change anytime soon. When we do get more photographers we can uncomment this block-->
     <!-- <template

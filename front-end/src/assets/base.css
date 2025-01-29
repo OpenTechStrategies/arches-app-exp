@@ -1,18 +1,21 @@
 :root {
-  --wac--font-size: 16px;
-  --wac--font-size--sm: calc(var(--wac--font-size) * 0.75);
-  --wac--font-size--lg: calc(var(--wac--font-size) * 1.25);
-  --wac--font-size--xl: calc(var(--wac--font-size) * 1.5);
-  --wac--font-size--xxl: calc(var(--wac--font-size) * 2);
-  --wac--font-size--xxxl: calc(var(--wac--font-size) * 3);
-  --wac--font-size--xxxxl: calc(var(--wac--font-size) * 4);
+  --wac--font-size: 14px;
+  --wac--font-size--h1: 24px;
+  --wac--font-size--h2: 18px;
+  --wac--font-size--h3: 16px;
+  --wac--font-size--h1-sub: 20px;
+  --wac--font-size--h2-sub: 15px;
 
-  --wac--line-height: 1.4;
-  --wac--line-height--tight: 1.2;
-
-  --wac--font-weight--normal: 400;
+  --wac--font-weight: 400;
   --wac--font-weight--bold: 700;
-  --wac--font-weight--xbold: 900;
+  --wac--font-weight--semibold: 600;
+
+  --wac--line-height: 16.8px;
+  --wac--line-height--h1: 28px;
+  --wac--line-height--h2: 21.6px;
+  --wac--line-height--h3: 19.2px;
+  --wac--line-height--h1-sub: 24px;
+  --wac--line-height--h2-sub: 18px;
 
   --wac--color--gray: #999;
   --wac--color--gray--dark: #363636;
@@ -29,6 +32,7 @@
   --wac--fixed-spacing--halfx: calc(var(--wac--fixed-spacing--1x) / 2);
 
   /* These spacings should increase with font-size. They have an accessibility impact. */
+  --wac--accessible-spacing--halfx: calc(0.5 * var(--wac--accessible-spacing--1x));
   --wac--accessible-spacing--1x: 0.625rem;
   --wac--accessible-spacing--2x: calc(2 * var(--wac--accessible-spacing--1x));
   --wac--accessible-spacing--3x: calc(3 * var(--wac--accessible-spacing--1x));
@@ -64,8 +68,17 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family:
+    'Poppins',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Noto Sans',
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji';
   font-size: var(--wac--font-size);
   line-height: var(--wac--line-height);
   color: black;
@@ -85,18 +98,63 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  font-weight: var(--wac--font-weight--bold);
   font-size: inherit;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 h1 {
-  font-weight: var(--wac--font-weight--xbold);
+  font-size: var(--wac--font-size--h1);
+  line-height: var(--wac--line-height--h1);
+  letter-spacing: -0.02em;
+  font-weight: var(--wac--font-weight--bold);
+}
+
+.h1-sub {
+  font-size: var(--wac--font-size--h1-sub);
+  font-weight: var(--wac--font-weight);
+  line-height: var(--wac--line-height--h1-sub);
+}
+
+h2 {
+  font-size: var(--wac--font-size--h2);
+  font-weight: var(--wac--font-weight--semibold);
+  line-height: var(--wac--line-height--h2);
+}
+
+.h2-sub {
+  font-size: var(--wac--font-size--h2-sub);
+  font-weight: var(--wac--font-weight);
+  line-height: var(--wac--line-height--h2-sub);
+}
+
+h3 {
+  font-size: var(--wac--font-size--h3);
+  font-weight: var(--wac--font-weight--semibold);
+  line-height: var(--wac--line-height--h3);
+}
+
+.h3-sub {
+  font-size: var(--wac--font-size--h3-sub);
+  font-weight: var(--wac--font-weight);
+  line-height: var(--wac--line-height);
 }
 
 p,
 figure {
   margin: 0;
   padding: 0;
+}
+
+p {
+  font-size: var(--wac--font-size);
+  font-weight: var(--wac--font-weight);
+  line-height: var(--wac--line-height);
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 a {
@@ -114,12 +172,11 @@ a {
 
 button,
 .button {
-  --wac--button--padding: var(--wac--accessible-spacing--1x);
-
   all: unset;
-
-  font-weight: var(--wac--font-weight--bold);
-  padding: var(--wac--button--padding);
+  font-size: 11px;
+  line-height: 13.2px;
+  font-weight: var(--wac--font-weight--semibold);
+  padding: var(--wac--accessible-spacing--halfx) var(--wac--accessible-spacing--1x);
   border: 2px solid black;
 
   transition-property: background-color, border-color, outline;
@@ -141,8 +198,8 @@ button,
 }
 
 .button-icon {
-  width: calc(var(--wac--line-height) * 1em);
-  height: calc(var(--wac--line-height) * 1em);
+  width: var(--wac--line-height--h1);
+  height: var(--wac--line-height--h1);
   transition:
     transform 100ms ease,
     opacity 300ms ease-in-out;
@@ -164,9 +221,8 @@ button,
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 1rem;
-  height: 1rem;
+  width: var(--wac--line-height);
+  height: var(--wac--line-height);
 }
 
 .map-icon {
@@ -191,17 +247,41 @@ button,
 .search-results-header {
   display: flex;
   justify-content: space-between;
+  margin-left: 5%;
 }
 
 .search-results-header-icon {
-  width: calc(var(--wac--line-height) * 1em);
-  height: calc(var(--wac--line-height) * 1em);
+  width: var(--wac--line-height--h1);
+  height: var(--wac--line-height--h1);
 }
 
 .search-results-header-title {
   display: flex;
   font-size: var(--wac--font-size--xxl);
   gap: var(--wac--accessible-spacing--2x);
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    padding: var(--wac--semantic-spacing--primary);
+  }
+
+  .map-icon {
+    display: none;
+  }
+
+  .search-results-header {
+    margin-left: 0%;
+  }
+
+  .search-results {
+    display: grid;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0px;
+    overflow-x: scroll;
+  }
 }
 
 @media screen and (min-width: 940px) {
@@ -214,12 +294,16 @@ button,
     display: none;
   }
 
+  .search-results-header {
+    margin-left: 0%;
+  }
+
   .search-results {
     display: grid;
     flex-direction: column;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: auto;
+    margin: 0px;
     max-width: 650px;
     overflow-x: scroll;
   }

@@ -36,13 +36,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { UserIcon } from '@heroicons/vue/24/outline';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from '../components/SearchListItem.vue';
 
-const selectedResourceType = 'Artwork'
+const selectedResourceType = 'Artist';
 
 const props = defineProps<{
   routeQuery?: string;
