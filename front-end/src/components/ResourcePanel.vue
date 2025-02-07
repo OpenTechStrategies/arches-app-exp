@@ -139,13 +139,13 @@ const { graphIdToNameTable } = props.idReferences;
   height: var(--wac--line-height--h1);
 }
 
-@media screen and (min-width: 768px) and (max-width: 940px) {
+@media screen and (min-width: 768px) and (max-width: 1460px) {
   .resource-detail {
     height: 100%;
   }
 }
 
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   .resource-detail {
     display: flex;
     flex-direction: column;

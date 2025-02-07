@@ -320,7 +320,7 @@ main {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 940px) {
+@media screen and (min-width: 768px) and (max-width: 1460px) {
   main {
     background-color: #fff8e0;
   }
@@ -402,7 +402,7 @@ main {
   }
 }
 
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   main {
     padding-left: var(--wac--accessible-spacing--2x);
     background-color: #fff8e0;

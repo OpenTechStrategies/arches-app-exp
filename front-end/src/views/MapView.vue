@@ -41,7 +41,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   .mobile-map-container {
     display: none;
   }

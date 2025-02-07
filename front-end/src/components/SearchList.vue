@@ -229,14 +229,14 @@ const filteredResources = computed(() =>
   gap: var(--wac--accessible-spacing--2x);
 }
 
-@media screen and (min-width: 768px) and (max-width: 940px) {
+@media screen and (min-width: 768px) and (max-width: 1460px) {
   .search-content-container {
     background-color: none;
     width: auto;
   }
 }
 
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   .search-content-container {
     background-color: none;
     width: auto;
