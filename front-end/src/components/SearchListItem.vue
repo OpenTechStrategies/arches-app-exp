@@ -65,7 +65,6 @@ const imageUrl = props.imageTileData
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: var(--wac--accessible-spacing--1x);
   gap: var(--wac--accessible-spacing--halfx);
   line-height: var(--wac--line-height--tight);
   text-overflow: ellipsis;
