@@ -61,8 +61,9 @@
             :class="{ active: activePage === '/artworks' }"
             @click="router.push('/artworks')"
           >
-            <PhotoIcon class="button-icon" />
+            <ArtworksIcon class="button-icon" />
             <p>Artworks</p>
+            <div class="active-bar"></div>
           </button>
           <button
             type="button"
@@ -70,8 +71,9 @@
             :class="{ active: activePage === '/artists' }"
             @click="router.push('/artists')"
           >
-            <UserIcon class="button-icon" />
+            <ArtistsIcon class="button-icon" />
             <p>Artists</p>
+            <div class="active-bar"></div>
           </button>
           <button
             id="map-icon"
@@ -80,8 +82,9 @@
             :class="{ active: activePage === '/map' }"
             @click="router.push('/map')"
           >
-            <MapPinIcon class="button-icon" />
+            <MapIcon class="button-icon" />
             <p>Map</p>
+            <div class="active-bar"></div>
           </button>
           <button
             type="button"
@@ -89,8 +92,9 @@
             :class="{ active: activePage === '/about' }"
             @click="router.push('/about')"
           >
-            <InformationCircleIcon class="button-icon" />
+            <InfoIcon class="button-icon" />
             <p>About</p>
+            <div class="active-bar"></div>
           </button>
         </div>
         <RouterView v-slot="{ Component }">
@@ -123,13 +127,7 @@
 import { ref, watch } from 'vue';
 import DesktopLeafletMap from '@/components/DesktopLeafletMap.vue';
 import { useRouter } from 'vue-router';
-import {
-  PhotoIcon,
-  UserIcon,
-  InformationCircleIcon,
-  MagnifyingGlassIcon,
-  MapPinIcon
-} from '@heroicons/vue/24/outline';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type {
   ImageTileData,
   Tile,
@@ -138,6 +136,10 @@ import type {
   Prefetch,
   ResourceXResource
 } from './types';
+import ArtistsIcon from './components/Icons/ArtworksIcon.vue';
+import InfoIcon from './components/Icons/InfoIcon.vue';
+import MapIcon from './components/Icons/MapIcon.vue';
+import ArtworksIcon from './components/Icons/ArtistsIcon.vue';
 
 const router = useRouter();
 
@@ -270,15 +272,11 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    180deg,
-    white calc(100% - var(--wac--search-header--internal-spacing)),
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: white;
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
-  margin-bottom: var(--wac--semantic-spacing--tertiary);
+  padding-bottom: 6px;
 }
 
 .search-input-wrapper {
@@ -286,12 +284,14 @@ main {
   align-items: center;
   background: #ffd54f;
   max-height: 50px;
-  width: 100%;
+  width: 95%;
+  justify-content: center;
   border-radius: 32px;
   padding: var(--wac--accessible-spacing--2x);
   gap: var(--wac--accessible-spacing--halfx);
   grid-column-start: 1;
   grid-column-end: 5;
+  margin: auto;
 }
 
 .search-input {
@@ -307,6 +307,9 @@ main {
   height: 24px;
   color: black;
 }
+.active-bar {
+  width: 0px;
+}
 .nav-button {
   display: flex;
   flex-direction: column;
@@ -317,12 +320,19 @@ main {
   font-size: inherit;
   cursor: pointer;
   font-weight: var(--wac--font-weight--normal);
+
   &.active {
-    background: var(--wac--color--highlight);
+    .active-bar {
+      background: #ffd54f;
+      width: 50px;
+      height: 2px;
+      transition: width 0.5s;
+      border-radius: 20px;
+    }
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 940px) {
+@media screen and (min-width: 768px) and (max-width: 1460px) {
   main {
     background-color: #fff8e0;
   }
@@ -402,9 +412,30 @@ main {
   #map-icon {
     display: none;
   }
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+    border: none;
+    background: none;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: var(--wac--font-weight--normal);
+
+    &.active {
+      .active-bar {
+        background: black;
+        width: 30px;
+        height: 2px;
+        transition: width 0.5s;
+        border-radius: 20px;
+      }
+    }
+  }
 }
 
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   main {
     padding-left: var(--wac--accessible-spacing--2x);
     background-color: #fff8e0;
@@ -482,6 +513,27 @@ main {
   }
   #map-icon {
     display: none;
+  }
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+    border: none;
+    background: none;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: var(--wac--font-weight--normal);
+
+    &.active {
+      .active-bar {
+        background: black;
+        width: 30px;
+        height: 2px;
+        transition: width 0.5s;
+        border-radius: 20px;
+      }
+    }
   }
 }
 </style>

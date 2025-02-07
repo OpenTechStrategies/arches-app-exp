@@ -85,6 +85,7 @@ const resolvedImageUrls = computed(() =>
 .resource-detail-item-image > img {
   width: 100%;
   height: 100%;
+  max-height: 600px;
   background-color: white;
   padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
     var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);

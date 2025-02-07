@@ -65,7 +65,6 @@ const imageUrl = props.imageTileData
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: var(--wac--accessible-spacing--1x);
   gap: var(--wac--accessible-spacing--halfx);
   line-height: var(--wac--line-height--tight);
   text-overflow: ellipsis;
@@ -94,6 +93,6 @@ const imageUrl = props.imageTileData
   background-color: white;
   padding: var(--wac--accessible-spacing--1x) var(--wac--accessible-spacing--1x)
     var(--wac--accessible-spacing--4x) var(--wac--accessible-spacing--1x);
-  box-shadow: 1px 2px 0px grey;
+  box-shadow: 4px 4px 8px #ccc;
 }
 </style>

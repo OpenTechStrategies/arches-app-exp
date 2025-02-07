@@ -2,11 +2,11 @@
   <div v-if="props.resource" class="resource-detail">
     <div class="resource-detail-header">
       <div class="resource-detail-title">
-        <PhotoIcon
+        <ArtworksIcon
           v-if="graphIdToNameTable[props.resource.graph_id] === 'Artwork'"
           class="resource-header-icon"
         />
-        <UserIcon
+        <ArtistsIcon
           v-if="graphIdToNameTable[props.resource.graph_id] === 'Artist'"
           class="resource-header-icon"
         />
@@ -90,11 +90,13 @@ import type {
   Resource
 } from '@/types';
 import { validateArtworkSchema, PanelResourceEnum } from '@/types';
-import { ArrowLeftIcon, PhotoIcon, UserIcon } from '@heroicons/vue/24/outline';
+import { ArrowLeftIcon } from '@heroicons/vue/24/outline';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
 import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
 import MoreArtworksByArtist from './MoreArtworksByArtist.vue';
+import ArtworksIcon from './Icons/ArtworksIcon.vue';
+import ArtistsIcon from './Icons/ArtistsIcon.vue';
 
 const props = defineProps<{
   resource: ApiResource;
@@ -137,13 +139,13 @@ const { graphIdToNameTable } = props.idReferences;
   height: var(--wac--line-height--h1);
 }
 
-@media screen and (min-width: 768px) and (max-width: 940px) {
+@media screen and (min-width: 768px) and (max-width: 1460px) {
   .resource-detail {
     height: 100%;
   }
 }
 
-@media screen and (min-width: 940px) {
+@media screen and (min-width: 1460px) {
   .resource-detail {
     display: flex;
     flex-direction: column;
