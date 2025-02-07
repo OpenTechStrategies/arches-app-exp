@@ -265,6 +265,7 @@ button,
 .padded-view {
   padding-left: var(--wac--accessible-spacing--2x);
   padding-right: var(--wac--accessible-spacing--2x);
+  padding-top: var(--wac--accessible-spacing--2x);
 }
 
 .search-results {
@@ -291,6 +292,7 @@ button,
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin: 0px;
+    max-width: none;
     overflow-x: scroll;
   }
 }

@@ -236,6 +236,9 @@ const filteredResources = computed(() =>
     background-color: none;
     width: auto;
   }
+  .search-results-landing {
+    max-width: none;
+  }
 }
 
 @media screen and (min-width: 1460px) {

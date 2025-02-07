@@ -277,7 +277,6 @@ main {
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
   padding-bottom: 6px;
-  margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 
 .search-input-wrapper {

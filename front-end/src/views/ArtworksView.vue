@@ -39,8 +39,8 @@
 import { computed } from 'vue';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
-import SearchListItem from '../components/SearchListItem.vue';
 import ArtworksIcon from '@/components/Icons/ArtworksIcon.vue';
+import SearchListItem from '../components/SearchListItem.vue';
 
 const selectedResourceType = 'Artwork';
 
