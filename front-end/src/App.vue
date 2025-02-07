@@ -63,6 +63,7 @@
           >
             <ArtworksIcon class="button-icon" />
             <p>Artworks</p>
+            <div class="active-bar"></div>
           </button>
           <button
             type="button"
@@ -72,6 +73,7 @@
           >
             <ArtistsIcon class="button-icon" />
             <p>Artists</p>
+            <div class="active-bar"></div>
           </button>
           <button
             id="map-icon"
@@ -82,6 +84,7 @@
           >
             <MapIcon class="button-icon" />
             <p>Map</p>
+            <div class="active-bar"></div>
           </button>
           <button
             type="button"
@@ -91,6 +94,7 @@
           >
             <InfoIcon class="button-icon" />
             <p>About</p>
+            <div class="active-bar"></div>
           </button>
         </div>
         <RouterView v-slot="{ Component }">
@@ -272,7 +276,7 @@ main {
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
-
+  padding-bottom: 6px;
   margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 
@@ -304,6 +308,9 @@ main {
   height: 24px;
   color: black;
 }
+.active-bar {
+  width: 0px;
+}
 .nav-button {
   display: flex;
   flex-direction: column;
@@ -314,8 +321,15 @@ main {
   font-size: inherit;
   cursor: pointer;
   font-weight: var(--wac--font-weight--normal);
+
   &.active {
-    background: var(--wac--color--highlight);
+    .active-bar {
+      background: #ffd54f;
+      width: 50px;
+      height: 2px;
+      transition: width 0.5s;
+      border-radius: 20px;
+    }
   }
 }
 
@@ -399,6 +413,27 @@ main {
   #map-icon {
     display: none;
   }
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+    border: none;
+    background: none;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: var(--wac--font-weight--normal);
+
+    &.active {
+      .active-bar {
+        background: black;
+        width: 30px;
+        height: 2px;
+        transition: width 0.5s;
+        border-radius: 20px;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1460px) {
@@ -479,6 +514,27 @@ main {
   }
   #map-icon {
     display: none;
+  }
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--wac--accessible-spacing--halfx);
+    border: none;
+    background: none;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: var(--wac--font-weight--normal);
+
+    &.active {
+      .active-bar {
+        background: black;
+        width: 30px;
+        height: 2px;
+        transition: width 0.5s;
+        border-radius: 20px;
+      }
+    }
   }
 }
 </style>
