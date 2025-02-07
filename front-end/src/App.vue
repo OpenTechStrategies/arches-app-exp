@@ -285,12 +285,14 @@ main {
   align-items: center;
   background: #ffd54f;
   max-height: 50px;
-  width: 100%;
+  width: 95%;
+  justify-content: center;
   border-radius: 32px;
   padding: var(--wac--accessible-spacing--2x);
   gap: var(--wac--accessible-spacing--halfx);
   grid-column-start: 1;
   grid-column-end: 5;
+  margin: auto;
 }
 
 .search-input {
