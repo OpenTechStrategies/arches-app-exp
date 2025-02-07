@@ -8,7 +8,7 @@
         >
           <div class="search-results-header">
             <div class="search-results-header-title">
-              <PhotoIcon class="search-results-header-icon" />
+              <ArtworksIcon class="search-results-header-icon" />
               <h1>Artworks</h1>
             </div>
             <button type="button" class="see-all-button" @click="router.push('/artworks')">
@@ -50,7 +50,7 @@
         >
           <div class="search-results-header">
             <div class="search-results-header-title">
-              <UserIcon class="search-results-header-icon" />
+              <ArtistsIcon class="search-results-header-icon" />
               <h1>Artists</h1>
             </div>
             <button type="button" class="see-all-button" @click="router.push('/artists')">
@@ -131,10 +131,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { PhotoIcon, UserIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from './SearchListItem.vue';
+import ArtistsIcon from './Icons/ArtistsIcon.vue';
+import ArtworksIcon from './Icons/ArtworksIcon.vue';
 
 const router = useRouter();
 

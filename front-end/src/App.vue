@@ -61,7 +61,7 @@
             :class="{ active: activePage === '/artworks' }"
             @click="router.push('/artworks')"
           >
-            <PhotoIcon class="button-icon" />
+            <ArtworksIcon class="button-icon" />
             <p>Artworks</p>
           </button>
           <button
@@ -70,7 +70,7 @@
             :class="{ active: activePage === '/artists' }"
             @click="router.push('/artists')"
           >
-            <UserIcon class="button-icon" />
+            <ArtistsIcon class="button-icon" />
             <p>Artists</p>
           </button>
           <button
@@ -80,7 +80,7 @@
             :class="{ active: activePage === '/map' }"
             @click="router.push('/map')"
           >
-            <MapPinIcon class="button-icon" />
+            <MapIcon class="button-icon" />
             <p>Map</p>
           </button>
           <button
@@ -89,7 +89,7 @@
             :class="{ active: activePage === '/about' }"
             @click="router.push('/about')"
           >
-            <InformationCircleIcon class="button-icon" />
+            <InfoIcon class="button-icon" />
             <p>About</p>
           </button>
         </div>
@@ -123,13 +123,7 @@
 import { ref, watch } from 'vue';
 import DesktopLeafletMap from '@/components/DesktopLeafletMap.vue';
 import { useRouter } from 'vue-router';
-import {
-  PhotoIcon,
-  UserIcon,
-  InformationCircleIcon,
-  MagnifyingGlassIcon,
-  MapPinIcon
-} from '@heroicons/vue/24/outline';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 import type {
   ImageTileData,
   Tile,
@@ -138,6 +132,10 @@ import type {
   Prefetch,
   ResourceXResource
 } from './types';
+import ArtistsIcon from './components/Icons/ArtworksIcon.vue';
+import InfoIcon from './components/Icons/InfoIcon.vue';
+import MapIcon from './components/Icons/MapIcon.vue';
+import ArtworksIcon from './components/Icons/ArtistsIcon.vue';
 
 const router = useRouter();
 

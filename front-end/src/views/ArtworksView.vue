@@ -2,7 +2,7 @@
   <div class="search-results-container">
     <div class="search-results-header">
       <div class="search-results-header-title">
-        <PhotoIcon class="search-results-header-icon" />
+        <ArtworksIcon class="search-results-header-icon" />
         <h1>Artworks</h1>
       </div>
     </div>
@@ -37,10 +37,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { PhotoIcon } from '@heroicons/vue/24/outline';
 import type { Tile, ImageTileData, Resource, Prefetch, ResourceXResource } from '@/types';
 import { getArtistForArtwork, getImageTileDataForResource } from '@/utils';
 import SearchListItem from '../components/SearchListItem.vue';
+import ArtworksIcon from '@/components/Icons/ArtworksIcon.vue';
 
 const selectedResourceType = 'Artwork';
 
