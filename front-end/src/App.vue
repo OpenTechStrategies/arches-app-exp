@@ -276,6 +276,7 @@ main {
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
+  padding-bottom: 20px;
   margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 

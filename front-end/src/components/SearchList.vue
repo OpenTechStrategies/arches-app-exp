@@ -186,6 +186,7 @@ const filteredResources = computed(() =>
   display: flex;
   flex-direction: column;
   gap: var(--wac--accessible-spacing--1x);
+  scrollbar-width: none;
 }
 
 .search-results {
@@ -204,6 +205,7 @@ const filteredResources = computed(() =>
   margin: 0;
   max-width: 650px;
   overflow-x: scroll;
+  scrollbar-width: none;
 }
 
 .search-results-header {
