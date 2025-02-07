@@ -268,15 +268,11 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    180deg,
-    white calc(100% - var(--wac--search-header--internal-spacing)),
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: white;
   width: 100vw;
   gap: var(--wac--semantic-spacing--tertiary);
   z-index: 999;
-  padding-bottom: 20px;
+
   margin-bottom: var(--wac--semantic-spacing--tertiary);
 }
 

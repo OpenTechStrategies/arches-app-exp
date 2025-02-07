@@ -1,5 +1,5 @@
 <template>
-  <div class="search-results-container about">
+  <div class="search-results-container about padded-view">
     <div class="search-results-header about-title">
       <div class="search-results-header-title">
         <h1>WAC: A Visual Journey</h1>

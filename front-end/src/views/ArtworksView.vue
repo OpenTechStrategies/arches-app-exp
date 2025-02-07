@@ -1,5 +1,5 @@
 <template>
-  <div class="search-results-container">
+  <div class="search-results-container padded-view">
     <div class="search-results-header">
       <div class="search-results-header-title">
         <ArtworksIcon class="search-results-header-icon" />
