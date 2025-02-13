@@ -61,7 +61,7 @@
       </div>
       <div class="credit">
         <p>Powered by</p>
-        <a class="welcome-credit" href="https://opentechstrategies.com/">
+        <a class="welcome-credit" href="https://www.archesproject.org/">
           <img
             :src="
               isProd
