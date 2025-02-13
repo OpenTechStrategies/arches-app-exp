@@ -33,35 +33,45 @@
       <br />
       <p>
         This site is free & open source software, based on the Arches heritage data management
-        platform. See the application code, the data, and our data import scripts. Contributions
-        welcome.
+        platform. See the
+        <a href="https://github.com/OpenTechStrategies/arches-app-exp">application code</a>, the
+        <a
+          href="https://code.librehq.com/ots/arches/arches-demo-data/-/tree/main/wac?ref_type=heads"
+          >data</a
+        >, and our
+        <a href="https://code.librehq.com/ots/arches/arches-demo-data">data import scripts</a>.
+        Contributions welcome.
       </p>
       <br />
     </div>
     <div class="credits">
       <div class="credit">
         <p>Designed by</p>
-        <img
-          :src="
-            isProd
-              ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
-              : '/ots_logo.png'
-          "
-          alt="no image available"
-          loading="lazy"
-        />
+        <a class="welcome-credit" href="https://opentechstrategies.com/">
+          <img
+            :src="
+              isProd
+                ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/ots_logo.png'
+                : '/ots_logo.png'
+            "
+            alt="no image available"
+            loading="lazy"
+          />
+        </a>
       </div>
       <div class="credit">
         <p>Powered by</p>
-        <img
-          :src="
-            isProd
-              ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
-              : '/arches_logo.png'
-          "
-          alt="no image available"
-          loading="lazy"
-        />
+        <a class="welcome-credit" href="https://opentechstrategies.com/">
+          <img
+            :src="
+              isProd
+                ? 'https://arches-app-demo.opentechstrategies.com/archesdataviewer/arches_logo.png'
+                : '/arches_logo.png'
+            "
+            alt="no image available"
+            loading="lazy"
+          />
+        </a>
       </div>
     </div>
   </div>
