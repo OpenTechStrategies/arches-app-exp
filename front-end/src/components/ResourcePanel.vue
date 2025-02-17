@@ -156,6 +156,7 @@ const { graphIdToNameTable } = props.idReferences;
     gap: var(--wac--accessible-spacing--1x);
     background-color: #fff8e0;
     padding: none;
+    height:auto;
     margin-left: var(--wac--accessible-spacing--2x);
     margin-right: var(--wac--accessible-spacing--2x);
   }
