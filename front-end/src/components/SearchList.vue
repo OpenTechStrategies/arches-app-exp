@@ -183,13 +183,6 @@ const filteredResources = computed(() =>
   height: 100vh;
 }
 
-.search-results-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
-  scrollbar-width: none;
-}
-
 .search-results {
   display: flex;
   flex-direction: column;
