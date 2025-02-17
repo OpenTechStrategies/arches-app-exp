@@ -47,7 +47,12 @@
     <div class="credits">
       <div class="credit">
         <p>Designed by</p>
-        <a class="welcome-credit" target=”_blank” href="https://opentechstrategies.com/">
+        <a
+          class="welcome-credit"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://opentechstrategies.com/"
+        >
           <img
             :src="
               isProd
@@ -61,7 +66,12 @@
       </div>
       <div class="credit">
         <p>Powered by</p>
-        <a class="welcome-credit" target=”_blank” href="https://www.archesproject.org/">
+        <a
+          class="welcome-credit"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.archesproject.org/"
+        >
           <img
             :src="
               isProd

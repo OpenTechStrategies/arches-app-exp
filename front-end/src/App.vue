@@ -9,7 +9,12 @@
           </a>
         </h1>
         <div class="welcome-credits">
-          <a class="welcome-credit" target="_blank" href="https://opentechstrategies.com/">
+          <a
+            class="welcome-credit"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://opentechstrategies.com/"
+          >
             <p>Designed by</p>
             <img
               id="ots-logo"
@@ -23,7 +28,12 @@
             />
           </a>
 
-          <a class="welcome-credit" target="_blank" href="https://www.archesproject.org/">
+          <a
+            class="welcome-credit"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.archesproject.org/"
+          >
             <p>Powered by</p>
             <img
               id="arches-logo"
@@ -533,34 +543,6 @@ main {
         transition: width 0.5s;
         border-radius: 20px;
       }
-    }
-  }
-
-  .map-wrapper {
-    --wac--map-expanded-height: 400px;
-    overflow: hidden;
-    height: var(--wac--map-expanded-height);
-    transition: height 0.5s ease;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1460px) {
-    .map-wrapper {
-      border-top-right-radius: 20px;
-      border-top-left-radius: 20px;
-    }
-  }
-
-  @media screen and (min-width: 1460px) {
-    #map {
-      border-radius: 0px;
-      min-height: 400px;
-      max-height: 100vh;
-    }
-    .map-wrapper {
-      --wac--map-expanded-height: 100%;
-      overflow: hidden;
     }
   }
 }
