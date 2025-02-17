@@ -111,13 +111,17 @@ const { graphIdToNameTable } = props.idReferences;
 </script>
 
 <style scoped>
+.resource-header-icon {
+  display: none;
+}
 .resource-detail {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
   background-color: #fff8e0;
   padding: var(--wac--accessible-spacing--1x);
   height: 100vh;
+  margin-left: var(--wac--accessible-spacing--2x);
+  margin-right: var(--wac--accessible-spacing--2x);
 }
 
 .resource-detail-header {
@@ -149,13 +153,16 @@ const { graphIdToNameTable } = props.idReferences;
   .resource-detail {
     display: flex;
     flex-direction: column;
-    margin-left: var(--wac--accessible-spacing--2x);
-    margin-right: var(--wac--accessible-spacing--2x);
     gap: var(--wac--accessible-spacing--1x);
     background-color: #fff8e0;
     padding: none;
+    height: auto;
+    margin-left: var(--wac--accessible-spacing--2x);
+    margin-right: var(--wac--accessible-spacing--2x);
   }
-
+  .resource-header-icon {
+    display: block;
+  }
   .resource-detail-back-button {
     font-size: var(--wac--font-size);
   }

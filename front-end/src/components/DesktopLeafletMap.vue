@@ -28,7 +28,7 @@ const props = defineProps<{
 
 const DEFAULT_LAT = 41.87213786;
 const DEFAULT_LONG = -87.62576558;
-const DEFAULT_ZOOM_LEVEL = 14;
+const DEFAULT_ZOOM_LEVEL = 16;
 const HIGHLIGHT_ZOOM_LEVEL = 18;
 
 const isProd = import.meta.env.PROD;

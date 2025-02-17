@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-  --wac--font-size: 14px;
+  --wac--font-size: 18px;
   --wac--font-size--h1: 24px;
   --wac--font-size--h2: 18px;
-  --wac--font-size--h3: 16px;
+  --wac--font-size--h3: 18px;
   --wac--font-size--h1-sub: 20px;
-  --wac--font-size--h2-sub: 15px;
+  --wac--font-size--h2-sub: 16px;
 
   --wac--font-weight: 400;
   --wac--font-weight--bold: 700;
@@ -153,7 +153,7 @@ figure {
 p {
   font-size: var(--wac--font-size);
   font-weight: var(--wac--font-weight);
-  line-height: var(--wac--line-height);
+  line-height: var(--wac--line-height--h3);
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -234,7 +234,8 @@ button,
 .search-results-container {
   display: flex;
   flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
+  gap: var(--wac--accessible-spacing--2x);
+  scrollbar-width: none;
 }
 
 .search-results {

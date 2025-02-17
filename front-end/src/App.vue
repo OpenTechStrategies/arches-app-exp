@@ -9,7 +9,12 @@
           </a>
         </h1>
         <div class="welcome-credits">
-          <a class="welcome-credit" href="https://opentechstrategies.com/">
+          <a
+            class="welcome-credit"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://opentechstrategies.com/"
+          >
             <p>Designed by</p>
             <img
               id="ots-logo"
@@ -23,7 +28,12 @@
             />
           </a>
 
-          <a class="welcome-credit" href="https://www.archesproject.org/">
+          <a
+            class="welcome-credit"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.archesproject.org/"
+          >
             <p>Powered by</p>
             <img
               id="arches-logo"

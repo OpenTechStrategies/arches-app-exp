@@ -180,13 +180,7 @@ const filteredResources = computed(() =>
   display: flex;
   flex-direction: column;
   gap: var(--wac--semantic-spacing--quartary);
-}
-
-.search-results-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--wac--accessible-spacing--1x);
-  scrollbar-width: none;
+  height: 100vh;
 }
 
 .search-results {
@@ -263,6 +257,9 @@ const filteredResources = computed(() =>
     gap: 1rem;
     margin: 0;
     max-width: 650px;
+  }
+  .search-list-container {
+    height: auto;
   }
 }
 </style>
