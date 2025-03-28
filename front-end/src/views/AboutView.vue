@@ -22,7 +22,9 @@
         collaborative projects.
       </p>
       <br />
-      <p>See Columbia College's page about the Wabash Arts Corridor for more information.</p>
+      <a href="https://students.colum.edu/ssac/wabash-arts-corridor"
+        ><p>See Columbia College's page about the Wabash Arts Corridor for more information.</p></a
+      >
       <br />
       <p>
         About / Credit This site is a project of Open Tech Strategies, LLC. Our thanks to the
