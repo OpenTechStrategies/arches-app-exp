@@ -40,9 +40,11 @@
         <a
           href="https://code.librehq.com/ots/arches/arches-demo-data/-/tree/main/wac?ref_type=heads"
           >data</a
-        >, and our
-        <a href="https://code.librehq.com/ots/arches/arches-demo-data">data import scripts</a>.
-        Contributions welcome.
+        >, our
+        <a href="https://code.librehq.com/ots/arches/arches-demo-data">data import scripts</a>, and
+        the underlying
+        <a href="https://arches.arches-app-demo.opentechstrategies.com/">Arches server</a> that this
+        application pulls data from. Contributions welcome.
       </p>
       <br />
     </div>
