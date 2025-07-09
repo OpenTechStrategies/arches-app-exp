@@ -13,6 +13,7 @@ it is used only to serve the front-end component as bundeled javascript.
 
 The ```front-end``` folder contains a Vue Application, built with Vite and Typescript. The ultimate goal of this application is to provide an alternative UI to the current Arches platform, using a modern web framework like Vue. Currently, the Vue code is bundled by vite into the static directory of the Django Application, which is then served on the user's Arches server.
 
+The application also supports fetching data from external api sources, as seen in the `src/components/ArtistNote.vue` component. This component is designed around a simple API endpoint that is foreign-keyed to the Arches database, linking the arches dataset to an external custom set. The repository for the external API is [here](https://github.com/hminsky2002/archesAppRemoteServer).
 
 # Installation Instructions
 *Credits to users @apeters and @chiatt*

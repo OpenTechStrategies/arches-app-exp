@@ -3,12 +3,14 @@ import ajv from '@/ajv';
 
 export interface Artist {
   Name: string;
+  remoteServerId?: string;
 }
 
 const ArtistSchema: JSONSchemaType<Artist> = {
   type: 'object',
   properties: {
-    Name: { type: 'string' }
+    Name: { type: 'string' },
+    remoteServerId: { type: 'string', nullable: true }
   },
   required: ['Name'],
   additionalProperties: true
