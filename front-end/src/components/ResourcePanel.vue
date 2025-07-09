@@ -12,7 +12,6 @@
         />
         <h1>{{ props.resource.displayname ?? '' }}</h1>
       </div>
-
       <RouterLink :to="'/'" class="resource-detail-back-button">
         <button type="button" class="back-button">
           <ArrowLeftIcon class="back-button-icon" />
@@ -20,7 +19,10 @@
         </button>
       </RouterLink>
     </div>
-
+    <ArtistNote
+      v-if="validateArtistSchema(props.resource.resource)"
+      :artist="props.resource.resource"
+    />
     <ResourceDetail>
       <template #items>
         <ArtworkDetailItem
@@ -89,7 +91,7 @@ import type {
   ImageTileData,
   Resource
 } from '@/types';
-import { validateArtworkSchema, PanelResourceEnum } from '@/types';
+import { validateArtworkSchema, PanelResourceEnum, validateArtistSchema } from '@/types';
 import { ArrowLeftIcon } from '@heroicons/vue/24/outline';
 import ResourceDetail from './ResourceDetail.vue';
 import ArtworkDetailItem from './ArtworkDetailItem.vue';
@@ -97,6 +99,7 @@ import RelatedArtworkDetailItem from './RelatedArtworkDetailItem.vue';
 import MoreArtworksByArtist from './MoreArtworksByArtist.vue';
 import ArtworksIcon from './Icons/ArtworksIcon.vue';
 import ArtistsIcon from './Icons/ArtistsIcon.vue';
+import ArtistNote from './ArtistNote.vue';
 
 const props = defineProps<{
   resource: ApiResource;
