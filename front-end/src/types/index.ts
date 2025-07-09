@@ -7,6 +7,7 @@ export * from './ImageTileData';
 export * from './MapResource';
 export * from './Prefetch';
 export * from './Photographer';
+export * from './RemoteServerResponse';
 export * from './Resource';
 export * from './ResourceXResource';
 export * from './ApiResourceRelation';
