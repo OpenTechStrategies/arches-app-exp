@@ -2,6 +2,7 @@
   <div v-if="validateRemoteServerResponseSchema(remoteServerResponse)" class="artist-note">
     <p>
       {{ remoteServerResponse.note }}
+      <br /><br />
       <a :href="remoteServerResponse.url" target="_blank" rel="noopener noreferrer">{{
         remoteServerResponse.url
       }}</a>

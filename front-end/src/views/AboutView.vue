@@ -41,10 +41,15 @@
           href="https://code.librehq.com/ots/arches/arches-demo-data/-/tree/main/wac?ref_type=heads"
           >data</a
         >, and our
-        <a href="https://code.librehq.com/ots/arches/arches-demo-data">data import scripts</a>, and
-        the underlying
+        <a href="https://code.librehq.com/ots/arches/arches-demo-data">data import scripts</a>, the
+        underlying
         <a href="https://arches.arches-app-demo.opentechstrategies.com/">Arches server</a> that this
-        application pulls data from. Contributions welcome.
+        application pulls most of its data from, and the small
+        <a href="https://github.com/OpenTechStrategies/archesAppRemoteServer"
+          >external information server</a
+        >
+        that this app also pulls from to demonstrate how data from non-Arches sources can be
+        combined with data from Arches. Contributions welcome.
       </p>
       <br />
     </div>
